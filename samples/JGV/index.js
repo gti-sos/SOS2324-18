@@ -47995,4 +47995,14 @@ function media(ciudad){
     return total/num;
 }
 
+let express=require("express");
+let app=express();
+
+const port = (process.env.port || 10000);
+const resultado = media("Afghanistan");
+
+app.get("/samples/JGV", (req,res)=>{res.send(`La media es ${resultado}`)});
+
+app.listen(port);
+
 console.log(media("Afghanistan"))
