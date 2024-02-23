@@ -1593,7 +1593,7 @@ function media(datos,pais){
         sum=sum+Number(element);
     });;
 
-    console.log(sum/filtrados.length);
+    console.log("La media de personas que votaron si en "+pais+" fue: "+ sum/filtrados.length);
 }
 
 
