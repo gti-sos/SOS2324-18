@@ -1,4 +1,5 @@
-let datos = [
+module.exports={
+  data : [
   {
     "year_of_occurance": "2002",
     "cci_number": "2002ATSPO001",
@@ -3559,9 +3560,9 @@ let datos = [
     "advanced_payment_post_from_twenty_fifteen": "5.391",
     "potential_aid_amount_eur_m_": ""
   }
-];
+],
 
-function calcularMediaPorPais(datos, pais) {
+calcularMediaPorPais:function calcularMediaPorPais(datos, pais) {
   // Filtrar las filas por el país especificado
   const desastresEnPais = datos.filter(dato => dato.applicant_country === pais);
 
@@ -3579,20 +3580,5 @@ function calcularMediaPorPais(datos, pais) {
 
   return media;
 }
+};
 
-// Ejemplo de uso: calcular la media de los daños directos aceptados en Austria
-const mediaAustria = calcularMediaPorPais(datos, 'AT');
-console.log('Media de los daños directos aceptados en Austria:', mediaAustria);
-
-
-let express = require("express");
-
-let app = express();
-
-app.get("/", (req, res)=>{
-  res.send(`<html><body>Media de los daños directos aceptados en Austria: ${mediaAustria}</body></html>`);
-})
-
-app.listen(10000);
-
-console.log("Server listening on port 10000");

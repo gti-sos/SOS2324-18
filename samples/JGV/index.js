@@ -1,4 +1,5 @@
-let datos=[
+module.exports={ 
+ dat:[
     {
       "open": 0.53,
       "high": 0.54,
@@ -47979,13 +47980,13 @@ let datos=[
       "iso3": "YEM",
       "date": "2023-10-01"
     }
-  ]
+  ],
 
-function media(ciudad){
+f:function media(dat,ciudad){
     let total=0;
     let num=0;
 
-    datos.forEach((obj)=>{
+    dat.forEach((obj)=>{
         if(obj.country===ciudad){
             total=obj.open;
             num++;
@@ -47994,15 +47995,4 @@ function media(ciudad){
 
     return total/num;
 }
-
-let express=require("express");
-let app=express();
-
-const port = (process.env.port || 10000);
-const resultado = media("Afghanistan");
-
-app.get("/samples/JGV", (req,res)=>{res.send(`La media es ${resultado}`)});
-
-app.listen(port);
-
-console.log(media("Afghanistan"))
+};
