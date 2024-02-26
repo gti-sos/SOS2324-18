@@ -1,4 +1,6 @@
-let datos=[
+module.exports={
+
+datos:[
     {
         "eu_country": "EU",
         "answer_yes": "10788",
@@ -1579,10 +1581,10 @@ let datos=[
         "total": "1000",
         "year": "2010"
     }
-];
+],
 
 
-function media(datos,pais){
+average:function media(datos,pais){
     
     let sum=0;
     let filtrados=datos.filter(v=>v.eu_country.match(pais)).map(l=>l.answer_yes);
@@ -1591,16 +1593,7 @@ function media(datos,pais){
     });;
 
     return sum/filtrados.length;
-    
-}
+    }
 
-const port = (process.env.port || 10000);
-let pais = "EU";
 
-let express = require("express");
-let app= express();
-
-app.get("/samples/CBR",(req,res)=>{
-    res.send(`<html><body>La media de personas que votaron si en ${pais} fue: ${media(datos,pais)}</body></html>`)});
-
-app.listen(port);
+};
