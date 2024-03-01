@@ -39,6 +39,6 @@ app.get("/samples/MMM", (req, res)=>{
 
 app.get("/samples/JGV", (req, res)=>{
     const a=f(dat,"Afghanistan");
-    res.send(`<html><body>La media de Afghanistan es: ${a}</body></html>`);
+    res.send(`<html><body>Prueba La media de Afghanistan es: ${a}</body></html>`);
   })
   
