@@ -1,5 +1,5 @@
-module.exports={ 
- dat:[
+const API_BASE = "/api/v1";
+var array=[
   {
     "id": 1,
     "open": 0.53,
@@ -52778,19 +52778,84 @@ module.exports={
     "iso3": "YEM",
     "date": "2023-10-01"
   }
-],
+]
 
-  f:function media(dat,ciudad){
-      let total=0;
-      let num=0;
+var array2=[{
+  "id": 1,
+  "open": 0.53,
+  "high": 0.54,
+  "low": 0.53,
+  "close": 0.53,
+  "inflation": "",
+  "country": "Afghanistan",
+  "iso3": "AFG",
+  "date": "2007-01-01"
+}];
 
-      dat.forEach((obj)=>{
-          if(obj.country===ciudad){
-              total=obj.open;
-              num++;
-          }
-      });
+const { getRandomValues } = require("crypto");
+let express=require("express");
+let app=express();
+let bodyParser = require("body-parser");
+const port = (process.env.port || 10000);
 
-      return total/num;
-  }
-};
+app.use(bodyParser.json());
+
+module.exports = (app) => {
+    app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{
+        res.send(JSON.stringify(array));
+    });
+
+    app.get(API_BASE+"/foods-prices-inflation/loadInitialData", (req,res)=>{
+        array = [];
+        for(let i=0; i<10; i++){
+            let n = Math.floor(Math.random() * 5001);
+            array.push(datos[n]);
+        }
+        res.send(JSON.stringify(array));
+    });
+
+    app.post(API_BASE+"/foods-prices-inflation", (req,res)=>{
+        let obj = req.body;
+        
+        var i = array.findIndex(u => JSON.stringify(u) === JSON.stringify(obj));
+        if (i!==-1) return res.sendStatus(409, "Conflict");
+
+        array.push(obj);
+        res.sendStatus(201, "Created");
+        });
+
+        app.post(API_BASE+"/foods-prices-inflation/:id", (req,res)=>{
+        return res.sendStatus(405, "Method Not Allowed");
+    });
+
+    app.put(API_BASE+"/foods-prices-inflation/:id", (req, res) => {
+        var d = array.find(u => u.id === req.body.id);
+        var i = array.findIndex(u => u.id === req.body.id);
+
+        if (d.id!==req.body.id) return res.sendStatus(400, "Bad Request");
+        if (i===-1) return res.sendStatus(404, "Not Found");
+
+        array[i] = req.body;
+        res.json(array);
+        });
+
+        app.put(API_BASE+"/foods-prices-inflation", (req, res) => {
+    return res.sendStatus(405, "Method Not Allowed");
+    });
+
+    app.delete(API_BASE+"/foods-prices-inflation/:country", (req,res)=>{
+        let country = req.params.country;
+        let copia = array.slice();
+        for(let i=0; i< array.length; i++){
+            if(array[i].country==country){
+            array.splice(i, 1);
+            }
+        }
+        if (copia===array) return res.sendStatus(404, "Not Found");
+
+        res.json(array);
+        console.log(200, "OK");
+    });
+}
+
+//app.listen(port,()=>{console.log(`Server listening on port ${port}`);});
