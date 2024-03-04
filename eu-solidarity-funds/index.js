@@ -3575,6 +3575,7 @@ const API_BASE = "/api/v1";
 //(e integrada con los compañeros de grupo) en la dirección: http://sos2324-XX.appspot.com/api/v1/FFFFF  (Siendo XX el numero de grupo 
 //relleno con ceros y FFFFF el nombre del recurso) (http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds).
 
+module.exports = (app) => {
 app.get(API_BASE + "/eu-solidarity-funds/:id?", (req, res) => {
   const id = req.query.cci_number;
 
@@ -3732,3 +3733,4 @@ const PORT = (process.env.PORT || 10000);
 app.listen(PORT,()=>{
     console.log(`Server listening on port ${PORT}.`);
 });
+}
