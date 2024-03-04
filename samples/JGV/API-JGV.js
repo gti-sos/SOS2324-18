@@ -52822,9 +52822,9 @@ module.exports = (app) => {
 
         array.push(obj);
         res.sendStatus(201, "Created");
-        });
+    });
 
-        app.post(API_BASE+"/foods-prices-inflation/:id", (req,res)=>{
+    app.post(API_BASE+"/foods-prices-inflation/:id", (req,res)=>{
         return res.sendStatus(405, "Method Not Allowed");
     });
 
@@ -52837,10 +52837,10 @@ module.exports = (app) => {
 
         array[i] = req.body;
         res.json(array);
-        });
+    });
 
-        app.put(API_BASE+"/foods-prices-inflation", (req, res) => {
-    return res.sendStatus(405, "Method Not Allowed");
+    app.put(API_BASE+"/foods-prices-inflation", (req, res) => {
+        return res.sendStatus(405, "Method Not Allowed");
     });
 
     app.delete(API_BASE+"/foods-prices-inflation/:country", (req,res)=>{
