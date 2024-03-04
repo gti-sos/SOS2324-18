@@ -1,15 +1,20 @@
 const { datos,average } = require('./samples/CBR');
 const{data,calcularMediaPorPais}= require('./samples/MMM');
 const{dat,f}=require('./samples/JGV');
-
+let carlosAPI=require('./regional-politicies-acceptance');
+let dataStore=require('nedb');
 let express = require("express");
 let cool=require("cool-ascii-faces");
+
+
+
+let dbVotes= new dataStore();
 
 let app = express();
 
 
 const port=(process.env.PORT || 10000);
-
+const API_BASE="/api/v1";
 
 app.use("/",express.static("./public"));
 
@@ -42,3 +47,10 @@ app.get("/samples/JGV", (req, res)=>{
     res.send(`<html><body>Prueba La media de Afghanistan es: ${a}</body></html>`);
   })
   
+
+
+
+
+carlosAPI(app,dbVotes);
+
+
