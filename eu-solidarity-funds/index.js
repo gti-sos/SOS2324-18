@@ -3575,12 +3575,12 @@ const API_BASE = "/api/v1";
 //(e integrada con los compañeros de grupo) en la dirección: http://sos2324-XX.appspot.com/api/v1/FFFFF  (Siendo XX el numero de grupo 
 //relleno con ceros y FFFFF el nombre del recurso) (http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds).
 
-app.get(API_BASE + "/eu-solidarity-fund", (req, res)=>{
+app.get(API_BASE + "/eu-solidarity-funds", (req, res)=>{
   res.send(JSON.stringify(datos));
 });
 
-app.post(API_BASE + "/eu-solidarity-fund", (req, res) => {
-  const id = req.params.id;
+app.post(API_BASE + "/eu-solidarity-funds", (req, res) => {
+  const id = req.query.cci_number;
 
   // Verificar si se intenta hacer POST en un recurso específico
   if (id) {
@@ -3627,11 +3627,11 @@ app.post(API_BASE + "/eu-solidarity-fund", (req, res) => {
   res.sendStatus(201);
 });
 
-app.put(API_BASE + "/eu-solidarity-fund/:id", (req, res) => {
-  const id = req.params.id;
+app.put(API_BASE + "/eu-solidarity-funds", (req, res) => {
+  const id = req.query.cci_number;
 
   // Verificar si se intenta hacer PUT en el recurso base
-  if (!id) {
+  if (id===undefined || id===null) {
     return res.status(405).send("Method not allowed");
   }
 
@@ -3651,7 +3651,7 @@ app.put(API_BASE + "/eu-solidarity-fund/:id", (req, res) => {
   res.sendStatus(204); // No Content
 });
 
-app.delete(API_BASE + "/eu-solidarity-fund/:id", (req, res) => {
+app.delete(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
   const id = req.params.id;
 
   // Verificar si el recurso existe
@@ -3672,7 +3672,7 @@ app.delete(API_BASE + "/eu-solidarity-fund/:id", (req, res) => {
 
 let datosIniciales = [];
 
-app.get(API_BASE + "/eu-solidarity-fund/loadInitialData", (req, res)=>{
+app.get(API_BASE + "/eu-solidarity-funds/loadInitialData", (req, res)=>{
   if (datosIniciales.length === 0) {
     for (let i = 0; i < 10; i++) {
       datosIniciales.push(datos[i]);
