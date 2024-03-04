@@ -3728,9 +3728,9 @@ app.get(API_BASE + "/eu-solidarity-funds/loadInitialData", (req, res)=>{
   res.send(JSON.stringify(datosIniciales));
 });
 
-const PORT = (process.env.PORT || 10000);
+//const PORT = (process.env.PORT || 10000);
   
-app.listen(PORT,()=>{
-    console.log(`Server listening on port ${PORT}.`);
-});
+//app.listen(PORT,()=>{
+    //console.log(`Server listening on port ${PORT}.`);
+//});
 }
