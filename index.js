@@ -13,6 +13,8 @@ let dbVotes= new dataStore();
 let bodyParser = require("body-parser");
 let JGVAPI = require("./samples/JGV/API-JGV");
 
+let MMMAPI = require("./eu-solidarity-funds/index.js");
+
 let app = express();
 
 const port=(process.env.PORT || 10000);
@@ -57,3 +59,6 @@ carlosAPI(app,dbVotes);
 
 
 JGVAPI(app);
+
+
+MMMAPI(app);
