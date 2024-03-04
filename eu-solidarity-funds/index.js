@@ -3575,9 +3575,22 @@ const API_BASE = "/api/v1";
 //(e integrada con los compañeros de grupo) en la dirección: http://sos2324-XX.appspot.com/api/v1/FFFFF  (Siendo XX el numero de grupo 
 //relleno con ceros y FFFFF el nombre del recurso) (http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds).
 
-app.get(API_BASE + "/eu-solidarity-funds", (req, res)=>{
-  res.send(JSON.stringify(datos));
+app.get(API_BASE + "/eu-solidarity-funds/:id?", (req, res) => {
+  const id = req.query.cci_number;
+
+  if (id) {
+    // Si se proporciona un ID, buscar y devolver el recurso específico
+    const resource = datos.find(item => item.cci_number === id);
+    if (!resource) {
+      return res.status(404).send("Resource not found");
+    }
+    return res.json(resource);
+  } else {
+    // Si no se proporciona un ID, devolver todos los recursos
+    return res.json(datos);
+  }
 });
+
 
 app.post(API_BASE + "/eu-solidarity-funds", (req, res) => {
   const id = req.query.cci_number;
@@ -3627,6 +3640,32 @@ app.post(API_BASE + "/eu-solidarity-funds", (req, res) => {
   res.sendStatus(201);
 });
 
+//PUT correcto
+app.put(API_BASE + "/eu-solidarity-funds/:cci_number", (req, res) => {
+  const id = req.params.cci_number;
+
+  // Verificar si se intenta hacer PUT en el recurso base
+  if (id===undefined || id===null) {
+    return res.status(405).send("Method not allowed");
+  }
+
+  // Verificar si el recurso existe
+  const resourceIndex = datos.findIndex(item => item.cci_number === id);
+  if (resourceIndex === -1) {
+    return res.status(404).send("Resource not found");
+  }
+
+  // Verificar si el ID en el cuerpo coincide con el ID en la URL
+  if (req.body.cci_number !== id) {
+    return res.status(400).send("ID in body does not match ID in URL");
+  }
+
+  // Actualizar el recurso existente con los datos del cuerpo de la solicitud
+  datos[resourceIndex] = req.body;
+  res.sendStatus(204); // No Content
+});
+
+//PUT incorrecto
 app.put(API_BASE + "/eu-solidarity-funds", (req, res) => {
   const id = req.query.cci_number;
 
@@ -3651,19 +3690,26 @@ app.put(API_BASE + "/eu-solidarity-funds", (req, res) => {
   res.sendStatus(204); // No Content
 });
 
-app.delete(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
+app.delete(API_BASE + "/eu-solidarity-funds/:id?", (req, res) => {
   const id = req.params.id;
 
-  // Verificar si el recurso existe
-  const resourceIndex = datos.findIndex(item => item.cci_number === id);
-  if (resourceIndex === -1) {
-    return res.status(404).send("Resource not found");
+  // Verificar si se proporciona un ID
+  if (id) {
+    // Si se proporciona un ID, eliminar el recurso específico
+    const resourceIndex = datos.findIndex(item => item.cci_number === id);
+    if (resourceIndex === -1) {
+      return res.status(404).send("Resource not found");
+    }
+    // Eliminar el recurso
+    datos.splice(resourceIndex, 1);
+  } else {
+    // Si no se proporciona un ID, eliminar todos los recursos
+    datos = [];
   }
 
-  // Eliminar el recurso
-  datos.splice(resourceIndex, 1);
   res.sendStatus(204); // No Content
 });
+
 
 
 
