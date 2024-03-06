@@ -7,11 +7,10 @@ let dataStore=require('nedb');
 let express = require("express");
 let cool=require("cool-ascii-faces");
 
-
-
 let dbVotes= new dataStore();
 let bodyParser = require("body-parser");
 let JGVAPI = require("./samples/JGV/API-JGV");
+let dbFood = new dataStore();
 
 let MMMAPI = require("./eu-solidarity-funds/index.js");
 
@@ -57,8 +56,7 @@ app.get("/samples/JGV", (req, res)=>{
 carlosAPI(app,dbVotes);
 
 
-
-JGVAPI(app);
+JGVAPI(app, dbFood);
 
 
 MMMAPI(app);
