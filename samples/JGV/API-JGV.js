@@ -1,5 +1,5 @@
 const API_BASE = "/api/v1";
-var array=[
+var datos=[
   {
     "id": 1,
     "open": 0.53,
@@ -52780,17 +52780,7 @@ var array=[
   }
 ]
 
-var array2=[{
-  "id": 1,
-  "open": 0.53,
-  "high": 0.54,
-  "low": 0.53,
-  "close": 0.53,
-  "inflation": "",
-  "country": "Afghanistan",
-  "iso3": "AFG",
-  "date": "2007-01-01"
-}];
+var array=[];
 
 const { getRandomValues } = require("crypto");
 let express=require("express");
@@ -52800,18 +52790,29 @@ const port = (process.env.port || 10000);
 
 app.use(bodyParser.json());
 
-module.exports = (app) => {
-    app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{
-        res.send(JSON.stringify(array));
+module.exports = (app, db) => {
+    app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  
+      db.find({}, (err, array) => {
+        if(err){
+          res.sendStatus(500, "Internal Error");
+        } else{
+          res.send(JSON.stringify(array.map((c) =>{
+            delete c._id;
+            return c;
+          })));
+        }
+      });
+      //res.send(JSON.stringify(array));
     });
 
     app.get(API_BASE+"/foods-prices-inflation/loadInitialData", (req,res)=>{
-        array = [];
+        if (array.length!==0) return res.sendStatus(409, "Conflict");
         for(let i=0; i<10; i++){
             let n = Math.floor(Math.random() * 5001);
             array.push(datos[n]);
         }
-        res.send(JSON.stringify(array));
+        db.insert(array);
+        res.sendStatus(200, "OK");
     });
 
     app.post(API_BASE+"/foods-prices-inflation", (req,res)=>{
@@ -52820,7 +52821,7 @@ module.exports = (app) => {
         var i = array.findIndex(u => JSON.stringify(u) === JSON.stringify(obj));
         if (i!==-1) return res.sendStatus(409, "Conflict");
 
-        array.push(obj);
+        db.insert(obj);
         res.sendStatus(201, "Created");
     });
 
@@ -52845,7 +52846,7 @@ module.exports = (app) => {
 
     app.delete(API_BASE+"/foods-prices-inflation/:country", (req,res)=>{
         let country = req.params.country;
-        let copia = array.slice();
+        /*let copia = array.slice();
         for(let i=0; i< array.length; i++){
             if(array[i].country==country){
             array.splice(i, 1);
@@ -52853,7 +52854,19 @@ module.exports = (app) => {
         }
         if (copia===array) return res.sendStatus(404, "Not Found");
 
-        res.json(array);
+        res.json(array);*/
+
+        db.remove({"country": country}, {}, (err, numRemoved)=>{
+          if(err){
+            res.sendStatus(500, "Internal Error");
+          } else{
+            if(numRemoved>=1){
+              res.sendStatus(200, "OK");
+            } else{
+              res.sendStatus(404, "Not Found");
+            }
+          }
+        });
         console.log(200, "OK");
     });
 }
