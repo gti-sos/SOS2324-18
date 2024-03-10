@@ -455,7 +455,7 @@ app.delete(API_BASE+"/regional-politicies-acceptance/:resource/:name",(req,res)=
             }}});
     }});
 
-app.get(API_BASE+"/regional-politicies-acceptance/doc",(req,res)=>{
+app.get(API_BASE+"/regional-politicies-acceptance/docs",(req,res)=>{
     res.redirect(200,"https://documenter.getpostman.com/view/32973833/2sA2xh3sw1");
     
 });
