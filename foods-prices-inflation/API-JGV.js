@@ -52865,6 +52865,21 @@ module.exports = (app, db) => {
         return res.sendStatus(405, "Method Not Allowed");
     });
 
+    app.delete(API_BASE+"/foods-prices-inflation", (req,res)=>{
+      db.remove({}, {multi: true}, (err, numRemoved)=>{
+        if(err){
+          res.sendStatus(500, "Internal Error");
+        } else{
+          if(numRemoved>=1){
+            res.sendStatus(200, "OK");
+          } else{
+            res.sendStatus(404, "Not Found");
+          }
+        }
+      });
+      console.log(200, "OK");
+    });
+
     app.delete(API_BASE+"/foods-prices-inflation/:country", (req,res)=>{
         let country = req.params.country;
         /*let copia = array.slice();
