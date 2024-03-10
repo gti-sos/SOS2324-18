@@ -145,23 +145,30 @@ app.use(bodyParser.json());
 
 //Initial data load
 app.get(API_BASE+"/regional-politicies-acceptance/loadInitialdata",(req,res)=>{
-    db.insert(initialCountries);
-    res.sendStatus("201","created");
+    let countriess;
+    db.find({},(err,countries)=>{
+        if(err){
+            res.sendStatus(500,'Internal Server Error');
+        }else{
+            countriess=countries;
+            if(countries.length==0){
+                db.insert(initialCountries);
+                res.sendStatus("201","created");
+            }else{
+                res.sendStatus(409);
+            }
+        }
+    });
+    
     }
 );
 
 //#########################################################################################
 
 //POST A NEW COUNTRY  POSITIVE FEEDBACK
-app.post(API_BASE+"/regional-politicies-acceptance/:name",(req,res)=>{
+app.post(API_BASE+"/regional-politicies-acceptance/",(req,res)=>{
     
     let existingCountry;
-    const resources=["countries"];
-    
-    if(!resources.includes(req.params.name)){
-        res.sendStatus(404,"Not Found");
-    }
-   
     let newCountry=req.body;
     
 
@@ -208,31 +215,29 @@ app.post(API_BASE+"/regional-politicies-acceptance/:name/:nam",(req,res)=>{
 
 
 
-//GET TO ACCESS A FULL COUNTRIES
-app.get(API_BASE+"/regional-politicies-acceptance",(req,res)=>{
-    
-    db.find({},(err,countries)=>{
-        if(err){
-            res.sendStatus(500,'Internal Server Error');
-        }
-        else{
-            res.send(JSON.stringify(countries.map((c)=>{
-                delete c._id;
-                return c;
-            })));
-        }});
-    });
-
 
         
-//GET TO ACCESS COUNTRIES THAT CONTAINS A SPECIFIC NAME
-app.get(API_BASE+"/regional-politicies-acceptance/:name/:countrName",(req,res)=>{
-    const resources=["countries"];
-    if(!resources.includes(req.params.name)){
-        res.sendStatus(404,"Not Found");
-    }else{
-        let countryName=req.params.countrName;
-        db.find({eu_country:countryName},(err,countries)=>{
+//GET TO ACCESS COUNTRIES 
+app.get(API_BASE+"/regional-politicies-acceptance",(req,res)=>{
+   
+  
+    
+    let offset=req.query.offset;
+    let limitt=req.query.limit;
+    let valueName=req.query.eu_country;
+    let valueAnswerYes =req.query.answer_yes;
+    let valueYes=req.query.yes;
+    let valueAnswerNo=req.query.answer_no;
+    let valueNo=req.query.no;
+    let valueAnswerN_a=req.query.answer_n_a;
+    let valueN_a=req.query.n_a;
+    let valueTotal=req.query.total;
+    let valueYear=req.query.year;
+
+
+
+    if(valueName==undefined && valueAnswerYes==undefined && valueYes==undefined && valueAnswerNo==undefined && valueNo==undefined && valueAnswerN_a==undefined && valueN_a==undefined && valueTotal==undefined && valueYear==undefined){
+        db.find({}).skip(offset).limit(limitt).exec((err,countries)=>{
             if(err){
                 res.sendStatus(500,'Internal Server Error');
             }
@@ -242,6 +247,134 @@ app.get(API_BASE+"/regional-politicies-acceptance/:name/:countrName",(req,res)=>
                     return c;
                 })));
             }});
+    }else{
+        if(valueName!=undefined){
+            db.find({eu_country:valueName}).skip(offset).limit(limitt).exec((err,countries)=>{
+                if(err){
+                    res.sendStatus(500,'Internal Server Error');
+                }
+                else{
+                    res.send(JSON.stringify(countries.map((c)=>{
+                        delete c._id;
+                        return c;
+                    })));
+                }});
+        }
+
+        
+
+        if(valueAnswerYes!=undefined){
+            db.find({answer_yes:valueAnswerYes}).skip(offset).limit(limitt).exec((err,countries)=>{
+                if(err){
+                    res.sendStatus(500,'Internal Server Error');
+                }
+                else{
+                    res.send(JSON.stringify(countries.map((c)=>{
+                        delete c._id;
+                        return c;
+                    })));
+                }});
+        }
+
+        if(valueYes!=undefined){
+            db.find({yes:valueYes}).skip(offset).limit(limitt).exec((err,countries)=>{
+                if(err){
+                    res.sendStatus(500,'Internal Server Error');
+                }
+                else{
+                    res.send(JSON.stringify(countries.map((c)=>{
+                        delete c._id;
+                        return c;
+                    })));
+                }});
+        }
+
+     
+        
+        if(valueAnswerNo!=undefined){
+            db.find({answer_no:valueAnswerNo}).skip(offset).limit(limitt).exec((err,countries)=>{
+                if(err){
+                    res.sendStatus(500,'Internal Server Error');
+                }
+                else{
+                    res.send(JSON.stringify(countries.map((c)=>{
+                        delete c._id;
+                        return c;
+                    })));
+                }});
+        }
+
+       
+        if(valueNo!=undefined){
+            db.find({no:valueNo}).skip(offset).limit(limitt).exec((err,countries)=>{
+                if(err){
+                    res.sendStatus(500,'Internal Server Error');
+                }
+                else{
+                    res.send(JSON.stringify(countries.map((c)=>{
+                        delete c._id;
+                        return c;
+                    })));
+                }});
+        }
+
+
+        
+        if(valueAnswerN_a!=undefined){
+            db.find({answer_n_a:valueAnswerN_a}).skip(offset).limit(limitt).exec((err,countries)=>{
+                if(err){
+                    res.sendStatus(500,'Internal Server Error');
+                }
+                else{
+                    res.send(JSON.stringify(countries.map((c)=>{
+                        delete c._id;
+                        return c;
+                    })));
+                }});
+        }
+
+         
+        if(valueN_a!=undefined){
+            db.find({n_a:valueN_a}).skip(offset).limit(limitt).exec((err,countries)=>{
+                if(err){
+                    res.sendStatus(500,'Internal Server Error');
+                }
+                else{
+                    res.send(JSON.stringify(countries.map((c)=>{
+                        delete c._id;
+                        return c;
+                    })));
+                }});
+        }
+
+        
+
+        if(valueTotal!=undefined){
+            db.find({total:valueTotal}).skip(offset).limit(limitt).exec((err,countries)=>{
+                if(err){
+                    res.sendStatus(500,'Internal Server Error');
+                }
+                else{
+                    res.send(JSON.stringify(countries.map((c)=>{
+                        delete c._id;
+                        return c;
+                    })));
+                }});
+        }
+
+
+        if(valueYear!=undefined){
+            db.find({year:valueYear}).skip(offset).limit(limitt).exec((err,countries)=>{
+                if(err){
+                    res.sendStatus(500,'Internal Server Error');
+                }
+                else{
+                    res.send(JSON.stringify(countries.map((c)=>{
+                        delete c._id;
+                        return c;
+                    })));
+                }});
+        }
         }});
 
 
@@ -252,11 +385,11 @@ app.get(API_BASE+"/regional-politicies-acceptance/:name/:countrName",(req,res)=>
 
 
 //PUT TO UPDATE A EXISTING ENTRY 
-app.put(API_BASE+"/regional-politicies-acceptance/:resource/:name/:year",(req,res)=>{
+app.put(API_BASE+"/regional-politicies-acceptance/:name/:year",(req,res)=>{
 
     const resources=["countries"];
-    
-    if(!resources.includes(req.params.resource)){
+
+    if(resources.includes(req.params.resource)){
         res.sendStatus(404,"Not Found");
     }else{
         if(req.params.name===undefined || req.params.name===null){
@@ -265,11 +398,11 @@ app.put(API_BASE+"/regional-politicies-acceptance/:resource/:name/:year",(req,re
             let countryName=req.params.name;
             let oldYear=req.params.year;
             let newYear=req.body.year;
-            db.update({eu_country:countryName,year:oldYear},{$set:{year:newYear}},{},(err,numCountryMod)=>{
+            db.update({eu_country:countryName,year:oldYear},{$set:{year:newYear.toString()}},{},(err,numCountryMod)=>{
                 if(err){
                     res.send(500,"Internal Server Error");
                 }else{
-                    if(numCountryMod===1){
+                    if(numCountryMod>=1){
                         res.sendStatus(201,"Created");
                     }else{
                         res.sendStatus(400,'Bad Request');
@@ -322,7 +455,10 @@ app.delete(API_BASE+"/regional-politicies-acceptance/:resource/:name",(req,res)=
             }}});
     }});
 
-
+app.get(API_BASE+"/regional-politicies-acceptance/doc",(req,res)=>{
+    res.redirect(200,"https://documenter.getpostman.com/view/32973833/2sA2xh3sw1");
+    
+});
 
 }
 

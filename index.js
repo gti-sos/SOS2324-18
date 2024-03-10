@@ -1,11 +1,12 @@
 const API_BASE = "/api/v1";
-const { datos,average } = require('./samples/CBR');
+
 const{data,calcularMediaPorPais}= require('./samples/MMM');
 const{dat,f}=require('./samples/JGV');
 let carlosAPI=require('./regional-politicies-acceptance');
+
 let dataStore=require('nedb');
 let express = require("express");
-let cool=require("cool-ascii-faces");
+
 
 let dbVotes= new dataStore();
 let bodyParser = require("body-parser");
@@ -22,19 +23,10 @@ const port=(process.env.PORT || 10000);
 app.use("/",express.static("./public"));
 app.use(bodyParser.json());
 
-app.get("/cool",(req,res)=>{
-    res.send(cool());
-});
+
 
 app.listen(port,()=>{
     console.log(`Server listening on port ${port}`)
-});
-
-
-
-app.get("/samples/CBR", (req, res) => {
-    const a = average(datos, "EU");
-    res.send(`<html> <body> <h1> The average who voted yes in EU is: ${a} </h1> </body> </html>`);
 });
 
 
