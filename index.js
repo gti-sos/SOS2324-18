@@ -1,7 +1,6 @@
 const API_BASE = "/api/v1";
 
 const{data,calcularMediaPorPais}= require('./samples/MMM');
-const{dat,f}=require('./samples/JGV');
 let carlosAPI=require('./regional-politicies-acceptance');
 
 let dataStore=require('nedb');
@@ -10,7 +9,7 @@ let express = require("express");
 
 let dbVotes= new dataStore();
 let bodyParser = require("body-parser");
-let JGVAPI = require("./samples/JGV/API-JGV");
+let JGVAPI = require("./foods-prices-inflation/API-JGV");
 let dbFood = new dataStore();
 
 let MMMAPI = require("./eu-solidarity-funds/index.js");

@@ -52791,15 +52791,36 @@ const port = (process.env.port || 10000);
 app.use(bodyParser.json());
 
 module.exports = (app, db) => {
-    app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  
-      db.find({}, (err, array) => {
+    app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  //IMPRIME TU ARRAY
+      let q = req.query;
+      let page = req.query.page || 1;
+      let pageSize = req.query.pageSize || 20;
+      let offset = (page - 1) * pageSize;
+
+      db.find({}).skip(offset).limit(pageSize).exec((err, array) => {
         if(err){
           res.sendStatus(500, "Internal Error");
         } else{
-          res.send(JSON.stringify(array.map((c) =>{
-            delete c._id;
-            return c;
-          })));
+          //SIN PARAMETROS
+          if(Object.keys(q).length===0){
+            res.send(JSON.stringify(array.map((c) =>{
+              delete c._id;
+              c.pag=page;
+              return c;
+            })));
+          }
+          else{
+            //CON PARAMETROS
+            res.send(JSON.stringify(array.filter(e =>{
+              return Object.keys(q).every(k =>{
+                return e[k]==q[k];
+              });
+            }).map((c) =>{
+              delete c._id;
+              c.pag=page;
+              return c;
+            })));
+          }
         }
       });
       //res.send(JSON.stringify(array));
