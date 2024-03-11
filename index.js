@@ -1,6 +1,6 @@
 const API_BASE = "/api/v1";
 
-const{data,calcularMediaPorPais}= require('./samples/MMM');
+
 let carlosAPI=require('./regional-politicies-acceptance');
 
 let dataStore=require('nedb');
@@ -29,17 +29,6 @@ app.listen(port,()=>{
 });
 
 
-app.get("/samples/MMM", (req, res)=>{
-    const a=calcularMediaPorPais(data,"AT");
-    res.send(`<html><body>Media de los daños directos aceptados en Austria: ${a}</body></html>`);
-  })
-
-
-app.get("/samples/JGV", (req, res)=>{
-    const a=f(dat, "Afghanistan");
-    res.send(`<html><body>La media de Afghanistan es: ${a}</body></html>`);
-  })
-  
 
 
 
