@@ -52905,6 +52905,10 @@ module.exports = (app, db) => {
         });
         console.log(200, "OK");
     });
+
+    app.get(API_BASE+"/foods-prices-inflation/docs", (req,res)=>{
+      res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33040772/2sA2xh2ssG"));
+    });
 }
 
 //app.listen(port,()=>{console.log(`Server listening on port ${port}`);});
