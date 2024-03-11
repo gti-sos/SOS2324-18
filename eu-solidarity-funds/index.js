@@ -219,6 +219,10 @@ const API_BASE = "/api/v1";
 
 module.exports = (app, db) => {
 
+app.get(API_BASE + "/eu-solidarity-funds/docs", (req, res) => {
+  res.redirect("https://documenter.getpostman.com/view/33040772/2sA2xh2ssG");
+});
+
 //El recurso debe contener una ruta /api/v1/FFFFF/loadInitialData que al hacer un GET cree 10 o más datos en el array de NodeJS si 
 //está vacío. (http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/loadInitialData)
 
@@ -240,18 +244,34 @@ app.get(API_BASE + "/eu-solidarity-funds/loadInitialData", (req, res)=>{
 //relleno con ceros y FFFFF el nombre del recurso) (http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds).
 
 app.get(API_BASE + "/eu-solidarity-funds", (req, res) => {
-  //res.send(JSON.stringify(datos));
-  db.find({},(err, datosIniciales)=>{
-    if (err){
-      res.sendStatus(500, "Internal error");
-    } else {
-      res.send(JSON.stringify(datosIniciales.map((d)=>{
-        delete d._id;
-        return d;
-      })))
+  const queryParams = req.query;
+  const limit = parseInt(queryParams.limit) || 10; // Límite predeterminado de 10
+  const offset1 = parseInt(queryParams.offset) || 0; // Desplazamiento predeterminado de 0
+  const offset = offset1 + 1;
+
+  // Construir la consulta para buscar documentos que coincidan con los parámetros proporcionados
+  const query = {};
+  for (const key in queryParams) {
+    if (queryParams.hasOwnProperty(key) && key !== 'limit' && key !== 'offset') {
+      query[key] = queryParams[key];
     }
+  }
+
+  // Realizar la consulta a la base de datos con los parámetros proporcionados
+  db.find(query).skip(offset).limit(limit).exec((err, matchingDocuments) => {
+    if (err) {
+      return res.sendStatus(500, "Internal error");
+    }
+    // Eliminar el campo _id de cada documento
+    const formattedData = matchingDocuments.map(d => {
+      const { _id, ...rest } = d;
+      return rest;
+    });
+    res.send(JSON.stringify(formattedData));
   });
 });
+
+
 
 app.get(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
   const id = req.params.id;
@@ -344,7 +364,7 @@ app.put(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
       if (err) {
         return res.sendStatus(500, "Internal error");
       }
-      res.sendStatus(204); // No Content
+      res.sendStatus(200, "OK"); // No Content
     });
   });
 });
@@ -408,9 +428,7 @@ app.delete(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
   });
 });
 
-app.get(API_BASE + "/eu-solidarity-funds/docs", (req, res)=>{
-  res.redirect(200, "https://documenter.getpostman.com/view/33040772/2sA2xh2ssG");
-});
+
 
 //const PORT = (process.env.PORT || 10000);
   
