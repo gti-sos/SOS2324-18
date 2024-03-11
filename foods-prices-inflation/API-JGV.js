@@ -52793,10 +52793,11 @@ app.use(bodyParser.json());
 module.exports = (app, db) => {
     app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  //IMPRIME TU ARRAY
       let q = req.query;
+
       let page = req.query.page || 1;
       let pageSize = req.query.pageSize || 20;
       let offset = (page - 1) * pageSize;
-
+      console.log(offset);
       db.find({}).skip(offset).limit(pageSize).exec((err, array) => {
         if(err){
           res.sendStatus(500, "Internal Error");
@@ -52805,21 +52806,25 @@ module.exports = (app, db) => {
           if(Object.keys(q).length===0){
             res.send(JSON.stringify(array.map((c) =>{
               delete c._id;
-              c.pag=page;
               return c;
             })));
           }
           else{
             //CON PARAMETROS
-            res.send(JSON.stringify(array.filter(e =>{
+            //Crea el array con los parametros dados
+            let aux=array.filter(e =>{
               return Object.keys(q).every(k =>{
                 return e[k]==q[k];
               });
             }).map((c) =>{
               delete c._id;
-              c.pag=page;
+              console.log(c.offset);
               return c;
-            })));
+            });
+            
+            if (aux.length===0) return res.sendStatus(404, "Not Found");
+
+            res.send(JSON.stringify(aux));
           }
         }
       });
@@ -52832,16 +52837,34 @@ module.exports = (app, db) => {
             let n = Math.floor(Math.random() * 5001);
             array.push(datos[n]);
         }
+        console.log(JSON.stringify(array));
         db.insert(array);
         res.sendStatus(200, "OK");
     });
 
     app.post(API_BASE+"/foods-prices-inflation", (req,res)=>{
         let obj = req.body;
-        
-        var i = array.findIndex(u => JSON.stringify(u) === JSON.stringify(obj));
+        const expectedFields=["id",
+        "open",
+        "high",
+        "low",
+        "close",
+        "inflation",
+        "country",
+        "iso3",
+        "date"]
+
+        const requestFields=Object.keys(req.body);
+        const missedFields=expectedFields.filter(field=>!requestFields.includes(field));
+          if(missedFields.length>0)
+            return res.status(400).send("Missing fields: " + missedFields.join(", "));
+
+        //var i = array.findIndex(u => JSON.stringify(u) === JSON.stringify(obj));
+        var i = array.findIndex(u => u.id === req.body.id);
+        //console.log(req.params.id);
         if (i!==-1) return res.sendStatus(409, "Conflict");
 
+        array.push(obj);
         db.insert(obj);
         res.sendStatus(201, "Created");
     });
@@ -52853,9 +52876,9 @@ module.exports = (app, db) => {
     app.put(API_BASE+"/foods-prices-inflation/:id", (req, res) => {
         var d = array.find(u => u.id === req.body.id);
         var i = array.findIndex(u => u.id === req.body.id);
-
-        if (d.id!==req.body.id) return res.sendStatus(400, "Bad Request");
-        if (i===-1) return res.sendStatus(404, "Not Found");
+        
+        if (req.params.id!=req.body.id) return res.sendStatus(400, "Bad Request");
+        if (i==-1) return res.sendStatus(404, "Not Found");
 
         array[i] = req.body;
         res.json(array);
