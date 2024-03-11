@@ -52907,7 +52907,7 @@ module.exports = (app, db) => {
     });
 
     app.get(API_BASE+"/foods-prices-inflation/docs", (req,res)=>{
-      res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33040772/2sA2xh2ssG"));
+      res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33015048/2sA2xh3t5u"));
     });
 }
 
