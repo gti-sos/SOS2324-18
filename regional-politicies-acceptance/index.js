@@ -378,7 +378,29 @@ app.get(API_BASE+"/regional-politicies-acceptance",(req,res)=>{
         }});
 
 
+app.get(API_BASE+"/regional-politicies-acceptance/:name/:param",(req,res)=>{
+    let name=req.params.name;
+    let paramm=req.params.param;
 
+    if(name!=undefined && paramm=="year"){
+        res.sendStatus(404);
+    }else{
+        db.find({eu_country:paramm}).exec((err,countries)=>{
+        if(err){
+           res.sendStatus(500,'Internal Server Error');
+        }else{
+
+            if(countries.length==0){
+                res.sendStatus(404);
+            }else{
+            res.send(JSON.stringify(countries.map((c)=>{
+            delete c._id;
+            return c;
+                    })));
+    }}});
+
+    }
+});
 
 
 
@@ -398,7 +420,16 @@ app.put(API_BASE+"/regional-politicies-acceptance/:name/:year",(req,res)=>{
             let countryName=req.params.name;
             let oldYear=req.params.year;
             let newYear=req.body.year;
-            db.update({eu_country:countryName,year:oldYear},{$set:{year:newYear.toString()}},{},(err,numCountryMod)=>{
+            let answer_yess=req.body.answer_yes;
+            let yess=req.body.yes;
+            let answer_nos=req.body.answer_no;
+            let nos=req.body.no;
+            let answer_n_as=req.body.answer_n_a;
+            let n_as=req.body.n_a;
+            let totals=req.body.total;
+            
+            
+            db.update({eu_country:countryName,year:oldYear},{$set:{year:newYear.toString(),answer_yes:answer_yess,yes:yess,answer_no:answer_nos,no:nos,answer_n_a:answer_n_as,n_a:n_as,total:totals}},{},(err,numCountryMod)=>{
                 if(err){
                     res.send(500,"Internal Server Error");
                 }else{
