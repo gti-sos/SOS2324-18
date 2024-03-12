@@ -12,6 +12,8 @@ let bodyParser = require("body-parser");
 let JGVAPI = require("./foods-prices-inflation/API-JGV");
 let dbFood = new dataStore();
 
+let dbFunds = new dataStore();
+
 let MMMAPI = require("./eu-solidarity-funds/index.js");
 
 let app = express();
@@ -39,4 +41,4 @@ carlosAPI(app,dbVotes);
 JGVAPI(app, dbFood);
 
 
-MMMAPI(app);
+MMMAPI(app, dbFunds);
