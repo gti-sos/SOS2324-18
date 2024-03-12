@@ -246,8 +246,7 @@ app.get(API_BASE + "/eu-solidarity-funds/loadInitialData", (req, res)=>{
 app.get(API_BASE + "/eu-solidarity-funds", (req, res) => {
   const queryParams = req.query;
   const limit = parseInt(queryParams.limit) || 10; // Límite predeterminado de 10
-  const offset1 = parseInt(queryParams.offset) || 0; // Desplazamiento predeterminado de 0
-  const offset = offset1 + 1;
+  const offset = parseInt(queryParams.offset) || 0; // Desplazamiento predeterminado de 0
 
   // Construir la consulta para buscar documentos que coincidan con los parámetros proporcionados
   const query = {};
