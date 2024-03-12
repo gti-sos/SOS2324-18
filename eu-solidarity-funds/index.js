@@ -203,13 +203,9 @@ let datosIniciales = [
 
 let datos = []
 
-let dataStore = require("nedb");
-
-let db = new dataStore();
-
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
+let express = require('express');
+let bodyParser = require('body-parser');
+let app = express();
 
 // Configurar body parser para JSON
 app.use(bodyParser.json());
@@ -429,7 +425,7 @@ app.delete(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
 
 
 
-//const PORT = (process.env.PORT || 10000);
+const PORT = (process.env.PORT || 10000);
   
 //app.listen(PORT,()=>{
     //console.log(`Server listening on port ${PORT}.`);
