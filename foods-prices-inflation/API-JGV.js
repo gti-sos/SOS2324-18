@@ -52794,16 +52794,20 @@ module.exports = (app, db) => {
     app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  //IMPRIME TU ARRAY
       let q = req.query;
 
-      let page = req.query.page || 1;
-      let pageSize = req.query.pageSize || 20;
+      let page = parseInt(req.query.page) || 1;
+      let pageSize = parseInt(req.query.pageSize) || 5;
       let offset = (page - 1) * pageSize;
-      console.log(offset);
+      let keys = []
+      Object.keys(q).forEach(k =>{ //Obtiene las keys y menos page y pageSize para que luego no se lie por si hay mas querys
+        if(!["page", "pageSize"].includes(k)) keys.push(k);
+      });
+      
       db.find({}).skip(offset).limit(pageSize).exec((err, array) => {
         if(err){
           res.sendStatus(500, "Internal Error");
         } else{
           //SIN PARAMETROS
-          if(Object.keys(q).length===0){
+          if(keys.length===0){
             res.send(JSON.stringify(array.map((c) =>{
               delete c._id;
               return c;
@@ -52811,18 +52815,17 @@ module.exports = (app, db) => {
           }
           else{
             //CON PARAMETROS
-            //Crea el array con los parametros dados
+            //Crea el aux con los parametros dados
             let aux=array.filter(e =>{
-              return Object.keys(q).every(k =>{
+              return keys.every(k =>{
                 return e[k]==q[k];
               });
             }).map((c) =>{
               delete c._id;
-              console.log(c.offset);
               return c;
             });
             
-            if (aux.length===0) return res.sendStatus(404, "Not Found");
+            if (aux.length===0) return res.sendStatus(404, "Not Found"); //Prueba si ha encontrado algo
 
             res.send(JSON.stringify(aux));
           }
@@ -52837,7 +52840,7 @@ module.exports = (app, db) => {
             let n = Math.floor(Math.random() * 5001);
             array.push(datos[n]);
         }
-        console.log(JSON.stringify(array));
+        //console.log(JSON.stringify(array));
         db.insert(array);
         res.sendStatus(200, "OK");
     });
@@ -52854,10 +52857,11 @@ module.exports = (app, db) => {
         "iso3",
         "date"]
 
+        //Comprueba si los campos coinciden con los de nuestra db
         const requestFields=Object.keys(req.body);
         const missedFields=expectedFields.filter(field=>!requestFields.includes(field));
-          if(missedFields.length>0)
-            return res.status(400).send("Missing fields: " + missedFields.join(", "));
+        if(missedFields.length>0)
+          return res.status(400).send("Missing fields: " + missedFields.join(", "));
 
         //var i = array.findIndex(u => JSON.stringify(u) === JSON.stringify(obj));
         var i = array.findIndex(u => u.id === req.body.id);
@@ -52915,6 +52919,7 @@ module.exports = (app, db) => {
 
         res.json(array);*/
 
+        //Elimina todos los que tengan el mismo pais que el pasado por parametro
         db.remove({"country": country}, {}, (err, numRemoved)=>{
           if(err){
             res.sendStatus(500, "Internal Error");
