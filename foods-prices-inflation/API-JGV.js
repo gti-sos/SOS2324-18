@@ -52897,7 +52897,7 @@ module.exports = (app, db) => {
         if (err) {
           return res.sendStatus(500, "Internal Error");
         }
-        
+
         if (id!=req.body.id) return res.sendStatus(400, "Bad Request");
         if (!docs) return res.sendStatus(404, "Not Found");
 
@@ -52964,3 +52964,4 @@ module.exports = (app, db) => {
 }
 
 //app.listen(port,()=>{console.log(`Server listening on port ${port}`);});
+// npx newman run ./tests/apiJGV.json -e .\tests\environments\LocalJGV.json
