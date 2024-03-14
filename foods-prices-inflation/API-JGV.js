@@ -52835,7 +52835,16 @@ module.exports = (app, db) => {
     });
 
     app.get(API_BASE+"/foods-prices-inflation/loadInitialData", (req,res)=>{
-        if (array.length!==0) return res.sendStatus(409, "Conflict");
+      let numero = 0;
+      db.find({}, (err, docs) => {
+        if (err) {
+          return res.sendStatus(500, "Internal Error");
+        }
+
+        numero=docs.length;
+        if (numero>0) return res.sendStatus(409, "Conflict");
+
+        array = [];
         for(let i=0; i<10; i++){
             let n = Math.floor(Math.random() * 5001);
             array.push(datos[n]);
@@ -52843,6 +52852,7 @@ module.exports = (app, db) => {
         //console.log(JSON.stringify(array));
         db.insert(array);
         res.sendStatus(200, "OK");
+      });
     });
 
     app.post(API_BASE+"/foods-prices-inflation", (req,res)=>{
@@ -52863,14 +52873,18 @@ module.exports = (app, db) => {
         if(missedFields.length>0)
           return res.status(400).send("Missing fields: " + missedFields.join(", "));
 
-        //var i = array.findIndex(u => JSON.stringify(u) === JSON.stringify(obj));
-        var i = array.findIndex(u => u.id === req.body.id);
-        //console.log(req.params.id);
-        if (i!==-1) return res.sendStatus(409, "Conflict");
-
-        array.push(obj);
-        db.insert(obj);
-        res.sendStatus(201, "Created");
+        db.find({}, (err, docs) => {
+          if (err) {
+            return res.sendStatus(500, "Internal Error");
+          }
+          
+          if (docs.length>0) {
+            var i = docs.findIndex(u => u.id === req.body.id);
+            if (i!==-1) return res.sendStatus(409, "Conflict");
+          }
+          db.insert(obj);
+          res.sendStatus(201, "Created");
+        });
     });
 
     app.post(API_BASE+"/foods-prices-inflation/:id", (req,res)=>{
@@ -52878,20 +52892,29 @@ module.exports = (app, db) => {
     });
 
     app.put(API_BASE+"/foods-prices-inflation/:id", (req, res) => {
-        var d = array.find(u => u.id === req.body.id);
-        var i = array.findIndex(u => u.id === req.body.id);
+      let id=parseInt(req.params.id);
+      db.findOne({"id": id }, (err, docs) => {
+        if (err) {
+          return res.sendStatus(500, "Internal Error");
+        }
         
-        if (req.params.id!=req.body.id) return res.sendStatus(400, "Bad Request");
-        if (i==-1) return res.sendStatus(404, "Not Found");
+        if (id!=req.body.id) return res.sendStatus(400, "Bad Request");
+        if (!docs) return res.sendStatus(404, "Not Found");
 
-        array[i] = req.body;
-        res.json(array);
+        db.update({"id": id }, req.body, {}, (err, numReplaced) => {
+          if (err) {
+            return res.sendStatus(500, "Internal error");
+          }
+          res.sendStatus(200, "Ok"); // No Content
+        });
+      });
     });
 
     app.put(API_BASE+"/foods-prices-inflation", (req, res) => {
         return res.sendStatus(405, "Method Not Allowed");
     });
 
+    //BORRA TODO
     app.delete(API_BASE+"/foods-prices-inflation", (req,res)=>{
       db.remove({}, {multi: true}, (err, numRemoved)=>{
         if(err){
@@ -52907,6 +52930,7 @@ module.exports = (app, db) => {
       console.log(200, "OK");
     });
 
+    //BORRA LOS REGISTROS QUE TENGAN EL PAIS PASADO POR PARAMETROS 
     app.delete(API_BASE+"/foods-prices-inflation/:country", (req,res)=>{
         let country = req.params.country;
         /*let copia = array.slice();
