@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "testLocalJGV": "npx newman run ./tests/apiJGV.json -e ./tests/environments/LocalJGV.json",
-    "testGCloudJGV": "npx newman run ./tests/apiJGV.json -e ./tests/environments/GCloudJGV.json"
+    "testLocalJGV": "npx newman run ./tests/test-foods-prices-inflation.json -e ./tests/environments/LocalJGV.json",
+    "test-foods-prices-inflation": "npx newman run ./tests/test-foods-prices-inflation.json -e ./tests/environments/GCloudJGV.json"
   },
   "repository": {
     "type": "git",
