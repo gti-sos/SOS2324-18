@@ -52815,19 +52815,28 @@ module.exports = (app, db) => {
           }
           else{
             //CON PARAMETROS
-            //Crea el aux con los parametros dados
-            let aux=array.filter(e =>{
-              return keys.every(k =>{
-                return e[k]==q[k];
-              });
-            }).map((c) =>{
-              delete c._id;
-              return c;
-            });
             
-            if (aux.length===0) return res.sendStatus(404, "Not Found"); //Prueba si ha encontrado algo
+            if(keys.includes("id")) {
+              let obj = array.find(e=> e["id"]==q["id"]);
+              console.log(obj);
+              if (obj==undefined) return res.sendStatus(404, "Not Found");
+              res.send(JSON.stringify(obj));
+            }
+            else {
+            //Crea el aux con los parametros dados
+              let aux=array.filter(e =>{
+                return keys.every(k =>{
+                  return e[k]==q[k];
+                });
+              }).map((c) =>{
+                delete c._id;
+                return c;
+              });
+              
+              if (aux.length===0) return res.sendStatus(404, "Not Found"); //Prueba si ha encontrado algo
 
-            res.send(JSON.stringify(aux));
+              res.send(JSON.stringify(aux));
+            }
           }
         }
       });
@@ -52931,8 +52940,8 @@ module.exports = (app, db) => {
     });
 
     //BORRA LOS REGISTROS QUE TENGAN EL PAIS PASADO POR PARAMETROS 
-    app.delete(API_BASE+"/foods-prices-inflation/:country", (req,res)=>{
-        let country = req.params.country;
+    app.delete(API_BASE+"/foods-prices-inflation/:id", (req,res)=>{
+        let id = parseInt(req.params.id);
         /*let copia = array.slice();
         for(let i=0; i< array.length; i++){
             if(array[i].country==country){
@@ -52944,7 +52953,7 @@ module.exports = (app, db) => {
         res.json(array);*/
 
         //Elimina todos los que tengan el mismo pais que el pasado por parametro
-        db.remove({"country": country}, {}, (err, numRemoved)=>{
+        db.remove({"id": id}, {}, (err, numRemoved)=>{
           if(err){
             res.sendStatus(500, "Internal Error");
           } else{
