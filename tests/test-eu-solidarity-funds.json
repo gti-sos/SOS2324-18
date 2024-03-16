@@ -1,0 +1,399 @@
+{
+	"info": {
+		"_postman_id": "fed5e027-0def-4145-b1fc-12e67721bf2c",
+		"name": "F04",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33040772"
+	},
+	"item": [
+		{
+			"name": "Peticiones normales",
+			"item": [
+				{
+					"name": "{{SERVER}}/eu-solidarity-funds/loadInitialData",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds/loadInitialData",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds",
+								"loadInitialData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-fund",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds?offset=3&limit=8",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "3"
+								},
+								{
+									"key": "limit",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-funds?cci_number=2002ATSPO001",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds/2002ATSPO001",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds",
+								"2002ATSPO001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{SERVER}}/api/v1/eu-solidarity-funds?year_of_occurance=2003",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds?year_of_occurance=2003&status=Rejected",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds"
+							],
+							"query": [
+								{
+									"key": "year_of_occurance",
+									"value": "2003"
+								},
+								{
+									"key": "status",
+									"value": "Rejected"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-fund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"year_of_occurance\": \"Prueba de post\",\r\n    \"cci_number\": \"Prueba de post\",\r\n    \"applicant_country\": \"Prueba de post\",\r\n    \"name_of_disaster\": \"Prueba de post\",\r\n    \"disaster_type\": \"Prueba de post\",\r\n    \"status\": \"Prueba de post\",\r\n    \"first_damage_date\": \"Prueba de post\",\r\n    \"date_of_initial_application\": \"Prueba de post\",\r\n    \"time_from_disaster_to\": \"Prueba de post\",\r\n    \"major_regional_neighbouring\": \"Prueba de post\",\r\n    \"total_direct_damage_accepted\": \"Prueba de post\",\r\n    \"public_damage_eur_million\": \"Prueba de post\",\r\n    \"public_total_damage\": \"Prueba de post\",\r\n    \"cost_of_eligible_emergency\": \"Prueba de post\",\r\n    \"eligible_cost_total_damage\": \"Prueba de post\",\r\n    \"paid\": \"Prueba de post\",\r\n    \"advanced_payment_post_from_twenty_fifteen\": \"Prueba de post\",\r\n    \"potential_aid_amount_eur_m_\": \"Prueba de post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"year_of_occurance\": \"Cambio de prueba\",\r\n    \"cci_number\": \"Prueba de post\",\r\n    \"applicant_country\": \"Cambio de prueba\",\r\n    \"name_of_disaster\": \"Prueba de post\",\r\n    \"disaster_type\": \"Prueba de post\",\r\n    \"status\": \"Prueba de post\",\r\n    \"first_damage_date\": \"Prueba de post\",\r\n    \"date_of_initial_application\": \"Prueba de post\",\r\n    \"time_from_disaster_to\": \"Prueba de post\",\r\n    \"major_regional_neighbouring\": \"Prueba de post\",\r\n    \"total_direct_damage_accepted\": \"Prueba de post\",\r\n    \"public_damage_eur_million\": \"Prueba de post\",\r\n    \"public_total_damage\": \"Prueba de post\",\r\n    \"cost_of_eligible_emergency\": \"Prueba de post\",\r\n    \"eligible_cost_total_damage\": \"Prueba de post\",\r\n    \"paid\": \"Prueba de post\",\r\n    \"advanced_payment_post_from_twenty_fifteen\": \"Prueba de post\",\r\n    \"potential_aid_amount_eur_m_\": \"Prueba de post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds/Prueba de post",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds",
+								"Prueba de post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds/Prueba de post",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds",
+								"Prueba de post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-funds",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Peticiones erróneas",
+			"item": [
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-fund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"year_of_occurance\": \"Prueba de post incorrecto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de put a id inexsitente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds/Prueba de put a id inexistente",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds",
+								"Prueba de put a id inexistente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"year_of_occurance\": \"Cambio de prueba\",\r\n    \"cci_number\": \"Id distinto\",\r\n    \"applicant_country\": \"Cambio de prueba\",\r\n    \"name_of_disaster\": \"Prueba de post\",\r\n    \"disaster_type\": \"Prueba de post\",\r\n    \"status\": \"Prueba de post\",\r\n    \"first_damage_date\": \"Prueba de post\",\r\n    \"date_of_initial_application\": \"Prueba de post\",\r\n    \"time_from_disaster_to\": \"Prueba de post\",\r\n    \"major_regional_neighbouring\": \"Prueba de post\",\r\n    \"total_direct_damage_accepted\": \"Prueba de post\",\r\n    \"public_damage_eur_million\": \"Prueba de post\",\r\n    \"public_total_damage\": \"Prueba de post\",\r\n    \"cost_of_eligible_emergency\": \"Prueba de post\",\r\n    \"eligible_cost_total_damage\": \"Prueba de post\",\r\n    \"paid\": \"Prueba de post\",\r\n    \"advanced_payment_post_from_twenty_fifteen\": \"Prueba de post\",\r\n    \"potential_aid_amount_eur_m_\": \"Prueba de post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds/Prueba de post",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds",
+								"Prueba de post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de delete a id inexistente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds/Prueba de delete a id inexistente",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds",
+								"Prueba de delete a id inexistente"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Peticiones erróneas (405)",
+			"item": [
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-funds?cci_number=\"Prueba de post\"",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"year_of_occurance\": \"Prueba de post\",\r\n    \"cci_number\": \"Prueba de post\",\r\n    \"applicant_country\": \"Prueba de post\",\r\n    \"name_of_disaster\": \"Prueba de post\",\r\n    \"disaster_type\": \"Prueba de post\",\r\n    \"status\": \"Prueba de post\",\r\n    \"first_damage_date\": \"Prueba de post\",\r\n    \"date_of_initial_application\": \"Prueba de post\",\r\n    \"time_from_disaster_to\": \"Prueba de post\",\r\n    \"major_regional_neighbouring\": \"Prueba de post\",\r\n    \"total_direct_damage_accepted\": \"Prueba de post\",\r\n    \"public_damage_eur_million\": \"Prueba de post\",\r\n    \"public_total_damage\": \"Prueba de post\",\r\n    \"cost_of_eligible_emergency\": \"Prueba de post\",\r\n    \"eligible_cost_total_damage\": \"Prueba de post\",\r\n    \"paid\": \"Prueba de post\",\r\n    \"advanced_payment_post_from_twenty_fifteen\": \"Prueba de post\",\r\n    \"potential_aid_amount_eur_m_\": \"Prueba de post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds?cci_number=\"Prueba de post\"",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds"
+							],
+							"query": [
+								{
+									"key": "cci_number",
+									"value": "\"Prueba de post\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:10000/api/v1/eu-solidarity-funds",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"year_of_occurance\": \"Cambio de prueba\",\r\n    \"cci_number\": \"Prueba de post\",\r\n    \"applicant_country\": \"Cambio de prueba\",\r\n    \"name_of_disaster\": \"Prueba de post\",\r\n    \"disaster_type\": \"Prueba de post\",\r\n    \"status\": \"Prueba de post\",\r\n    \"first_damage_date\": \"Prueba de post\",\r\n    \"date_of_initial_application\": \"Prueba de post\",\r\n    \"time_from_disaster_to\": \"Prueba de post\",\r\n    \"major_regional_neighbouring\": \"Prueba de post\",\r\n    \"total_direct_damage_accepted\": \"Prueba de post\",\r\n    \"public_damage_eur_million\": \"Prueba de post\",\r\n    \"public_total_damage\": \"Prueba de post\",\r\n    \"cost_of_eligible_emergency\": \"Prueba de post\",\r\n    \"eligible_cost_total_damage\": \"Prueba de post\",\r\n    \"paid\": \"Prueba de post\",\r\n    \"advanced_payment_post_from_twenty_fifteen\": \"Prueba de post\",\r\n    \"potential_aid_amount_eur_m_\": \"Prueba de post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"eu-solidarity-funds"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
