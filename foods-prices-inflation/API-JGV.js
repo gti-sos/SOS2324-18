@@ -52928,13 +52928,8 @@ module.exports = (app, db) => {
       db.remove({}, {multi: true}, (err, numRemoved)=>{
         if(err){
           res.sendStatus(500, "Internal Error");
-        } else{
-          if(numRemoved>=1){
-            res.sendStatus(200, "OK");
-          } else{
-            res.sendStatus(404, "Not Found");
-          }
-        }
+        } 
+        res.sendStatus(200, "OK");
       });
       console.log(200, "OK");
     });
