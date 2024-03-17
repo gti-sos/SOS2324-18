@@ -484,7 +484,7 @@ app.delete(API_BASE+"/regional-politicies-acceptance/:name/:year",(req,res)=>{
     });
 
 app.get(API_BASE+"/regional-politicies-acceptance/docs",(req,res)=>{
-    res.redirect(200,"https://documenter.getpostman.com/view/32973833/2sA2xh3sw1");
+    res.redirect(200,"https://documenter.getpostman.com/view/32973833/2sA2xnxpzk");
     
 });
 
