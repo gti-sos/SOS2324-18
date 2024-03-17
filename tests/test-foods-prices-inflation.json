@@ -49,6 +49,11 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Hay al menos 10 elementos\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(10);\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -73,6 +78,11 @@
 						{
 							"key": "pageSize",
 							"value": "20"
+						},
+						{
+							"key": "id",
+							"value": "23662",
+							"disabled": true
 						}
 					]
 				}

@@ -52854,8 +52854,8 @@ module.exports = (app, db) => {
         if (numero>0) return res.sendStatus(409, "Conflict");
 
         array = [];
-        for(let i=0; i<10; i++){
-            let n = Math.floor(Math.random() * 5001);
+        for(let i=0; i<20; i++){
+            let n = Math.floor(Math.random() * 4799);
             array.push(datos[n]);
         }
         //console.log(JSON.stringify(array));
