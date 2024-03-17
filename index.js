@@ -9,12 +9,12 @@ let express = require("express");
 
 let dbVotes= new dataStore();
 let bodyParser = require("body-parser");
-let JGVAPI = require("./foods-prices-inflation/API-JGV");
+let JGVAPI = require("./foods-prices-inflation");
 let dbFood = new dataStore();
 
 let dbFunds = new dataStore();
 
-let MMMAPI = require("./eu-solidarity-funds/index.js");
+let MMMAPI = require("./eu-solidarity-funds");
 
 let app = express();
 
