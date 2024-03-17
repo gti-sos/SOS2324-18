@@ -17,7 +17,7 @@ let initialCountries=[
             "year": "2019"
         },
         {
-            "eu_country": "belice",
+            "eu_country": "bhutan",
             "answer_yes": "247",
             "yes": "0.25",
             "answer_no": "732",
