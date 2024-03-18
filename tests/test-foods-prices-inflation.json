@@ -13,8 +13,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -90,6 +90,53 @@
 			"response": []
 		},
 		{
+			"name": "http://sos2324-18.appspot.com/api/v1/foods-prices-inflation/ID INEXISTENTE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}/api/v1/foods-prices-inflation/912818298",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"foods-prices-inflation",
+						"912818298"
+					],
+					"query": [
+						{
+							"key": "pageSize",
+							"value": "20",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "23662",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://sos2324-18.appspot.com/api/v1/foods-prices-inflation",
 			"event": [
 				{
@@ -98,6 +145,48 @@
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"open\": 0.7,\r\n    \"high\": 0.5,\r\n    \"low\": 0.21,\r\n    \"close\": 0.50,\r\n    \"inflation\": \"50.00\",\r\n    \"country\": \"Spain\",\r\n    \"iso3\": \"SPN\",\r\n    \"date\": \"2024-01-01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/v1/foods-prices-inflation",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"foods-prices-inflation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://sos2324-18.appspot.com/api/v1/foods-prices-inflation ERROR409",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -212,6 +301,49 @@
 						"v1",
 						"foods-prices-inflation",
 						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://sos2324-18.appspot.com/api/v1/foods-prices-inflation/2 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"open\": 0.6,\r\n    \"high\": 0.8,\r\n    \"low\": 0.2,\r\n    \"close\": 0.10,\r\n    \"inflation\": \"20.00\",\r\n    \"country\": \"Germany\",\r\n    \"iso3\": \"GMY\",\r\n    \"date\": \"2022-04-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/api/v1/foods-prices-inflation/24",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"foods-prices-inflation",
+						"24"
 					]
 				}
 			},

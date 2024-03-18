@@ -52860,9 +52860,32 @@ module.exports = (app, db) => {
         }
         //console.log(JSON.stringify(array));
         db.insert(array);
-        res.sendStatus(200, "OK");
+        res.sendStatus(201, "Created");
       });
     });
+
+    app.get(API_BASE+"/foods-prices-inflation/:id", (req,res)=>{  //IMPRIME TU ARRAY
+      let q = req.query;
+      let id = parseInt(req.params.id);
+      
+      
+      db.find({}, (err, array) => {
+        if(err){
+          res.sendStatus(500, "Internal Error");
+        } 
+   
+              let obj = array.find(e=> e["id"]==id);
+              console.log(obj);
+              if (obj==undefined) return res.sendStatus(404, "Not Found");
+              res.send(JSON.stringify(obj));
+            
+           
+        
+      });
+      //res.send(JSON.stringify(array));
+    });
+
+    
 
     app.post(API_BASE+"/foods-prices-inflation", (req,res)=>{
         let obj = req.body;
@@ -52901,6 +52924,22 @@ module.exports = (app, db) => {
     });
 
     app.put(API_BASE+"/foods-prices-inflation/:id", (req, res) => {
+      const expectedFields=["id",
+        "open",
+        "high",
+        "low",
+        "close",
+        "inflation",
+        "country",
+        "iso3",
+        "date"]
+
+        //Comprueba si los campos coinciden con los de nuestra db
+        const requestFields=Object.keys(req.body);
+        const missedFields=expectedFields.filter(field=>!requestFields.includes(field));
+        if(missedFields.length>0)
+          return res.status(400).send("Missing fields: " + missedFields.join(", "));
+
       let id=parseInt(req.params.id);
       db.findOne({"id": id }, (err, docs) => {
         if (err) {
