@@ -360,6 +360,20 @@
 			"item": [
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-fund",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -388,6 +402,20 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de put a id inexsitente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -417,6 +445,20 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -446,6 +488,20 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de delete a id inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -471,6 +527,20 @@
 			"item": [
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-funds?cci_number=\"Prueba de post\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -484,20 +554,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds?cci_number=\"Prueba de post\"",
+							"raw": "{{SERVER}}/api/v1/eu-solidarity-funds/Prueba de post",
 							"host": [
 								"{{SERVER}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"eu-solidarity-funds"
-							],
-							"query": [
-								{
-									"key": "cci_number",
-									"value": "\"Prueba de post\""
-								}
+								"eu-solidarity-funds",
+								"Prueba de post"
 							]
 						}
 					},
@@ -505,6 +570,20 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-funds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
