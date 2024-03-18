@@ -284,20 +284,8 @@ app.get(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
   });
 });
 
-//POST INCORRECTO
-app.post(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
-  res.status(405).send("Method not allowed");
-});
-
 //POST CORRECTO
 app.post(API_BASE + "/eu-solidarity-funds", (req, res) => {
-  const id = req.query.cci_number;
-
-  // Verificar si se intenta hacer POST en un recurso específico
-  if (id) {
-    return res.status(405).send("Method not allowed");
-  }
-
   // Verificar si el recurso ya existe
   db.findOne({ cci_number: req.body.cci_number }, (err, existingData) => {
     if (err) {
@@ -340,6 +328,11 @@ app.post(API_BASE + "/eu-solidarity-funds", (req, res) => {
     db.insert(req.body);
     res.sendStatus(201, "Created");
   });
+});
+
+//POST INCORRECTO
+app.post(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
+  res.status(405).send("Method not allowed");
 });
 
 // PUT correcto
