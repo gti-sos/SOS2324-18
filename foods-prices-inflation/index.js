@@ -52864,6 +52864,7 @@ module.exports = (app, db) => {
       });
     });
 
+    
     app.get(API_BASE+"/foods-prices-inflation/:id", (req,res)=>{  //IMPRIME TU ARRAY
       let q = req.query;
       let id = parseInt(req.params.id);
