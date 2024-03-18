@@ -52863,7 +52863,6 @@ module.exports = (app, db) => {
         res.sendStatus(201, "Created");
       });
     });
-
     
     app.get(API_BASE+"/foods-prices-inflation/:id", (req,res)=>{  //IMPRIME TU ARRAY
       let q = req.query;
