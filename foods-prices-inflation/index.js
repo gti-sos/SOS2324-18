@@ -52860,7 +52860,7 @@ module.exports = (app, db) => {
         }
         //console.log(JSON.stringify(array));
         db.insert(array);
-        res.sendStatus(201);
+        res.sendStatus(201, "Created");
       });
     });
 
@@ -52884,6 +52884,7 @@ module.exports = (app, db) => {
       });
       //res.send(JSON.stringify(array));
     });
+
     
 
     app.post(API_BASE+"/foods-prices-inflation", (req,res)=>{
