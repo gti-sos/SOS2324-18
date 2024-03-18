@@ -52860,7 +52860,7 @@ module.exports = (app, db) => {
         }
         //console.log(JSON.stringify(array));
         db.insert(array);
-        res.sendStatus(201, "Created");
+        res.sendStatus(201);
       });
     });
 
