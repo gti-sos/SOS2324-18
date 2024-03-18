@@ -284,6 +284,12 @@ app.get(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
   });
 });
 
+//POST INCORRECTO
+app.post(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
+  res.status(405).send("Method not allowed");
+});
+
+//POST CORRECTO
 app.post(API_BASE + "/eu-solidarity-funds", (req, res) => {
   const id = req.query.cci_number;
 
