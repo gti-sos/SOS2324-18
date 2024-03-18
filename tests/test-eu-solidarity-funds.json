@@ -11,6 +11,21 @@
 			"item": [
 				{
 					"name": "{{SERVER}}/eu-solidarity-funds/loadInitialData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -31,6 +46,24 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-fund",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body is not empty\", function () {\r",
+									"    pm.expect(pm.response.text()).not.to.be.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -72,6 +105,37 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-funds?cci_number=2002ATSPO001",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verificar el cuerpo de la respuesta\", function () {\r",
+									"    // Obtener la respuesta en texto\r",
+									"    var responseBody = pm.response.text();\r",
+									"\r",
+									"    // Comprobar si el cuerpo de la respuesta contiene el mensaje \"Resource not found\"\r",
+									"    if (responseBody.includes(\"Resource not found\")) {\r",
+									"        // Si el cuerpo de la respuesta contiene el mensaje, pasa la prueba\r",
+									"        pm.expect(responseBody).to.include(\"Resource not found\");\r",
+									"    } else {\r",
+									"        // Si el cuerpo de la respuesta no contiene el mensaje, comprobar el valor del campo cci_number\r",
+									"        var jsonData = pm.response.json();\r",
+									"        var cciNumber = _.get(jsonData, 'cci_number');\r",
+									"        // Extraer el valor de la URL\r",
+									"        var urlParts = pm.request.url.getPath().split('/');\r",
+									"        var cciNumberFromURL = urlParts[urlParts.length - 1];\r",
+									"        // Comprobar si el campo cci_number tiene el mismo valor que el pasado al final de la URL\r",
+									"        pm.expect(cciNumber).to.equal(cciNumberFromURL);\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -92,6 +156,20 @@
 				},
 				{
 					"name": "{{SERVER}}/api/v1/eu-solidarity-funds?year_of_occurance=2003",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -121,6 +199,21 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-fund",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -149,6 +242,21 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -178,6 +286,21 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-fund/Prueba de post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -198,6 +321,21 @@
 				},
 				{
 					"name": "http://localhost:10000/api/v1/eu-solidarity-funds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
