@@ -219,6 +219,7 @@ app.post(API_BASE+"/regional-politicies-acceptance/:name/:name2",(req,res)=>{
 app.get(API_BASE+"/regional-politicies-acceptance",(req,res)=>{
    
   
+
     
     let offset=req.query.offset;
     let limitt=req.query.limit;
@@ -380,6 +381,15 @@ app.get(API_BASE+"/regional-politicies-acceptance/:name/:param",(req,res)=>{
     let name=req.params.name;
     let paramm=req.params.param;
 
+
+
+    const año = req.params.param;
+        // Verificar si el año tiene un formato válido (cuatro dígitos)
+        if (!(/^\d{4}$/.test(año))) {
+        return res.status(400).send("Bad Request. Please provide a valid year in YYYY format.");
+        };
+
+
     if(name!=undefined && paramm=="year"){
         res.sendStatus(404);
     }else{
@@ -394,9 +404,12 @@ app.get(API_BASE+"/regional-politicies-acceptance/:name/:param",(req,res)=>{
             delete c._id;
             return c;
                     })));
-    }}});
-
     }
+}
+    });
+}
+
+    
 });
 
 
