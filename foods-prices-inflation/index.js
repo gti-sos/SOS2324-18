@@ -52782,15 +52782,15 @@ var datos=[
 
 var array=[];
 
-const { getRandomValues } = require("crypto");
-let express=require("express");
+//let { getRandomValues } = require("crypto");
+/*let express=require("express");
 let app=express();
 let bodyParser = require("body-parser");
 const port = (process.env.port || 10000);
 
-app.use(bodyParser.json());
+app.use(bodyParser.json());*/
 
-module.exports = (app, db) => {
+function JGVBackend(app, db){
     app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  //IMPRIME TU ARRAY
       let q = req.query;
 
@@ -53005,6 +53005,8 @@ module.exports = (app, db) => {
       res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33015048/2sA2xh3t5u"));
     });
 }
+
+export { JGVBackend };
 
 //app.listen(port,()=>{console.log(`Server listening on port ${port}`);});
 // npx newman run ./tests/apiJGV.json -e .\tests\environments\LocalJGV.json
