@@ -52814,7 +52814,7 @@ function JGVBackend(app, db){
             })));
           }
           else{
-            //CON PARAMETROS
+            //CON  PARAMETROS
             
             if(keys.includes("id")) {
               let obj = array.find(e=> e["id"]==q["id"]);
