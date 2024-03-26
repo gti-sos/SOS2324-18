@@ -21,7 +21,6 @@ const port=(process.env.PORT || 10000);
 
 //app.use("/",express.static("./public"));
 app.use(bodyParser.json());
-app.use(handler);
 
 app.listen(port,()=>{
     console.log(`Server listening on port ${port}`)
@@ -35,3 +34,5 @@ JGVBackend(app, dbFood);
 
 
 //MMMAPI(app, dbFunds);
+
+app.use(handler);

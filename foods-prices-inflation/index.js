@@ -52820,6 +52820,7 @@ function JGVBackend(app, db){
               let obj = array.find(e=> e["id"]==q["id"]);
               console.log(obj);
               if (obj==undefined) return res.sendStatus(404, "Not Found");
+              delete obj._id;
               res.send(JSON.stringify(obj));
             }
             else {
@@ -52877,6 +52878,7 @@ function JGVBackend(app, db){
               let obj = array.find(e=> e["id"]==id);
               console.log(obj);
               if (obj==undefined) return res.sendStatus(404, "Not Found");
+              delete obj._id;
               res.send(JSON.stringify(obj));
             
            
