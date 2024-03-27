@@ -52782,15 +52782,15 @@ var datos=[
 
 var array=[];
 
-const { getRandomValues } = require("crypto");
-let express=require("express");
+//let { getRandomValues } = require("crypto");
+/*let express=require("express");
 let app=express();
 let bodyParser = require("body-parser");
 const port = (process.env.port || 10000);
 
-app.use(bodyParser.json());
+app.use(bodyParser.json());*/
 
-module.exports = (app, db) => {
+function JGVBackend(app, db){
     app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  //IMPRIME TU ARRAY
       let q = req.query;
 
@@ -52814,12 +52814,13 @@ module.exports = (app, db) => {
             })));
           }
           else{
-            //CON PARAMETROS
+            //CON  PARAMETROS
             
             if(keys.includes("id")) {
               let obj = array.find(e=> e["id"]==q["id"]);
               console.log(obj);
               if (obj==undefined) return res.sendStatus(404, "Not Found");
+              delete obj._id;
               res.send(JSON.stringify(obj));
             }
             else {
@@ -52877,6 +52878,7 @@ module.exports = (app, db) => {
               let obj = array.find(e=> e["id"]==id);
               console.log(obj);
               if (obj==undefined) return res.sendStatus(404, "Not Found");
+              delete obj._id;
               res.send(JSON.stringify(obj));
             
            
@@ -53005,6 +53007,8 @@ module.exports = (app, db) => {
       res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33015048/2sA2xh3t5u"));
     });
 }
+
+export { JGVBackend };
 
 //app.listen(port,()=>{console.log(`Server listening on port ${port}`);});
 // npx newman run ./tests/apiJGV.json -e .\tests\environments\LocalJGV.json

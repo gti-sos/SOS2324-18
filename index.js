@@ -3,6 +3,7 @@ const API_BASE = "/api/v1";
 import  express  from 'express';
 import bodyParser from 'body-parser';
 import {carlosBackend} from './regional-politicies-acceptance/index.js';
+import {JGVBackend} from "./foods-prices-inflation/index.js";
 import dataStore from "nedb";
 import {handler} from "./front/build/handler.js";
 import cors from "cors";
@@ -10,7 +11,6 @@ import cors from "cors";
 let dbVotes= new dataStore();
 //let JGVAPI = require("./foods-prices-inflation");
 let dbFood = new dataStore();
-
 let dbFunds = new dataStore();
 
 //let MMMAPI = require("./eu-solidarity-funds");
@@ -24,6 +24,9 @@ app.use(bodyParser.json());
 
 
 carlosBackend(app,dbVotes);
+JGVBackend(app, dbFood);
+
+
 
 app.use(handler);
 
