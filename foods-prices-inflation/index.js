@@ -52782,6 +52782,29 @@ var datos=[
 
 var array=[];
 
+/*var array=[{
+  "id": 4797,
+  "open": 2.86,
+  "high": 2.97,
+  "low": 2.82,
+  "close": 2.97,
+  "inflation": 1.68,
+  "country": "Yemen",
+  "iso3": "YEM",
+  "date": "2023-09-01"
+},
+{
+  "id": 4798,
+  "open": 3.06,
+  "high": 3.11,
+  "low": 2.98,
+  "close": 2.98,
+  "inflation": 3.76,
+  "country": "Yemen",
+  "iso3": "YEM",
+  "date": "2023-10-01"
+}];*/
+
 //let { getRandomValues } = require("crypto");
 /*let express=require("express");
 let app=express();
@@ -52791,6 +52814,8 @@ const port = (process.env.port || 10000);
 app.use(bodyParser.json());*/
 
 function JGVBackend(app, db){
+    db.insert(array);
+
     app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  //IMPRIME TU ARRAY
       let q = req.query;
 
@@ -52900,13 +52925,13 @@ function JGVBackend(app, db){
         "country",
         "iso3",
         "date"]
-
+        console.log(obj)
         //Comprueba si los campos coinciden con los de nuestra db
         const requestFields=Object.keys(req.body);
         const missedFields=expectedFields.filter(field=>!requestFields.includes(field));
         if(missedFields.length>0)
           return res.status(400).send("Missing fields: " + missedFields.join(", "));
-
+        
         db.find({}, (err, docs) => {
           if (err) {
             return res.sendStatus(500, "Internal Error");

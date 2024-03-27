@@ -1,2 +1,23 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+
+<h1>SOS2324-18</h1>
+    <h2>Team</h2>
+        <h3><a href="https://github.com/carbeario">Carlos Beato Rioja</a></h3>
+        <h3><a href="https://github.com/migmormar7">Miguel Moreno Martín-Palomo</a></h3>
+        <h3><a href="https://github.com/JJoaquinGV19">José Joaquín Garrido Vargas</a> - foods-prices-inflation</h3>
+    <h2>FrontEnd</h2>
+        <h3><a href="https://github.com/carbeario">Carlos Beato Rioja</a></h3>
+        <h3><a href="https://github.com/migmormar7">Miguel Moreno Martín-Palomo</a></h3>
+        <h3><a href="./foods-prices-inflation">Foods Prices Inflation</a></h3>
+    <h2>Project description</h2>
+        <h3>Our sources of information are aimed at analyzing the statistics of regional politicies acceptance,
+            european solidarity funds and foods prices inflation</h3>
+    <h2>Repository</h2>
+            <h3><a href="https://github.com/gti-sos/SOS2324-18">gti-sos/SOS2324-18</a></h3>
+    <h2>URL</h2>
+            <h3><a href = http://sos2324-18.appspot.com>http://sos2324-18.appspot.com</a></h3>
+    <h2>Documentacion Postman</h2>
+    <ul>
+        <li><h3><a href = http://sos2324-18.appspot.com/api/v1/regional-politicies-acceptance/docs>http://sos2324-18.appspot.com/api/v1/regional-politicies-acceptance/docs</a></h3><h3>(developed by Carlos Beato Rioja)</h3></li>
+        <li><h3><a href = http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/docs>http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/docs</a></h3><h3>(developed by Miguel Moreno Martín-Palomo)</h3></li>
+        <li><h3><a href = http://sos2324-18.appspot.com/api/v1/foods-prices-inflation/docs>http://sos2324-18.appspot.com/api/v1/foods-prices-inflation/docs</a></h3><h3>(developed by José Joaquín Garrido Vargas)</h3></li>
+    </ul>
