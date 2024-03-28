@@ -87,24 +87,24 @@ async function deleteCountries(){
 
 
 </script>
-<h1>Welcome to the votations</h1>
+<h1>Bienvenido a las votaciones</h1>
 
-<Button on:click="{getCountries}">Refresh</Button>
-<Button on:click="{deleteCountries}" color="warning">Delete all countries</Button>
+<Button on:click="{getCountries}">Recarga</Button>
+<Button on:click="{deleteCountries}" color="warning">Borrar todos los paises</Button>
 <Container>
 <Table bordered>
     <thead>
         <tr>
-            <td>Country name</td>
-            <td>People that vote yes</td>
-            <td>People's percent that vote yes</td>
-            <td>People that vote no</td>
-            <td>People's percent that vote no</td>
-            <td>People that vote not applicable</td>
-            <td>People's percent that vote not applicable</td>
-            <td>Total number of people</td>
-            <td>Year of the vote</td>
-            <td>ACTIONS</td>
+            <td>Nombre pais</td>
+            <td>Personas que votaron si</td>
+            <td>Porcentaje de personas que votaron si</td>
+            <td>Personas que votaron no</td>
+            <td>Porcentaje de personas que votaron no</td>
+            <td>Personas que votaron no aplicable</td>
+            <td>Porcentaje de personas que votaron no aplicable</td>
+            <td>Numero total de personas</td>
+            <td>Año de la votación</td>
+            <td>ACCIONES</td>
         </tr>
     </thead>
     <tbody>
@@ -120,8 +120,8 @@ async function deleteCountries(){
         <td>{country.total}</td>
         <td>{country.year}</td>
         <td>
-            <Button color="primary" href="/regional-politicies-acceptance/{country.eu_country}/{country.year}">Edit</Button>
-            <Button color="danger" on:click="{deleteCountry(country.eu_country,country.year)}">Delete</Button>
+            <Button color="primary" href="/regional-politicies-acceptance/{country.eu_country}/{country.year}">Editar</Button>
+            <Button color="danger" on:click="{deleteCountry(country.eu_country,country.year)}">Borrar</Button>
         </td>
     </tr>
     {/each}
@@ -129,19 +129,19 @@ async function deleteCountries(){
 </Table>
 </Container>
 
-<h2>Create a country</h2>
+<h2>Crea un pais</h2>
 <Table bordered>
     <thead>
         <tr>
-            <td>Country name</td>
-            <td>People that vote yes</td>
-            <td>People's percent that vote yes</td>
-            <td>People that vote no</td>
-            <td>People's percent that vote no</td>
-            <td>People that vote not applicable</td>
-            <td>People's percent that vote not applicable</td>
-            <td>Total number of people</td>
-            <td>Year of the vote</td>
+            <td>Nombre pais</td>
+            <td>Personas que votaron si</td>
+            <td>Porcentaje de personas que votaron si</td>
+            <td>Personas que votaron no</td>
+            <td>Porcentaje de personas que votaron no</td>
+            <td>Personas que votaron no aplicable</td>
+            <td>Porcentaje de personas que votaron no aplicable</td>
+            <td>Numero total de personas</td>
+            <td>Año de la votación</td>
         </tr> 
     </thead>
     <tbody>
@@ -159,7 +159,7 @@ async function deleteCountries(){
     </tbody>
 </Table>
 
-<button on:click="{createCountry}">Create</button>
+<button on:click="{createCountry}">Crea</button>
 
     
    

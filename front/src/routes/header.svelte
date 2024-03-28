@@ -5,6 +5,6 @@
 
 
 <Nav>
-    <NavItem active><NavLink href="/">Home</NavLink></NavItem>
-    <NavItem active><NavLink href="/regional-politicies-acceptance">Votes</NavLink></NavItem>
+    <NavItem active><NavLink href="/">Inicio</NavLink></NavItem>
+    <NavItem active><NavLink href="/regional-politicies-acceptance">Votos</NavLink></NavItem>
 </Nav>

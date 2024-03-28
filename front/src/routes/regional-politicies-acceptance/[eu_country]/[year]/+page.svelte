@@ -65,15 +65,15 @@ async function updateCountry(eu_country,year){
 <Table>
     <thead>
         <tr>
-            <td>Country name</td>
-            <td>People that vote yes</td>
-            <td>People's percent that vote yes</td>
-            <td>People that vote no</td>
-            <td>People's percent that vote no</td>
-            <td>People that vote not applicable</td>
-            <td>People's percent that vote not applicable</td>
-            <td>Total number of people</td>
-            <td>Year of the vote</td>
+            <td>Nombre pais</td>
+            <td>Personas que votaron si</td>
+            <td>Porcentaje de personas que votaron si</td>
+            <td>Personas que votaron no</td>
+            <td>Porcentaje de personas que votaron no</td>
+            <td>Personas que votaron no aplicable</td>
+            <td>Porcentaje de personas que votaron no aplicable</td>
+            <td>Numero total de personas</td>
+            <td>Año de la votación</td>
         </tr>
     </thead>
     <tbody>
@@ -90,7 +90,7 @@ async function updateCountry(eu_country,year){
         </tr>
     </tbody>
 </Table>
-<button on:click="{updateCountry(newCountry.eu_country,newCountry.year)}">Send</button>
+<button on:click="{updateCountry(newCountry.eu_country,newCountry.year)}">Enviar</button>
 {/if}
 
 {#if errorMSG!=""}
