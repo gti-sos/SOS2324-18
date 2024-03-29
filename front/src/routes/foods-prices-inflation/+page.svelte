@@ -8,7 +8,7 @@
     let API = "/api/v1/foods-prices-inflation";
 
     if(dev)
-        API = "http://localhost:10000"+API;
+        API =  "http://localhost:10000"+API;
 
     let foods = [];
     let Allfoods = [];
