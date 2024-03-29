@@ -5,6 +5,8 @@ import { get } from "svelte/store";
 import {dev} from "$app/environment";
 import { Button, Col, Row } from '@sveltestrap/sveltestrap';
 import { Table } from '@sveltestrap/sveltestrap';
+	
+
 
 let API="/api/v1/regional-politicies-acceptance";
 if(dev){
@@ -16,21 +18,49 @@ let newCountry={};
 let addNew;
 
 onMount(()=>{
-
     getCountries();
 })
 
 
-    async function getCountries(){
+async function loadInitialData(){
+    
+    if(countries.length>=1){
+        errorMSG="Ya existen datos previos";
+    }else{
         try{
-            let response=await fetch(API,{
+            let response=fetch(API+"/loadInitialdata",{
                 method:"GET"
-            });
-            let data=await response.json();
+            })
+            let data=(await response).status
+            if(data==409){
+                errorMSG="Ya se han cargado previamente los datos";
+            }
+            if(data==201){
+                errorMSG="Se han cargado los datos correctamente"
+            }
+            
+        }catch(e){
+        errorMSG=e;
+    }
+}
+}
+
+
+async function getCountries(){
+    try{
+        let response=await fetch(API,{
+            method:"GET"
+        });
+        let data=await response.json()
+        if(data.length==0){
+            errorMSG="";
             countries=data;
-            console.log(data);
+        }else{
+            countries=data;
+            errorMSG="Paises cargados";
+        }
     }catch(e){
-        errorMSG=""+e;
+        errorMSG="Error en el servidor";
     }
     }
 
@@ -38,6 +68,7 @@ onMount(()=>{
 async function createCountry(){
         
         try{
+
         let response= await fetch(API,{
             method:"POST",
             headers:{
@@ -49,13 +80,19 @@ async function createCountry(){
 
         let status=await response.status;
         if(status==201){
-            getCountries();
-        }else{
-            errorMSG="code:"+status;
+            errorMSG="Pais creado con exito";
+        }if(status==400){
+            errorMSG="Debe rellenar todos los campos";
+        }
+        if(status==409){
+            errorMSG="Ya existe un pais con ese nombre y año";
         }
     }catch(e){
-       errorMSG=errorMSG+e;
+       errorMSG=e;
     }
+
+    
+    
 }
 
 
@@ -64,8 +101,9 @@ async function deleteCountry(eu_country,year){
         let response=await fetch(API+"/"+eu_country+"/"+year,{
             method:"DELETE"
         });
+        errorMSG="Pais borrado con exito";
     }catch(e){
-        errorMSG=""+e;
+        errorMSG="Error en el servidor";
     }
 }
 
@@ -74,23 +112,62 @@ async function deleteCountries(){
         let response=fetch(API,{
             method:"DELETE"
         });
+        errorMSG="Paises borrados con exito";
     }catch(e){
-        errorMSG=""+e;
+        errorMSG="Error en el servidor";
     }
 }
 
-
-
-
-
-
+function closePopUp(){
+    
+    errorMSG="";
+    
+}
 
 
 </script>
-<h1>Bienvenido a las votaciones</h1>
 
-<Button on:click="{getCountries}">Recarga</Button>
+
+<style>
+    
+    #popup-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+  }
+    
+    
+    
+    #popup{
+        width: 80%; /* Utilizando porcentaje para hacerlo responsive */
+        max-width: 300px; /* Estableciendo un ancho máximo */
+        background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+        color: white;
+        border-radius: 10px;
+        padding: 20px
+    }
+       
+</style>
+
+
+
+
+<h1>Bienvenido a las votaciones</h1>
+<Button on:click="{loadInitialData}" color="success">Crea datos de prueba</Button>
+<Button on:click="{getCountries}" id="Refresh"color="primary">Recarga</Button>
 <Button on:click="{deleteCountries}" color="warning">Borrar todos los paises</Button>
+{#if errorMSG!=""}
+
+    <div id="popup-container">
+        <div id="popup">
+            <Button id="close" on:click={closePopUp} color="danger">X</Button>
+            <h3>{errorMSG}</h3>
+        </div>
+        
+    </div>
+{/if}
 <Container>
 <Table bordered>
     <thead>
@@ -129,6 +206,7 @@ async function deleteCountries(){
 </Table>
 </Container>
 
+
 <h2>Crea un pais</h2>
 <Table bordered>
     <thead>
@@ -159,18 +237,4 @@ async function deleteCountries(){
     </tbody>
 </Table>
 
-<button on:click="{createCountry}">Crea</button>
-
-    
-   
-
-{#if errorMSG!=""}
-Error:{errorMSG}    
-{/if}
-
-
-
-
-
-  
-  
+<Button on:click="{createCountry}" color="success">Crea</Button>
