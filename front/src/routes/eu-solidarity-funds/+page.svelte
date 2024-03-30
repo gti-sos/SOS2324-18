@@ -22,10 +22,6 @@
 		getFunds();
 	})
 
-	function reloadPage() {
-        location.reload();
-    }
-
 	// Función para cargar los fondos de solidaridad
 	async function loadFunds() {
 		if (funds.length >= 1) {
@@ -49,7 +45,6 @@
 				message = 'Error al cargar los fondos';
 			}
 		}
-		reloadPage();
 	}
 
 	// Función para ver todos los fondos de solidaridad
@@ -90,8 +85,6 @@
 			// Mostrar mensaje de éxito
 			if (code === 201) {
 				message = 'Fondo creado correctamente';
-				// Limpiar el objeto newFund después de crear el fondo
-				newFund = {};
 			} else {
 				message = 'Error al crear el fondo';
 			}
@@ -99,25 +92,21 @@
 			// Mostrar mensaje de error
 			message = 'Error al crear el fondo';
 		}
-		reloadPage();
 	}
 
 	// Función para eliminar un fondo de solidaridad
-	async function deleteFund(cciNumber) {
+	async function deleteFund(cci_number) {
 		try {
 			// Realizar la petición DELETE a la API
-			let response = await fetch(API + "/" + cciNumber, {
+			let response = await fetch(API + "/" + cci_number, {
 				method: 'DELETE'
 			});
 			// Mostrar mensaje de éxito
 			message = 'Fondo eliminado correctamente';
-			// Actualizar la lista de fondos después de eliminar uno
-			funds = funds.filter((fund) => fund.cci_number !== cciNumber);
 		} catch (error) {
 			// Mostrar mensaje de error
 			message = 'Error al eliminar el fondo';
 		}
-		reloadPage();
 	}
 
 	// Función para eliminar todos los fondos de solidaridad
@@ -135,7 +124,6 @@
 			// Mostrar mensaje de error
 			message = 'Error al eliminar todos los fondos';
 		}
-		reloadPage();
 	}
 </script>
 
@@ -202,7 +190,7 @@
 					<td>{fund.potential_aid_amount_eur_m_}</td>
 					<!-- Botón para eliminar un fondo -->
 					<td>
-						<Button color="primary" href="/eu-solidarity-funds/{fund.cciNumber}">Editar</Button>
+						<Button color="primary" href="/eu-solidarity-funds/{fund.cci_number}">Editar</Button>
 						<Button color="danger" on:click="{deleteFund(fund.cciNumber)}">Eliminar</Button>
 					</td>
 				</tr>
