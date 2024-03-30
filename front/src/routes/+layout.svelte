@@ -4,8 +4,8 @@
     import { Button, Icon, colorMode } from '@sveltestrap/sveltestrap';
 
 </script>
-
-
+    
+    
 <Styles/>  
 <Header/>
 <h1>Bienvenido</h1>
