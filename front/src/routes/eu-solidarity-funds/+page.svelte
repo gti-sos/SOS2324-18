@@ -49,6 +49,7 @@
 				message = 'Error al cargar los fondos';
 			}
 		}
+		reloadPage();
 	}
 
 	// Función para ver todos los fondos de solidaridad
