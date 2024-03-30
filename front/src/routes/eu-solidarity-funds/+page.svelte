@@ -191,7 +191,7 @@
 					<!-- Botón para eliminar un fondo -->
 					<td>
 						<Button color="primary" href="/eu-solidarity-funds/{fund.cci_number}">Editar</Button>
-						<Button color="danger" on:click="{deleteFund(fund.cciNumber)}">Eliminar</Button>
+						<Button color="danger" on:click="{deleteFund(fund.cci_number)}">Eliminar</Button>
 					</td>
 				</tr>
 			{/each}
