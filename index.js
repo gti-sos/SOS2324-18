@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 carlosBackend(app,dbVotes);
 JGVBackend(app, dbFood);
-MMMBackend(app, dbFunds)
+MMMBackend(app, dbFunds);
 
 
 app.use(handler);
