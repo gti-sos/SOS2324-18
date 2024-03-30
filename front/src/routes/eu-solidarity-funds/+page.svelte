@@ -22,6 +22,10 @@
 		getFunds();
 	})
 
+	function reloadPage() {
+        location.reload();
+    }
+
 	// Función para cargar los fondos de solidaridad
 	async function loadFunds() {
 		if (funds.length >= 1) {
@@ -45,6 +49,7 @@
 				message = 'Error al cargar los fondos';
 			}
 		}
+		reloadPage();
 	}
 
 	// Función para ver todos los fondos de solidaridad
@@ -67,6 +72,7 @@
 			// Mostrar mensaje de error
 			message = 'Error al cargar los fondos';
 		}
+		reloadPage();
 	}
 
 	// Función para crear un nuevo fondo de solidaridad
@@ -94,13 +100,14 @@
 			// Mostrar mensaje de error
 			message = 'Error al crear el fondo';
 		}
+		reloadPage();
 	}
 
 	// Función para eliminar un fondo de solidaridad
 	async function deleteFund(cciNumber) {
 		try {
 			// Realizar la petición DELETE a la API
-			let response = await fetch(API + "/" + cci_number, {
+			let response = await fetch(API + "/" + cciNumber, {
 				method: 'DELETE'
 			});
 			// Mostrar mensaje de éxito
@@ -111,6 +118,7 @@
 			// Mostrar mensaje de error
 			message = 'Error al eliminar el fondo';
 		}
+		reloadPage();
 	}
 
 	// Función para eliminar todos los fondos de solidaridad
@@ -128,6 +136,7 @@
 			// Mostrar mensaje de error
 			message = 'Error al eliminar todos los fondos';
 		}
+		reloadPage();
 	}
 </script>
 
@@ -143,7 +152,7 @@
 <!-- Botón para eliminar todos los fondos -->
 <Button on:click={deleteAllFunds} color="danger">Eliminar Todos los Fondos</Button>
 <!-- Botón para ver todos los fondos -->
-<Button on:click={getFunds} color="info">Ver Todos los Fondos</Button>
+<!--<Button on:click={getFunds} color="info">Ver Todos los Fondos</Button>-->
 
 <!-- Tabla para mostrar los fondos de solidaridad -->
 <Container>
@@ -252,7 +261,7 @@
 	</Table>
 </Container>
 
-<td colspan="8">
-	<!-- Botón para crear un nuevo fondo -->
-	<Button on:click="{createFund}" color="success">Crear Nuevo Fondo</Button>
-</td>
+
+<!-- Botón para crear un nuevo fondo -->
+<Button on:click="{createFund}" color="success">Crear Nuevo Fondo</Button>
+
