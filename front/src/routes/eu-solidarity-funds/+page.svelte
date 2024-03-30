@@ -71,7 +71,6 @@
 			// Mostrar mensaje de error
 			message = 'Error al cargar los fondos';
 		}
-		reloadPage();
 	}
 
 	// Función para crear un nuevo fondo de solidaridad
