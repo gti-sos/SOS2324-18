@@ -32,7 +32,7 @@
             <h2>Team</h2>
                 <h3><a href="https://github.com/carbeario">Carlos Beato Rioja</a> <a href="api/v1/regional-politicies-acceptance">- api/v1/regional-politicies-acceptance</a></h3>
                 <h3><a href="https://github.com/migmormar7">Miguel Moreno Martín-Palomo</a> - API: <a href="api/v1/eu-solidarity-funds">eu-solidarity-funds</a></h3>
-                <h3><a href="https://github.com/JJoaquinGV19">José Joaquín Garrido Vargas</a> - foods-prices-inflation</h3>
+                <h3><a href="https://github.com/JJoaquinGV19">José Joaquín Garrido Vargas</a> - <a href="api/v1/foods-prices-inflation">foods-prices-inflation</a></h3>
             <h2>FrontEnd</h2>
                 <h3><a href="./regional-politicies-acceptance">regional-politicies-acceptance</a></h3>
                 <h3><a href="./eu-solidarity-funds">eu-solidarity-funds</a></h3>
