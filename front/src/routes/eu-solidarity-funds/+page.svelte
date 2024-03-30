@@ -16,30 +16,38 @@
 	// Mensaje de error o éxito
 	let message = '';
 
-    let newFund={};
+	let newFund = {};
+
+	onMount(()=>{
+		getFunds();
+	})
 
 	// Función para cargar los fondos de solidaridad
 	async function loadFunds() {
-        if(funds.length>=1){
-            message="Ya existen datos";
-        } else {
-            try {
-			    // Realizar la petición GET a la API
-			    let response = await fetch(API+"/loadInitialData", {
-				    method: 'GET'
-			    });
-			    // Parsear la respuesta a JSON
-			    code = await response.json();
-			    // Mostrar mensaje de éxito
-			    message = code + 'Fondos cargados correctamente';
-		    } catch (error) {
-			    // Mostrar mensaje de error
-			    message = code + 'Error al cargar los fondos';
-		    }
-        }
+		if (funds.length >= 1) {
+			message = 'Ya existen datos';
+		} else {
+			try {
+				// Realizar la petición GET a la API
+				let response = await fetch(API + '/loadInitialData', {
+					method: 'GET'
+				});
+				// Parsear la respuesta a JSON
+				let code = response.status;
+				// Mostrar mensaje de éxito
+				if (code === 200) {
+					message = 'Fondos cargados correctamente';
+				} else {
+					message = 'Error al cargar los fondos';
+				}
+			} catch (error) {
+				// Mostrar mensaje de error
+				message = 'Error al cargar los fondos';
+			}
+		}
 	}
 
-    // Función para ver todos los fondos de solidaridad
+	// Función para ver todos los fondos de solidaridad
 	async function getFunds() {
 		try {
 			// Realizar la petición GET a la API
@@ -47,26 +55,21 @@
 				method: 'GET'
 			});
 			// Parsear la respuesta a JSON
-			code = await response.json();
+			let code = response.status;
 
-            if(code==201){
-                message="Fondos cargados correctamente";
-            }
-            
-            if(code==400){
-                message="Debe rellenar todos los campos";
-            }
-
-            if(code==409){
-                message="Ya existe una instancia con los mismos datos";
-            }
+			if (code === 200) {
+				message = 'Fondos cargados correctamente';
+				funds = await response.json();
+			} else {
+				message = 'Error al cargar los fondos';
+			}
 		} catch (error) {
 			// Mostrar mensaje de error
-			message = code + 'Error al cargar los fondos';
+			message = 'Error al cargar los fondos';
 		}
 	}
 
-    // Función para crear un nuevo fondo de solidaridad
+	// Función para crear un nuevo fondo de solidaridad
 	async function createFund() {
 		try {
 			// Realizar la petición POST a la API
@@ -78,12 +81,18 @@
 				body: JSON.stringify(newFund) // Se asume que newFund contiene los datos del nuevo fondo
 			});
 			// Parsear la respuesta a JSON
-			let code = await response.json();
+			let code = response.status;
 			// Mostrar mensaje de éxito
-			message = code + 'Fondo creado correctamente';
+			if (code === 201) {
+				message = 'Fondo creado correctamente';
+				// Limpiar el objeto newFund después de crear el fondo
+				newFund = {};
+			} else {
+				message = 'Error al crear el fondo';
+			}
 		} catch (error) {
 			// Mostrar mensaje de error
-			message = code + 'Error al crear el fondo';
+			message = 'Error al crear el fondo';
 		}
 	}
 
@@ -91,11 +100,13 @@
 	async function deleteFund(cciNumber) {
 		try {
 			// Realizar la petición DELETE a la API
-			let response = await fetch(`${API}/${cciNumber}`, {
+			let response = await fetch(API + "/" + cci_number, {
 				method: 'DELETE'
 			});
 			// Mostrar mensaje de éxito
 			message = 'Fondo eliminado correctamente';
+			// Actualizar la lista de fondos después de eliminar uno
+			funds = funds.filter((fund) => fund.cci_number !== cciNumber);
 		} catch (error) {
 			// Mostrar mensaje de error
 			message = 'Error al eliminar el fondo';
@@ -111,14 +122,13 @@
 			});
 			// Mostrar mensaje de éxito
 			message = 'Todos los fondos eliminados correctamente';
+			// Limpiar el arreglo de fondos después de eliminar todos
+			funds = [];
 		} catch (error) {
 			// Mostrar mensaje de error
 			message = 'Error al eliminar todos los fondos';
 		}
 	}
-
-	// Ejecutar la función loadFunds al cargar el componente
-	onMount(loadFunds);
 </script>
 
 <h1>Administración de Fondos de Solidaridad de la UE</h1>
@@ -129,7 +139,7 @@
 {/if}
 
 <!-- Botón para recargar los fondos -->
-<Button on:click={loadFunds} color="primary">Recargar Fondos</Button>
+<Button on:click={loadFunds} color="primary">Crear Fondos de prueba</Button>
 <!-- Botón para eliminar todos los fondos -->
 <Button on:click={deleteAllFunds} color="danger">Eliminar Todos los Fondos</Button>
 <!-- Botón para ver todos los fondos -->
@@ -158,6 +168,7 @@
 				<th>Pagado</th>
 				<th>Pago anticipado realizado después de 2015</th>
 				<th>Cantidad de ayuda potencial</th>
+				<th>Acción</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -182,7 +193,10 @@
 					<td>{fund.advanced_payment_post_from_twenty_fifteen}</td>
 					<td>{fund.potential_aid_amount_eur_m_}</td>
 					<!-- Botón para eliminar un fondo -->
-					<td><Button on:click={() => deleteFund(fund.cci_number)} color="danger">Eliminar</Button></td>
+					<td>
+						<Button color="primary" href="/eu-solidarity-funds/{fund.cciNumber}">Editar</Button>
+						<Button color="danger" on:click="{deleteFund(fund.cciNumber)}">Eliminar</Button>
+					</td>
 				</tr>
 			{/each}
 		</tbody>
@@ -215,29 +229,30 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><input bind:value={newFund.year_of_occurance}></td>
-                <td><input bind:value={newFund.cci_number}></td>
-                <td><input bind:value={newFund.applicant_country}></td>
-                <td><input bind:value={newFund.name_of_disaster}></td>
-                <td><input bind:value={newFund.disaster_type}></td>
-                <td><input bind:value={newFund.status}></td>
-                <td><input bind:value={newFund.first_damage_date}></td>
-                <td><input bind:value={newFund.date_of_initial_application}></td>
-                <td><input bind:value={newFund.time_from_disaster_to}></td>
-                <td><input bind:value={newFund.major_regional_neighbouring}></td>
-                <td><input bind:value={newFund.total_direct_damage_accepted}></td>
-                <td><input bind:value={newFund.public_damage_eur_million}></td>
-                <td><input bind:value={newFund.public_total_damage}></td>
-                <td><input bind:value={newFund.cost_of_eligible_emergency}></td>
-                <td><input bind:value={newFund.eligible_cost_total_damage}></td>
-                <td><input bind:value={newFund.paid}></td>
-                <td><input bind:value={newFund.advanced_payment_post_from_twenty_fifteen}></td>
-                <td><input bind:value={newFund.potential_aid_amount_eur_m_}></td>
-				<td colspan="8">
-					<!-- Botón para crear un nuevo fondo -->
-					<Button on:click={createFund} color="success">Crear Nuevo Fondo</Button>
-				</td>
+				<td><input bind:value={newFund.year_of_occurance} /></td>
+				<td><input bind:value={newFund.cci_number} /></td>
+				<td><input bind:value={newFund.applicant_country} /></td>
+				<td><input bind:value={newFund.name_of_disaster} /></td>
+				<td><input bind:value={newFund.disaster_type} /></td>
+				<td><input bind:value={newFund.status} /></td>
+				<td><input bind:value={newFund.first_damage_date} /></td>
+				<td><input bind:value={newFund.date_of_initial_application} /></td>
+				<td><input bind:value={newFund.time_from_disaster_to} /></td>
+				<td><input bind:value={newFund.major_regional_neighbouring} /></td>
+				<td><input bind:value={newFund.total_direct_damage_accepted} /></td>
+				<td><input bind:value={newFund.public_damage_eur_million} /></td>
+				<td><input bind:value={newFund.public_total_damage} /></td>
+				<td><input bind:value={newFund.cost_of_eligible_emergency} /></td>
+				<td><input bind:value={newFund.eligible_cost_total_damage} /></td>
+				<td><input bind:value={newFund.paid} /></td>
+				<td><input bind:value={newFund.advanced_payment_post_from_twenty_fifteen} /></td>
+				<td><input bind:value={newFund.potential_aid_amount_eur_m_} /></td>
 			</tr>
 		</tbody>
 	</Table>
 </Container>
+
+<td colspan="8">
+	<!-- Botón para crear un nuevo fondo -->
+	<Button on:click="{createFund}" color="success">Crear Nuevo Fondo</Button>
+</td>
