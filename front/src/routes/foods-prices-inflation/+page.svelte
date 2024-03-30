@@ -294,3 +294,15 @@
         border: black 1px solid;
     }
 </style-->
+<style>
+    :global(body) {
+      background: -webkit-gradient(
+          linear,
+          left top,
+          left bottom,
+          from(rgb(0, 67, 83)),
+          to(#cea29c)
+        )
+        fixed;
+    }
+</style>
