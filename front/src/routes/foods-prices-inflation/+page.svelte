@@ -1,15 +1,21 @@
 <script>
     import {onMount} from "svelte";
     import { dev } from "$app/environment";
+    import { Button } from '@sveltestrap/sveltestrap';
+    import { Table } from '@sveltestrap/sveltestrap';
+    import { Alert } from '@sveltestrap/sveltestrap';
 
     let API = "/api/v1/foods-prices-inflation";
 
     if(dev)
-        API = "http://localhost:10000"+API;
+        API =  "http://localhost:10000"+API;
 
     let foods = [];
+    let Allfoods = [];
     let errorMsg = "";
     let aceptadoMsg = "";
+    let page = 1;
+    let pageSize = 5;
     let newF = {
             "id": 47942,
             "open": 2.74,
@@ -29,6 +35,7 @@
     async function loadInitialDataFoods(){
         errorMsg="";
         aceptadoMsg = "";
+        page=1;
         try {
             let response = await fetch(API+"/loadInitialData", {
                 method: "GET"
@@ -46,18 +53,30 @@
     }
 
     async function getFoods(){
-        let response = await fetch(API, {
+        let response = await fetch(API+"?page="+page+"&pageSize="+pageSize, {
             method: "GET"
         });
 
         let data = await response.json();
+        getAllFoods();
         foods = data;
+        console.log(data);
+    }
+
+    async function getAllFoods(){
+        let response = await fetch(API+"?pageSize=10000", {
+            method: "GET"
+        });
+
+        let data = await response.json();
+        Allfoods = data;
         console.log(data);
     }
 
     async function deleteFoods(id){
         errorMsg="";
         aceptadoMsg = "";
+        page=1;
         try{
             let response = await fetch(API+"/"+id, {
                 method: "DELETE"
@@ -74,9 +93,30 @@
         }
     }
 
+    async function deleteAllFoods(){
+        errorMsg="";
+        aceptadoMsg = "";
+        page=1;
+        try{
+            let response = await fetch(API, {
+                method: "DELETE"
+            });
+
+            let status = await response.status;
+            if(status==200){
+                getFoods();
+                aceptadoMsg = `SE HAN ELIMINADO TODOS LOS OBJETOS`;
+            }else
+                errorMsg = "NO SE HA PODIDO ELIMINAR";
+        } catch (e) {
+            errorMsg= "Code: "+e;  
+        }
+    }
+
     async function createFoods(){
         errorMsg="";
         aceptadoMsg = "";
+        page=1;
         try {
             let response = await fetch(API, {
                 method: "POST",
@@ -98,6 +138,15 @@
         }
         
     }
+    async function suma1(){
+        page++;
+        getFoods();
+    }
+
+    async function resta1(){
+        page--;
+        getFoods();
+    }   
 
     async function errores(e){
         e = e.substring(6,9);
@@ -130,16 +179,68 @@
 
 </script>
 
-<h3>LISTA <button on:click="{loadInitialDataFoods}">Cargar Datos</button></h3>
-<ul>
+<h3>LISTA <Button on:click="{loadInitialDataFoods}" color="success">Cargar Datos</Button></h3>
+<!--ul>
     {#each foods as food}
         <li><a href="/foods-prices-inflation/{food.id}">{food.id}</a> - {food.open} - {food.high} - {food.low} - {food.close} - {food.inflation} - {food.country} - 
             {food.iso3} - {food.date}
-            <button on:click="{deleteFoods(food.id)}">Borrar</button></li>
+            <button on:click="{deleteFoods(food.id)}">Borrar</button>
+        </li>
     {/each}
-</ul>
+</ul-->
 
-<table>
+
+<Table striped>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Open</th>
+            <th>High</th>
+            <th>Low</th>
+            <th>Close</th>
+            <th>Inflation</th>
+            <th>Country</th>
+            <th>ISO3</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {#each foods as food}
+        <tr>
+            <td><a href="/foods-prices-inflation/{food.id}">{food.id}</a></td>
+            <td>{food.open}</td>
+            <td>{food.high}</td>
+            <td>{food.low}</td>
+            <td>{food.close}</td>
+            <td>{food.inflation}</td>
+            <td>{food.country}</td>
+            <td>{food.iso3}</td>
+            <td>{food.date}</td>
+            <td><Button on:click="{deleteFoods(food.id)}" color="warning">Borrar</Button></td>
+        </tr>
+        {/each}
+    </tbody>
+</Table>
+
+<!--PASAR DE PAGINAS-->
+<p>
+{#if page > 1}
+<Button on:click="{resta1}" color="info">&lt;---</Button>
+{/if}
+
+{#if page < Allfoods.length/pageSize}
+<Button on:click="{suma1}" color="info">---&gt;</Button>
+{/if}
+</p>
+
+{#if foods.length != 0}
+<p><Button on:click="{deleteAllFoods}" color="danger">Borrar Todo</Button></p>
+{/if}
+
+<h3>AGREGAR DATO</h3>
+<Table bordered>
     <thead>
         <tr>
             <th>ID</th>
@@ -167,15 +268,29 @@
             <td><input bind:value={newF.date}></td>
         </tr>
     </tbody>
-</table>
+</Table>
 
-<button on:click="{createFoods}">Crear</button><br>
+<Button on:click="{createFoods}" color="success">Crear</Button><br>
 
 {#if errorMsg != ""}
 {#await errores(errorMsg)}.{/await}
-ERROR: {errorMsg}
+<Alert color="info" dismissible>
+    ERROR: {errorMsg}
+</Alert>
 {/if}
 
 {#if aceptadoMsg != ""}
-{aceptadoMsg}
+<Alert color="info" dismissible>
+    {aceptadoMsg}
+</Alert>
 {/if}
+
+<!--style>
+    table {
+        border: #b2b2b2 1px solid;
+        width: 70%;
+    }
+    td, th {
+        border: black 1px solid;
+    }
+</style-->
