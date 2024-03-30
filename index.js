@@ -4,6 +4,7 @@ import  express  from 'express';
 import bodyParser from 'body-parser';
 import {carlosBackend} from './regional-politicies-acceptance/index.js';
 import {JGVBackend} from "./foods-prices-inflation/index.js";
+import {MMMBackend} from "./eu-solidarity-funds/index.js"
 import dataStore from "nedb";
 import {handler} from "./front/build/handler.js";
 import cors from "cors";
@@ -25,7 +26,7 @@ app.use(bodyParser.json());
 
 carlosBackend(app,dbVotes);
 JGVBackend(app, dbFood);
-
+MMMBackend(app, dbFunds)
 
 
 app.use(handler);

@@ -213,7 +213,7 @@ app.use(bodyParser.json());
 
 const API_BASE = "/api/v1";
 
-module.exports = (app, db) => {
+function MMMBackend(app, db) {
 
 app.get(API_BASE + "/eu-solidarity-funds/docs", (req, res) => {
   res.redirect("https://documenter.getpostman.com/view/33040772/2sA2xh2ssG");
@@ -430,3 +430,5 @@ const PORT = (process.env.PORT || 10000);
     //console.log(`Server listening on port ${PORT}.`);
 //});
 }
+
+export {MMMBackend}
