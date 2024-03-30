@@ -15,7 +15,6 @@ if(dev){
 let countries=[];
 let errorMSG="";
 let newCountry={};
-let addNew;
 
 onMount(()=>{
     getCountries();
