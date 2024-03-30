@@ -85,7 +85,7 @@
 
     <tbody>
         <tr>
-            <td><input bind:value={newF.id}></td>
+            <td>{newF.id}</td>
             <td><input bind:value={newF.open}></td>
             <td><input bind:value={newF.high}></td>
             <td><input bind:value={newF.low}></td>

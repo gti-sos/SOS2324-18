@@ -8,7 +8,7 @@
     
 <Styles/>  
 <Header/>
-<h1>Bienvenido</h1>
+<h1>Bienvenido!</h1>
 <Button color="primary" outline active={$colorMode === 'light'} on:click={() => ($colorMode = 'light')}>
 light <Icon name="sun-fill" />
 </Button>
