@@ -13,8 +13,8 @@
   <Navbar color="light-subtle">
     <NavbarBrand href="/">SOS2324-18</NavbarBrand>
     <Nav tabs color="light">
-        <NavItem active><NavLink href="/regional-politicies-acceptance">Votos</NavLink></NavItem>
-        <NavItem active><NavLink href="/foods-prices-inflation">Foods</NavLink></NavItem>
-        <NavItem active><NavLink href="/eu-solidarity-funds">Funds</NavLink></NavItem>
+        <NavItem active><NavLink href="/regional-politicies-acceptance">VOTOS</NavLink></NavItem>
+        <NavItem active><NavLink href="/foods-prices-inflation">FOODS</NavLink></NavItem>
+        <NavItem active><NavLink href="/eu-solidarity-funds">FUNDS</NavLink></NavItem>
     </Nav>
   </Navbar>
