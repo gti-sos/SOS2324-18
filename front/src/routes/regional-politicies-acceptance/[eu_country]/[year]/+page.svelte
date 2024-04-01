@@ -34,17 +34,17 @@ async function getCountry(eu_country,year){
     let status=response.status;
     if(status==200){
         let data=await response.json();
-        oldCountry=data[0];
+        oldCountry=data;
         exists=true;
+        console.log("hola");
+        console.log(oldCountry);
+        
     }
     if(status==404){
         exists=false;
         errorMSG="No existe un pais que tenga ese nombre o año"
-        
-    }
-
-
-}catch(e){
+        }
+    }catch(e){
         errorMSG="Error servidor";
     }
 }

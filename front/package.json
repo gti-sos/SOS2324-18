@@ -29,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltestrap/sveltestrap": "^6.2.7"
+		"@sveltestrap/sveltestrap": "^6.2.7",
+		"build": "^0.1.4"
 	}
 }
