@@ -10,10 +10,10 @@
 <Header/>
 <h1>Bienvenido!</h1>
 <Button color="primary" outline active={$colorMode === 'light'} on:click={() => ($colorMode = 'light')}>
-light <Icon name="sun-fill" />
+Claro <Icon name="sun-fill" />
 </Button>
 <Button color="primary" outline active={$colorMode === 'dark'} on:click={() => ($colorMode = 'dark')}>
-dark <Icon name="moon-stars-fill" />
+Oscuro <Icon name="moon-stars-fill" />
 </Button>
 <p></p>
 <slot></slot>
