@@ -39,6 +39,7 @@ async function getCountry(eu_country,year){
         console.log("hola");
         console.log(oldCountry);
         
+        
     }
     if(status==404){
         exists=false;
