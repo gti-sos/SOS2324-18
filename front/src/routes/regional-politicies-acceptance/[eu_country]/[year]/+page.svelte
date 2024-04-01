@@ -15,7 +15,7 @@ let newCountry={"eu_country":eu_country,"year":year};
 let errorMSG="";
 
 
-let API="/api/v1/regional-politicies-acceptance";
+let API="/api/v2/regional-politicies-acceptance";
 if(dev){
     API="http://localhost:10000"+API;
 }

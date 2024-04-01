@@ -1,10 +1,11 @@
 const API_BASE = "/api/v1";
+const API_BASE2 = "/api/v1";
 
 import  express  from 'express';
 import bodyParser from 'body-parser';
-import {carlosBackend} from './regional-politicies-acceptance/index.js';
-import {JGVBackend} from "./foods-prices-inflation/index.js";
-import {MMMBackend} from "./eu-solidarity-funds/index.js"
+import {carlosBackend} from './backend/v2/regional-politicies-acceptance/index.js';
+import {JGVBackend} from "./backend/v2/foods-prices-inflation/index.js";
+import {MMMBackend} from "./backend/v1/eu-solidarity-funds/index.js"
 import dataStore from "nedb";
 import {handler} from "./front/build/handler.js";
 import cors from "cors";

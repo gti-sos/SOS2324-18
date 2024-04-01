@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "a28b7ab4-e390-4d46-99f6-ffb796ea4232",
-		"name": "Final Test GCLOUD(D01)",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_postman_id": "9e7c66e9-9bce-4778-9d46-be7cc5d2338d",
+		"name": "Final Test GCLOUD(D01) v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "32973833"
 	},
 	"item": [
@@ -25,18 +25,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance/loadInitialData",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance",
-						"loadInitialData"
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance/loadInitialData"
 			},
 			"response": []
 		},
@@ -59,17 +48,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance"
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance"
 			},
 			"response": []
 		},
@@ -101,18 +80,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance/",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance",
-						""
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance/"
 			},
 			"response": []
 		},
@@ -139,19 +107,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance/euu/1212",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance",
-						"euu",
-						"1212"
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance/euu/1212"
 			},
 			"response": []
 		},
@@ -175,13 +131,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance?offset=1&limit=5",
+					"raw": "{{server}}/api/v2/regional-politicies-acceptance?offset=1&limit=5",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"regional-politicies-acceptance"
 					],
 					"query": [
@@ -226,18 +182,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance/",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance",
-						""
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance/"
 			},
 			"response": []
 		},
@@ -269,19 +214,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance/eu/2019",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance",
-						"eu",
-						"2019"
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance/eu/2019"
 			},
 			"response": []
 		},
@@ -313,18 +246,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance/eu",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance",
-						"eu"
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance/eu"
 			},
 			"response": []
 		},
@@ -347,17 +269,7 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance"
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance"
 			},
 			"response": []
 		},
@@ -389,19 +301,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance/eu/2019",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance",
-						"eu",
-						"2019"
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance/eu/2019"
 			},
 			"response": []
 		},
@@ -424,19 +324,7 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance/germany/2019",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance",
-						"germany",
-						"2019"
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance/germany/2019"
 			},
 			"response": []
 		},
@@ -459,17 +347,15 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": {
-					"raw": "{{server}}/api/v1/regional-politicies-acceptance",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"regional-politicies-acceptance"
-					]
-				}
+				"url": "{{server}}/api/v2/regional-politicies-acceptance"
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
