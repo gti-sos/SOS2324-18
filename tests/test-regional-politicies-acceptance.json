@@ -350,14 +350,6 @@
 				"url": "{{server}}/api/v2/regional-politicies-acceptance"
 			},
 			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
 		}
 	]
 }
