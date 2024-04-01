@@ -1,7 +1,4 @@
-let express=require("express");
-let bodyParser=require("body-parser");
 const API_BASE="/api/v1";
-const port=(process.env.PORT || 10000);
 
 
 let initialCountries=[
@@ -139,9 +136,9 @@ let initialCountries=[
         }
     ];
 
-module.exports=(app,db)=>{
+function carlosBackend(app,db){
 
-app.use(bodyParser.json());
+
 
 //Initial data load
 app.get(API_BASE+"/regional-politicies-acceptance/loadInitialdata",(req,res)=>{
@@ -502,3 +499,4 @@ app.get(API_BASE+"/regional-politicies-acceptance/docs",(req,res)=>{
 });
 
 }
+export {carlosBackend}
