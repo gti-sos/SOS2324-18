@@ -31,8 +31,8 @@
             });
             let code = response.status;
             if (code == 200) {
-                let data = await response.json();
-                oldFund = data[0]; // Almacena los datos del fondo existente
+                let fund = await response.json();
+                oldFund = fund; // Almacena los datos del fondo existente
                 exists = true; // Indica que el fondo existe
             } else if (code == 404) {
                 exists = false; // Indica que el fondo no existe
@@ -57,7 +57,7 @@
             });
 
             let code = response.status;
-            if (code == 201) {
+            if (code == 200) {
                 message = "Fondo editado con éxito"; // Muestra un mensaje de éxito si la operación se realiza correctamente
             } else if (code == 400) {
                 message = "No debe haber campos vacíos"; // Muestra un mensaje de error si hay campos vacíos en los datos del fondo
@@ -77,7 +77,7 @@
   
 <h2>Edita el fondo</h2>
   
-{#if exists}
+{#if exists == true}
 <Table>
     <thead>
         <tr>
