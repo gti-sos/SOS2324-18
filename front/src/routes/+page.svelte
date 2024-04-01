@@ -7,7 +7,7 @@
     CardSubtitle,
     CardText,
     CardTitle } from '@sveltestrap/sveltestrap';
-  </script>
+</script>
 
 <style>
     :global(body) {
@@ -33,7 +33,7 @@
             <h2>Team</h2>
                 <h5><a href="https://github.com/carbeario">Carlos Beato Rioja</a> - API: <a href="api/v2/regional-politicies-acceptance">api/v2/regional-politicies-acceptance</a></h5>
                 <h5><a href="https://github.com/migmormar7">Miguel Moreno Martín-Palomo</a> - API: <a href="api/v1/eu-solidarity-funds">eu-solidarity-funds</a></h5>
-                <h5><a href="https://github.com/JJoaquinGV19">José Joaquín Garrido Vargas</a> - API: <a href="api/v1/foods-prices-inflation">foods-prices-inflation</a></h5>
+                <h5><a href="https://github.com/JJoaquinGV19">José Joaquín Garrido Vargas</a> - API: <a href="api/v2/foods-prices-inflation">foods-prices-inflation</a></h5>
             <br>
             <h2>FrontEnd</h2>
                 <h5><a href="./regional-politicies-acceptance">regional-politicies-acceptance</a></h5>
@@ -54,7 +54,7 @@
             <ul>
                 <li><h5><a href = http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs>http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs</a></h5><h5>(developed by Carlos Beato Rioja)</h5></li>
                 <li><h5><a href = http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/docs>http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/docs</a></h5><h5>(developed by Miguel Moreno Martín-Palomo)</h5></li>
-                <li><h5><a href = http://sos2324-18.appspot.com/api/v1/foods-prices-inflation/docs>http://sos2324-18.appspot.com/api/v1/foods-prices-inflation/docs</a></h5><h5>(developed by José Joaquín Garrido Vargas)</h5></li>
+                <li><h5><a href = http://sos2324-18.appspot.com/api/v2/foods-prices-inflation/docs>http://sos2324-18.appspot.com/api/v2/foods-prices-inflation/docs</a></h5><h5>(developed by José Joaquín Garrido Vargas)</h5></li>
             </ul>
           </CardText>
         </CardBody>

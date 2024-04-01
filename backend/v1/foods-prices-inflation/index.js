@@ -53003,7 +53003,7 @@ module.exports = (app, db) => {
 
     app.get(API_BASE+"/foods-prices-inflation/docs", (req,res)=>{
       res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33015048/2sA2xh3t5u"));
-    });
+    }); 
 }
 
 //app.listen(port,()=>{console.log(`Server listening on port ${port}`);});

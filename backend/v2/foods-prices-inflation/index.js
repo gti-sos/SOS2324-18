@@ -52814,8 +52814,12 @@ const port = (process.env.port || 10000);
 app.use(bodyParser.json());*/
 
 function JGVBackend(app, db){
-    db.insert(array);
+    app.get(API_BASE+"/foods-prices-inflation/docs", (req,res)=>{
+      res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33015048/2sA35HX1Xu"));
+    });
 
+    db.insert(array);
+      
     app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  //IMPRIME TU ARRAY
       let q = req.query;
 
@@ -53028,9 +53032,7 @@ function JGVBackend(app, db){
         console.log(200, "OK");
     });
 
-    app.get(API_BASE+"/foods-prices-inflation/docs", (req,res)=>{
-      res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33015048/2sA35HX1Xu"));
-    });
+    
 }
 
 export { JGVBackend };
