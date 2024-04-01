@@ -31,7 +31,7 @@
         <CardBody>
           <CardText>
             <h2>Team</h2>
-                <h5><a href="https://github.com/carbeario">Carlos Beato Rioja</a> - API: <a href="api/v1/regional-politicies-acceptance">api/v1/regional-politicies-acceptance</a></h5>
+                <h5><a href="https://github.com/carbeario">Carlos Beato Rioja</a> - API: <a href="api/v2/regional-politicies-acceptance">api/v2/regional-politicies-acceptance</a></h5>
                 <h5><a href="https://github.com/migmormar7">Miguel Moreno Martín-Palomo</a> - API: <a href="api/v1/eu-solidarity-funds">eu-solidarity-funds</a></h5>
                 <h5><a href="https://github.com/JJoaquinGV19">José Joaquín Garrido Vargas</a> - API: <a href="api/v1/foods-prices-inflation">foods-prices-inflation</a></h5>
             <br>
