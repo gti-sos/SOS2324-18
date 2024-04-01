@@ -8,7 +8,7 @@ import { Table } from '@sveltestrap/sveltestrap';
 	
 
 
-let API="/api/v1/regional-politicies-acceptance";
+let API="/api/v2/regional-politicies-acceptance";
 if(dev){
     API="http://localhost:10000"+API;
 }

@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "fb754140-aadd-4eff-a00a-59e79e241346",
-		"name": "API Foods Prices Inflation",
+		"_postman_id": "753d630c-8ed0-4cc3-8b93-111ca8fe0e4b",
+		"name": "API Foods Prices Inflation v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33015048"
 	},
@@ -26,13 +26,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation/loadInitialData",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation/loadInitialData",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation",
 						"loadInitialData"
 					]
@@ -65,13 +65,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation?pageSize=20",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation?pageSize=20",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation"
 					],
 					"query": [
@@ -110,13 +110,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation/912818298",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation/912818298",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation",
 						"912818298"
 					],
@@ -165,13 +165,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation"
 					]
 				}
@@ -207,13 +207,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation"
 					]
 				}
@@ -249,13 +249,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation/2",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation/2",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation",
 						"2"
 					]
@@ -292,13 +292,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation/2",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation/2",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation",
 						"2"
 					]
@@ -335,13 +335,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation/24",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation/24",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation",
 						"24"
 					]
@@ -378,13 +378,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation"
 					]
 				}
@@ -411,13 +411,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation/2",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation/2",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation",
 						"2"
 					]
@@ -445,13 +445,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}/api/v1/foods-prices-inflation",
+					"raw": "{{SERVER}}/api/v2/foods-prices-inflation",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"foods-prices-inflation"
 					]
 				}
