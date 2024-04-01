@@ -5,6 +5,8 @@ import { get } from "svelte/store";
 import {dev} from "$app/environment";
 import { Button, Col, Row } from '@sveltestrap/sveltestrap';
 import { Table } from '@sveltestrap/sveltestrap';
+	
+
 
 let API="/api/v1/regional-politicies-acceptance";
 if(dev){
@@ -13,24 +15,51 @@ if(dev){
 let countries=[];
 let errorMSG="";
 let newCountry={};
-let addNew;
 
 onMount(()=>{
-
     getCountries();
 })
 
 
-    async function getCountries(){
+async function loadInitialData(){
+    
+    if(countries.length>=1){
+        errorMSG="Ya existen datos previos";
+    }else{
         try{
-            let response=await fetch(API,{
+            let response=fetch(API+"/loadInitialdata",{
                 method:"GET"
-            });
-            let data=await response.json();
+            })
+            let data=(await response).status
+            if(data==409){
+                errorMSG="Ya se han cargado previamente los datos";
+            }
+            if(data==201){
+                errorMSG="Se han cargado los datos correctamente"
+            }
+            
+        }catch(e){
+        errorMSG=e;
+    }
+}
+}
+
+
+async function getCountries(){
+    try{
+        let response=await fetch(API,{
+            method:"GET"
+        });
+        let data=await response.json()
+        if(data.length==0){
+            errorMSG="";
             countries=data;
-            console.log(data);
+        }else{
+            countries=data;
+            errorMSG="Paises cargados";
+        }
     }catch(e){
-        errorMSG=""+e;
+        errorMSG="Error en el servidor";
     }
     }
 
@@ -38,6 +67,7 @@ onMount(()=>{
 async function createCountry(){
         
         try{
+
         let response= await fetch(API,{
             method:"POST",
             headers:{
@@ -49,13 +79,19 @@ async function createCountry(){
 
         let status=await response.status;
         if(status==201){
-            getCountries();
-        }else{
-            errorMSG="code:"+status;
+            errorMSG="Pais creado con exito";
+        }if(status==400){
+            errorMSG="Debe rellenar todos los campos";
+        }
+        if(status==409){
+            errorMSG="Ya existe un pais con ese nombre y año";
         }
     }catch(e){
-       errorMSG=errorMSG+e;
+       errorMSG=e;
     }
+
+    
+    
 }
 
 
@@ -64,8 +100,9 @@ async function deleteCountry(eu_country,year){
         let response=await fetch(API+"/"+eu_country+"/"+year,{
             method:"DELETE"
         });
+        errorMSG="Pais borrado con exito";
     }catch(e){
-        errorMSG=""+e;
+        errorMSG="Error en el servidor";
     }
 }
 
@@ -74,37 +111,76 @@ async function deleteCountries(){
         let response=fetch(API,{
             method:"DELETE"
         });
+        errorMSG="Paises borrados con exito";
     }catch(e){
-        errorMSG=""+e;
+        errorMSG="Error en el servidor";
     }
 }
 
-
-
-
-
-
+function closePopUp(){
+    
+    errorMSG="";
+    
+}
 
 
 </script>
-<h1>Welcome to the votations</h1>
 
-<Button on:click="{getCountries}">Refresh</Button>
-<Button on:click="{deleteCountries}" color="warning">Delete all countries</Button>
+
+<style>
+    
+    #popup-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+  }
+    
+    
+    
+    #popup{
+        width: 80%; /* Utilizando porcentaje para hacerlo responsive */
+        max-width: 300px; /* Estableciendo un ancho máximo */
+        background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+        color: white;
+        border-radius: 10px;
+        padding: 20px
+    }
+       
+</style>
+
+
+
+
+<h1>Bienvenido a las votaciones</h1>
+<Button on:click="{loadInitialData}" color="success">Crea datos de prueba</Button>
+<Button on:click="{getCountries}" id="Refresh"color="primary">Recarga</Button>
+<Button on:click="{deleteCountries}" color="warning">Borrar todos los paises</Button>
+{#if errorMSG!=""}
+
+    <div id="popup-container">
+        <div id="popup">
+            <Button id="close" on:click={closePopUp} color="danger">X</Button>
+            <h3>{errorMSG}</h3>
+        </div>
+        
+    </div>
+{/if}
 <Container>
 <Table bordered>
     <thead>
         <tr>
-            <td>Country name</td>
-            <td>People that vote yes</td>
-            <td>People's percent that vote yes</td>
-            <td>People that vote no</td>
-            <td>People's percent that vote no</td>
-            <td>People that vote not applicable</td>
-            <td>People's percent that vote not applicable</td>
-            <td>Total number of people</td>
-            <td>Year of the vote</td>
-            <td>ACTIONS</td>
+            <td>Nombre pais</td>
+            <td>Personas que votaron si</td>
+            <td>Porcentaje de personas que votaron si</td>
+            <td>Personas que votaron no</td>
+            <td>Porcentaje de personas que votaron no</td>
+            <td>Personas que votaron no aplicable</td>
+            <td>Porcentaje de personas que votaron no aplicable</td>
+            <td>Numero total de personas</td>
+            <td>Año de la votación</td>
+            <td>ACCIONES</td>
         </tr>
     </thead>
     <tbody>
@@ -120,8 +196,8 @@ async function deleteCountries(){
         <td>{country.total}</td>
         <td>{country.year}</td>
         <td>
-            <Button color="primary" href="/regional-politicies-acceptance/{country.eu_country}/{country.year}">Edit</Button>
-            <Button color="danger" on:click="{deleteCountry(country.eu_country,country.year)}">Delete</Button>
+            <Button color="primary" href="/regional-politicies-acceptance/{country.eu_country}/{country.year}">Editar</Button>
+            <Button color="danger" on:click="{deleteCountry(country.eu_country,country.year)}">Borrar</Button>
         </td>
     </tr>
     {/each}
@@ -129,19 +205,20 @@ async function deleteCountries(){
 </Table>
 </Container>
 
-<h2>Create a country</h2>
+
+<h2>Crea un pais</h2>
 <Table bordered>
     <thead>
         <tr>
-            <td>Country name</td>
-            <td>People that vote yes</td>
-            <td>People's percent that vote yes</td>
-            <td>People that vote no</td>
-            <td>People's percent that vote no</td>
-            <td>People that vote not applicable</td>
-            <td>People's percent that vote not applicable</td>
-            <td>Total number of people</td>
-            <td>Year of the vote</td>
+            <td>Nombre pais</td>
+            <td>Personas que votaron si</td>
+            <td>Porcentaje de personas que votaron si</td>
+            <td>Personas que votaron no</td>
+            <td>Porcentaje de personas que votaron no</td>
+            <td>Personas que votaron no aplicable</td>
+            <td>Porcentaje de personas que votaron no aplicable</td>
+            <td>Numero total de personas</td>
+            <td>Año de la votación</td>
         </tr> 
     </thead>
     <tbody>
@@ -159,18 +236,4 @@ async function deleteCountries(){
     </tbody>
 </Table>
 
-<button on:click="{createCountry}">Create</button>
-
-    
-   
-
-{#if errorMSG!=""}
-Error:{errorMSG}    
-{/if}
-
-
-
-
-
-  
-  
+<Button on:click="{createCountry}" color="success">Crea</Button>
