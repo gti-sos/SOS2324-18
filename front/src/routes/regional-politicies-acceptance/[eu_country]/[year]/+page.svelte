@@ -2,9 +2,12 @@
 
 import { onMount } from "svelte";
 import {page} from "$app/stores";
-import { Table } from "@sveltestrap/sveltestrap";
+import { Button,Table } from "@sveltestrap/sveltestrap";
 import {dev} from "$app/environment";
 
+
+
+let exists=false;
 let eu_country=$page.params.eu_country;
 let year=$page.params.year;
 let oldCountry={};
@@ -32,8 +35,17 @@ async function getCountry(eu_country,year){
     if(status==200){
         let data=await response.json();
         oldCountry=data[0];
-    }}catch(e){
-        errorMSG=""+e;
+        exists=true;
+    }
+    if(status==404){
+        exists=false;
+        errorMSG="No existe un pais que tenga ese nombre o año"
+        
+    }
+
+
+}catch(e){
+        errorMSG="Error servidor";
     }
 }
 
@@ -52,28 +64,74 @@ async function updateCountry(eu_country,year){
     
     let status=await response.status;
     if(status==201){
-        window.location.href="/regional-politicies-acceptance/";
-    }else{
-        errorMSG="code:"+status;
-    }}
+
+        errorMSG="Pais editado con exito";
+        
+    }if(status==400){
+        errorMSG="Rellene los campos vacios";
+    }
+
+    
+
+
+}
+
+
+function closePopUp(){
+    errorMSG="";
+}
+
+function back(){
+    window.location.href="/regional-politicies-acceptance/";
+}
 
 </script>
 
-<h2>Edit the country</h2>
 
-{#if oldCountry!=undefined}
+
+
+<style>
+    
+    #popup-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+  }
+    
+    
+    
+    #popup{
+        width: 80%; /* Utilizando porcentaje para hacerlo responsive */
+        max-width: 300px; /* Estableciendo un ancho máximo */
+        background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+        color: white;
+        border-radius: 10px;
+        padding: 20px
+    }
+       
+</style>
+
+
+
+
+
+<h2>Edita el pais</h2>
+
+{#if exists == true}
 <Table>
     <thead>
         <tr>
-            <td>Country name</td>
-            <td>People that vote yes</td>
-            <td>People's percent that vote yes</td>
-            <td>People that vote no</td>
-            <td>People's percent that vote no</td>
-            <td>People that vote not applicable</td>
-            <td>People's percent that vote not applicable</td>
-            <td>Total number of people</td>
-            <td>Year of the vote</td>
+            <td>Nombre pais</td>
+            <td>Personas que votaron si</td>
+            <td>Porcentaje de personas que votaron si</td>
+            <td>Personas que votaron no</td>
+            <td>Porcentaje de personas que votaron no</td>
+            <td>Personas que votaron no aplicable</td>
+            <td>Porcentaje de personas que votaron no aplicable</td>
+            <td>Numero total de personas</td>
+            <td>Año de la votación</td>
         </tr>
     </thead>
     <tbody>
@@ -90,9 +148,25 @@ async function updateCountry(eu_country,year){
         </tr>
     </tbody>
 </Table>
-<button on:click="{updateCountry(newCountry.eu_country,newCountry.year)}">Send</button>
+<Button on:click="{updateCountry(newCountry.eu_country,newCountry.year)}" color="primary">Enviar</Button>
+<Button on:click={back} color="warning">Volver</Button>
+
 {/if}
 
+
 {#if errorMSG!=""}
-Error:{errorMSG}    
+
+
+
+<div id="popup-container">
+    <div id="popup">
+        <Button id="close" on:click={closePopUp} color="danger">X</Button>
+        <h3>{errorMSG}</h3>
+    </div>
+    
+</div>
+
+<Button on:click={back} color="warning">Volver</Button>
+
 {/if}
+

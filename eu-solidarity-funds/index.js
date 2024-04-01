@@ -201,19 +201,19 @@ let datosIniciales = [
   }
 ]
 
-let datos = []
+//let datos = []
 
-let express = require('express');
-let bodyParser = require('body-parser');
-let app = express();
+//let express = require('express');
+//let bodyParser = require('body-parser');
+//let app = express();
 
 // Configurar body parser para JSON
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
 
 const API_BASE = "/api/v1";
 
-module.exports = (app, db) => {
+function MMMBackend(app, db) {
 
 app.get(API_BASE + "/eu-solidarity-funds/docs", (req, res) => {
   res.redirect("https://documenter.getpostman.com/view/33040772/2sA2xh2ssG");
@@ -424,9 +424,11 @@ app.delete(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
 
 
 
-const PORT = (process.env.PORT || 10000);
+//const PORT = (process.env.PORT || 10000);
   
 //app.listen(PORT,()=>{
     //console.log(`Server listening on port ${PORT}.`);
 //});
 }
+
+export {MMMBackend}
