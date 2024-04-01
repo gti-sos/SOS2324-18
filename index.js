@@ -1,30 +1,31 @@
 const API_BASE = "/api/v1";
 
-
-let carlosAPI=require('./regional-politicies-acceptance');
-
-let dataStore=require('nedb');
-let express = require("express");
-
+import  express  from 'express';
+import bodyParser from 'body-parser';
+import {carlosBackend} from './regional-politicies-acceptance/index.js';
+import dataStore from "nedb";
+import {handler} from "./front/build/handler.js";
+import cors from "cors";
 
 let dbVotes= new dataStore();
-let bodyParser = require("body-parser");
-let JGVAPI = require("./foods-prices-inflation");
+//let JGVAPI = require("./foods-prices-inflation");
 let dbFood = new dataStore();
 
 let dbFunds = new dataStore();
 
-let MMMAPI = require("./eu-solidarity-funds");
+//let MMMAPI = require("./eu-solidarity-funds");
 
 let app = express();
 
 const port=(process.env.PORT || 10000);
 
-
-app.use("/",express.static("./public"));
+app.use(cors());
 app.use(bodyParser.json());
 
 
+carlosBackend(app,dbVotes);
+
+app.use(handler);
 
 app.listen(port,()=>{
     console.log(`Server listening on port ${port}`)
@@ -35,10 +36,10 @@ app.listen(port,()=>{
 
 
 
-carlosAPI(app,dbVotes);
 
 
-JGVAPI(app, dbFood);
+
+//JGVAPI(app, dbFood);
 
 
-MMMAPI(app, dbFunds);
+//MMMAPI(app, dbFunds);
