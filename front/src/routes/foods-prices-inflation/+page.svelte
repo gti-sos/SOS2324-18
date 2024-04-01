@@ -5,7 +5,7 @@
     import { Table } from '@sveltestrap/sveltestrap';
     import { Alert } from '@sveltestrap/sveltestrap';
 
-    let API = "/api/v1/foods-prices-inflation";
+    let API = "/api/v2/foods-prices-inflation";
 
     if(dev)
         API =  "http://localhost:10000"+API;
