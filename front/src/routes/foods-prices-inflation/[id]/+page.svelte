@@ -29,6 +29,18 @@
         getFoods();
     });
 
+    async function parsea(obj){
+        obj.id=parseInt(obj.id);
+        obj.open=parseFloat(obj.open);
+        obj.high=parseFloat(obj.high);
+        obj.low=parseFloat(obj.low);
+        obj.close=parseFloat(obj.close);
+        obj.inflation=parseFloat(obj.inflation);
+        obj.country;
+        obj.iso3;
+        obj.date;
+    }
+
     async function getFoods(){
         let response = await fetch(API+"/"+ident, {
             method: "GET"
@@ -42,7 +54,7 @@
     async function putFoods(){
         errorMsg="";
         aceptadoMsg="";
-        //
+        parsea(newF);
         console.log(ident);
         try{
             let response = await fetch(API+"/"+ident, {
@@ -58,6 +70,7 @@
             if(status==200){
                 getFoods();
                 aceptadoMsg = `SE HA ACTUALIZADO EL OBJETO CON EL ID ${newF.id}`;
+                window.location.href = "/foods-prices-inflation";
             }else
                 errorMsg = `EL OBJETO CON EL ID ${newF.id} NO EXISTE`;    
         } catch (e) {

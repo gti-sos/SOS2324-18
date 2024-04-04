@@ -52826,48 +52826,27 @@ function JGVBackend(app, db){
       let page = parseInt(req.query.page) || 1;
       let pageSize = parseInt(req.query.pageSize) || 5;
       let offset = (page - 1) * pageSize;
-      let keys = []
-      Object.keys(q).forEach(k =>{ //Obtiene las keys y menos page y pageSize para que luego no se lie por si hay mas querys
-        if(!["page", "pageSize"].includes(k)) keys.push(k);
-      });
-      
-      db.find({}).skip(offset).limit(pageSize).exec((err, array) => {
+      delete q.page; delete q.pageSize;
+      for(const [key, value] of Object.entries(q)){
+        if(key=="id")
+          q[key]=parseInt(value);
+        else{
+          if(!["country", "iso3", "date"].includes(key))
+            q[key]=parseFloat(value);
+        }
+      }
+      //console.log(q);
+      db.find(q).skip(offset).limit(pageSize).exec((err, array) => {
         if(err){
           res.sendStatus(500, "Internal Error");
         } else{
           //SIN PARAMETROS
-          if(keys.length===0){
-            res.send(JSON.stringify(array.map((c) =>{
-              delete c._id;
-              return c;
-            })));
-          }
-          else{
-            //CON  PARAMETROS
-            
-            if(keys.includes("id")) {
-              let obj = array.find(e=> e["id"]==q["id"]);
-              console.log(obj);
-              if (obj==undefined) return res.sendStatus(404, "Not Found");
-              delete obj._id;
-              res.send(JSON.stringify(obj));
-            }
-            else {
-            //Crea el aux con los parametros dados
-              let aux=array.filter(e =>{
-                return keys.every(k =>{
-                  return e[k]==q[k];
-                });
-              }).map((c) =>{
-                delete c._id;
-                return c;
-              });
-              
-              if (aux.length===0) return res.sendStatus(404, "Not Found"); //Prueba si ha encontrado algo
+          if (array.length===0) return res.sendStatus(404, "Not Found"); //Prueba si ha encontrado algo
 
-              res.send(JSON.stringify(aux));
-            }
-          }
+          res.send(JSON.stringify(array.map((c) =>{
+            delete c._id;
+            return c;
+          })));
         }
       });
       //res.send(JSON.stringify(array));
@@ -52907,11 +52886,9 @@ function JGVBackend(app, db){
               let obj = array.find(e=> e["id"]==id);
               console.log(obj);
               if (obj==undefined) return res.sendStatus(404, "Not Found");
+              console.log(obj);
               delete obj._id;
               res.send(JSON.stringify(obj));
-            
-           
-        
       });
       //res.send(JSON.stringify(array));
     });
