@@ -314,7 +314,7 @@
     </AccordionItem>
 </Accordion><br>
 
-
+ 
 <Card theme="auto">
     <CardHeader>
         <CardTitle><h3>LISTA <Button on:click="{loadInitialDataFoods}" color="success">Cargar Datos</Button></h3></CardTitle>
