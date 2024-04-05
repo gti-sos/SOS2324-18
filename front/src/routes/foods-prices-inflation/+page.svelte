@@ -255,7 +255,7 @@
 <Container xxl>
 
 <Accordion theme="auto">
-    <AccordionItem active>
+    <AccordionItem>
       <h4 class="m-0" slot="header">Filtrar</h4>
       
       <Table>
