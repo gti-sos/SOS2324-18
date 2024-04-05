@@ -25,7 +25,7 @@
     let errorMsg = "";
     let aceptadoMsg = "";
     let page = 1;
-    let pageSize = 5;
+    let pageSize = 10;
     let newF = {
         "id": 47942,
         "open": 2.74,
@@ -254,6 +254,19 @@
 
 <Container xxl>
 
+{#if errorMsg != ""}
+{#await errores(errorMsg)}.{/await}
+<Alert color="info" dismissible>
+    ERROR: {errorMsg}
+</Alert>
+{/if}
+
+{#if aceptadoMsg != ""}
+<Alert color="info" dismissible>
+    {aceptadoMsg}
+</Alert>
+{/if}
+
 <Accordion theme="auto">
     <AccordionItem>
       <h4 class="m-0" slot="header">Filtrar</h4>
@@ -406,21 +419,6 @@
     <Button on:click="{createFoods}" color="success">Crear</Button><br>
     </AccordionItem>
 </Accordion><br>
-
-
-
-{#if errorMsg != ""}
-{#await errores(errorMsg)}.{/await}
-<Alert color="info" dismissible>
-    ERROR: {errorMsg}
-</Alert>
-{/if}
-
-{#if aceptadoMsg != ""}
-<Alert color="info" dismissible>
-    {aceptadoMsg}
-</Alert>
-{/if}
 
 </Container>
 
