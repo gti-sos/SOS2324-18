@@ -346,11 +346,11 @@
         <!--PASAR DE PAGINAS-->
         <ButtonGroup>
             {#if page > 1}
-            <Button on:click="{resta1}" color="info">&lt;---</Button>
+            <Button size="lg" on:click="{resta1}" color="info">&lt;---</Button>
             {/if}
     
             {#if page < Allfoods.length/pageSize}
-            <Button on:click="{suma1}" color="info">---&gt;</Button>
+            <Button size="lg" on:click="{suma1}" color="info">---&gt;</Button>
             {/if}
         </ButtonGroup>
     </CardFooter>
