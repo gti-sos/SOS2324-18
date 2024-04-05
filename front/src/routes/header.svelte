@@ -4,14 +4,14 @@
     Nav,
     NavItem,
     NavLink,
-    Navbar, NavbarBrand
+    Navbar, NavbarBrand, Icon
   } from '@sveltestrap/sveltestrap';
 </script>
 
 
 
   <Navbar color="light-subtle">
-    <NavbarBrand href="/">SOS2324-18</NavbarBrand>
+    <NavbarBrand href="/"><Icon name="house" /> SOS2324-18</NavbarBrand>
     <Nav tabs color="light">
         <NavItem active><NavLink href="/regional-politicies-acceptance">VOTOS</NavLink></NavItem>
         <NavItem active><NavLink href="/foods-prices-inflation">FOODS</NavLink></NavItem>
