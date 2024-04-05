@@ -6,6 +6,7 @@
     CardHeader,
     CardSubtitle,
     CardText,
+    Row, Col, Icon,
     CardTitle } from '@sveltestrap/sveltestrap';
 </script>
 
@@ -23,40 +24,87 @@
 
 </style>
 
-<Container sm class="custom-margin">
+<Container sm>
     <Card theme="auto">
         <CardHeader>
-          <CardTitle>SOS2324-18</CardTitle>
+          <CardTitle><h3>SOS2324-18</h3></CardTitle>
         </CardHeader>
         <CardBody>
-          <CardText>
-            <h2>Team</h2>
-                <h5><a href="https://github.com/carbeario">Carlos Beato Rioja</a> - API: <a href="api/v2/regional-politicies-acceptance">api/v2/regional-politicies-acceptance</a></h5>
-                <h5><a href="https://github.com/migmormar7">Miguel Moreno Martín-Palomo</a> - API: <a href="api/v1/eu-solidarity-funds">eu-solidarity-funds</a></h5>
-                <h5><a href="https://github.com/JJoaquinGV19">José Joaquín Garrido Vargas</a> - API: <a href="api/v2/foods-prices-inflation">foods-prices-inflation</a></h5>
-            <br>
-            <h2>FrontEnd</h2>
+          <Row>
+            <Col><Card theme="auto">
+              <CardHeader>
+                <CardTitle><h2><Icon name="person-circle" /> Team</h2></CardTitle>
+              </CardHeader>
+              <CardBody>
+                <h5><a href="https://github.com/carbeario">Carlos Beato Rioja</a></h5>
+                <h5><a href="https://github.com/migmormar7">Miguel Moreno Martín-Palomo</a></h5>
+                <h5><a href="https://github.com/JJoaquinGV19">José Joaquín Garrido Vargas</a></h5>
+              </CardBody>
+            </Card></Col>
+            <Col><Card theme="auto">
+              <CardHeader>
+                <CardTitle><h2><Icon name="server" /> APIs</h2></CardTitle>
+              </CardHeader>
+              <CardBody>
+                <h5><a href="api/v2/regional-politicies-acceptance">api/v2/regional-politicies-acceptance</a></h5>
+                <h5><a href="api/v1/eu-solidarity-funds">eu-solidarity-funds</a></h5>
+                <h5><a href="api/v2/foods-prices-inflation">foods-prices-inflation</a></h5>
+              </CardBody>
+            </Card></Col>
+            <Col><Card theme="auto">
+              <CardHeader>
+                <CardTitle><h2><Icon name="front" /> FrontEnds</h2></CardTitle>
+              </CardHeader>
+              <CardBody>
                 <h5><a href="./regional-politicies-acceptance">regional-politicies-acceptance</a></h5>
                 <h5><a href="./eu-solidarity-funds">eu-solidarity-funds</a></h5>
                 <h5><a href="./foods-prices-inflation">Foods Prices Inflation</a></h5>
-            <br>
-            <h2>Project description</h2>
+              </CardBody>
+            </Card></Col>
+          </Row><br>
+          <Row>
+            <Col><Card theme="auto">
+              <CardHeader>
+                <CardTitle><h2><Icon name="info-square" /> Project description</h2></CardTitle>
+              </CardHeader>
+              <CardBody>
                 <h5>Our sources of information are aimed at analyzing the statistics of regional politicies acceptance,
                     european solidarity funds and foods prices inflation.</h5>
-            <br>
-            <h2>Repository</h2>
-                    <h5><a href="https://github.com/gti-sos/SOS2324-18">gti-sos/SOS2324-18</a></h5>
-            <br>
-            <h2>URL</h2>
-                    <h5><a href = http://sos2324-18.appspot.com>http://sos2324-18.appspot.com</a></h5>
-            <br>
-            <h2>Documentacion Postman</h2>
-            <ul>
-                <li><h5><a href = http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs>http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs</a></h5><h5>(developed by Carlos Beato Rioja)</h5></li>
-                <li><h5><a href = http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/docs>http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/docs</a></h5><h5>(developed by Miguel Moreno Martín-Palomo)</h5></li>
-                <li><h5><a href = http://sos2324-18.appspot.com/api/v2/foods-prices-inflation/docs>http://sos2324-18.appspot.com/api/v2/foods-prices-inflation/docs</a></h5><h5>(developed by José Joaquín Garrido Vargas)</h5></li>
-            </ul>
-          </CardText>
+              </CardBody>
+            </Card></Col>
+          </Row><br>
+          <Row>
+            <Col><Card theme="auto">
+              <CardHeader>
+                <CardTitle><h2><Icon name="folder-check" /> Repository</h2></CardTitle>
+              </CardHeader>
+              <CardBody>
+                <h5><a href="https://github.com/gti-sos/SOS2324-18">gti-sos/SOS2324-18</a></h5>
+              </CardBody>
+            </Card></Col>
+            <Col><Card theme="auto">
+              <CardHeader>
+                <CardTitle><h2><Icon name="link" /> URL</h2></CardTitle>
+              </CardHeader>
+              <CardBody>
+                <h5><a href = http://sos2324-18.appspot.com>http://sos2324-18.appspot.com</a></h5>
+              </CardBody>
+            </Card></Col>
+          </Row><br>
+          <Row>
+            <Col><Card theme="auto">
+              <CardHeader>
+                <CardTitle><h2><Icon name="filetype-doc" /> Documentacion Postman</h2></CardTitle>
+              </CardHeader>
+              <CardBody>
+                <ul>
+                    <li><h5><a href = http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs>http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs</a></h5><h5>(developed by Carlos Beato Rioja)</h5></li>
+                    <li><h5><a href = http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/docs>http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/docs</a></h5><h5>(developed by Miguel Moreno Martín-Palomo)</h5></li>
+                    <li><h5><a href = http://sos2324-18.appspot.com/api/v2/foods-prices-inflation/docs>http://sos2324-18.appspot.com/api/v2/foods-prices-inflation/docs</a></h5><h5>(developed by José Joaquín Garrido Vargas)</h5></li>
+                </ul>
+              </CardBody>
+            </Card></Col>
+          </Row>  
         </CardBody>
       </Card>
 </Container>    
