@@ -5,15 +5,15 @@ test('has title', async ({ page }) => {
   await page.goto('http://localhost:10000');
 
   // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+  await expect(page).toHaveTitle(/SOS2324-28/);
 });
 
-/*test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('List Foods', async ({ page }) => {
+  await page.goto('http://localhost:10000/foods-prices-inflation');
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  await page.waitForTimeout(2000);
+  let foodCount = (await page.locator('.foodItem').all()).length;
 
   // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});*/
+  expect(foodCount).toBeGreaterThan(0);
+});
