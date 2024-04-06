@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
+    "pretest": "npm start &",
     "test-integration": "npm run test-foods-prices-inflation && npm run test-eu-solidarity-funds && npm run test-regional-politicies-acceptance",
     "test-e2e": "npx playwright test",
     "test": "npm run test-integration && npm run test-e2e",
+    "posttest": "kill `ps -uax | grep \"node index\" | grep -v \"grep\" | grep -v \"sh\" | awk '{print $2}'`",
     "testLocalJGV": "npx newman run ./tests/test-foods-prices-inflation.json -e ./tests/environments/LocalJGV.json",
     "test-foods-prices-inflation": "npx newman run ./tests/integration/test-foods-prices-inflation.json -e ./tests/integration/environments/GCloudJGV.json",
     "test-eu-solidarity-funds": "npx newman run ./tests/integration/test-eu-solidarity-funds.json -e ./tests/integration/environments/GCloudMMM.json",

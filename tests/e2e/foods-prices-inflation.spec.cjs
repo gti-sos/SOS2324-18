@@ -11,7 +11,7 @@ test('has title', async ({ page }) => {
 test('List Foods', async ({ page }) => {
   await page.goto('http://localhost:10000/foods-prices-inflation');
 
-  await page.waitForTimeout(2000);
+  //await page.waitForTimeout(2000);
   let foodCount = (await page.locator('.foodItem').all()).length;
 
   // Expects page to have a heading with the name of Installation.
