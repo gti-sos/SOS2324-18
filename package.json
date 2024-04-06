@@ -7,9 +7,9 @@
     "start": "node index",
     "test": "npm run test-foods-prices-inflation && npm run test-eu-solidarity-funds && npm run test-regional-politicies-acceptance",
     "testLocalJGV": "npx newman run ./tests/test-foods-prices-inflation.json -e ./tests/environments/LocalJGV.json",
-    "test-foods-prices-inflation": "npx newman run ./tests/test-foods-prices-inflation.json -e ./tests/environments/GCloudJGV.json",
-    "test-eu-solidarity-funds": "npx newman run ./tests/test-eu-solidarity-funds.json -e ./tests/environments/GCloudMMM.json",
-    "test-regional-politicies-acceptance": "npx newman run ./tests/test-regional-politicies-acceptance.json -e ./tests/environments/GcloudCBR.json"
+    "test-foods-prices-inflation": "npx newman run ./tests/integration/test-foods-prices-inflation.json -e ./tests/integration/environments/GCloudJGV.json",
+    "test-eu-solidarity-funds": "npx newman run ./tests/integration/test-eu-solidarity-funds.json -e ./tests/integration/environments/GCloudMMM.json",
+    "test-regional-politicies-acceptance": "npx newman run ./tests/integration/test-regional-politicies-acceptance.json -e ./tests/integration/environments/GcloudCBR.json"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,9 @@
     "express": "^4.18.2",
     "nedb": "^1.8.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.43.0",
+    "@types/node": "^20.12.5"
+  }
 }
