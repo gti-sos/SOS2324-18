@@ -339,7 +339,7 @@
 
         <tbody>
             {#each foods as food}
-            <tr>
+            <tr class="foodItem">
                 <td><a href="/foods-prices-inflation/{food.id}">{food.id}</a></td>
                 <td>{food.open}</td>
                 <td>{food.high}</td>
