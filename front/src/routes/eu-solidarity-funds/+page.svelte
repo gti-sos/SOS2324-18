@@ -18,9 +18,9 @@
 
 	let newFund = {};
 
-	onMount(()=>{
+	onMount(() => {
 		getFunds();
-	})
+	});
 
 	// Función para cargar los fondos de solidaridad
 	async function loadFunds() {
@@ -40,6 +40,8 @@
 				} else {
 					message = 'Error al cargar los fondos';
 				}
+				// Recargar la página automáticamente
+				location.reload();
 			} catch (error) {
 				// Mostrar mensaje de error
 				message = 'Error al cargar los fondos';
@@ -58,7 +60,6 @@
 			let code = response.status;
 
 			if (code === 200) {
-				message = 'Fondos cargados correctamente';
 				funds = await response.json();
 			} else {
 				message = 'Error al cargar los fondos';
@@ -85,6 +86,8 @@
 			// Mostrar mensaje de éxito
 			if (code === 201) {
 				message = 'Fondo creado correctamente';
+				// Recargar la página automáticamente
+				location.reload();
 			} else {
 				message = 'Error al crear el fondo';
 			}
@@ -98,11 +101,13 @@
 	async function deleteFund(cci_number) {
 		try {
 			// Realizar la petición DELETE a la API
-			let response = await fetch(API + "/" + cci_number, {
+			let response = await fetch(API + '/' + cci_number, {
 				method: 'DELETE'
 			});
 			// Mostrar mensaje de éxito
 			message = 'Fondo eliminado correctamente';
+			// Recargar la página automáticamente
+			location.reload();
 		} catch (error) {
 			// Mostrar mensaje de error
 			message = 'Error al eliminar el fondo';
@@ -120,12 +125,93 @@
 			message = 'Todos los fondos eliminados correctamente';
 			// Limpiar el arreglo de fondos después de eliminar todos
 			funds = [];
+			// Recargar la página automáticamente
+			location.reload();
 		} catch (error) {
 			// Mostrar mensaje de error
 			message = 'Error al eliminar todos los fondos';
 		}
 	}
 </script>
+
+<!--<style>
+	h1 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	}
+  
+	.alert {
+	  margin-bottom: 20px;
+	  padding: 10px;
+	  border-radius: 5px;
+	}
+  
+	.btn-container {
+	  display: flex;
+	  justify-content: space-between;
+	  margin-bottom: 20px;
+	}
+  
+	.table-container {
+	  overflow-x: auto;
+	}
+  
+	.table-container table {
+	  width: 100%;
+	  border-collapse: collapse;
+	}
+  
+	.table-container th,
+	.table-container td {
+	  border: 1px solid #ccc;
+	  padding: 8px;
+	}
+  
+	.action-buttons {
+	  display: flex;
+	  justify-content: space-between;
+	}
+  
+	.action-buttons button {
+	  margin-right: 10px;
+	}
+  
+	.success-btn {
+	  background-color: #28a745;
+	  color: #fff;
+	  border: none;
+	  padding: 8px 12px;
+	  border-radius: 5px;
+	  cursor: pointer;
+	}
+  
+	.danger-btn {
+	  background-color: #dc3545;
+	  color: #fff;
+	  border: none;
+	  padding: 8px 12px;
+	  border-radius: 5px;
+	  cursor: pointer;
+	}
+  
+	.primary-btn {
+	  background-color: #007bff;
+	  color: #fff;
+	  border: none;
+	  padding: 8px 12px;
+	  border-radius: 5px;
+	  cursor: pointer;
+	}
+  
+	.info-btn {
+	  background-color: #17a2b8;
+	  color: #fff;
+	  border: none;
+	  padding: 8px 12px;
+	  border-radius: 5px;
+	  cursor: pointer;
+	}
+  </style>-->
 
 <h1>Administración de Fondos de Solidaridad de la UE</h1>
 
@@ -134,16 +220,13 @@
 	<div class="alert alert-info">{message}</div>
 {/if}
 
-<!-- Botón para recargar los fondos -->
 <Button on:click={loadFunds} color="primary">Crear Fondos de prueba</Button>
-<!-- Botón para eliminar todos los fondos -->
 <Button on:click={deleteAllFunds} color="danger">Eliminar Todos los Fondos</Button>
-<!-- Botón para ver todos los fondos -->
-<!--<Button on:click={getFunds} color="info">Ver Todos los Fondos</Button>-->
 
 <!-- Tabla para mostrar los fondos de solidaridad -->
 <Container>
 	<Table bordered>
+		<!-- Encabezados de tabla y datos -->
 		<thead>
 			<tr>
 				<th>Año de Ocurrencia</th>
@@ -191,16 +274,18 @@
 					<!-- Botón para eliminar un fondo -->
 					<td>
 						<Button color="primary" href="/eu-solidarity-funds/{fund.cci_number}">Editar</Button>
-						<Button color="danger" on:click="{deleteFund(fund.cci_number)}">Eliminar</Button>
+						<Button color="danger" on:click={deleteFund(fund.cci_number)}>Eliminar</Button>
 					</td>
 				</tr>
 			{/each}
 		</tbody>
 	</Table>
+</Container>
 
-	<h2>Crear Nuevo Fondo</h2>
-	<!-- Formulario para crear un nuevo fondo -->
+<!-- Formulario para crear un nuevo fondo -->
+<Container>
 	<Table bordered>
+		<!-- Campos de formulario -->
 		<thead>
 			<tr>
 				<th>Año de Ocurrencia</th>
@@ -248,7 +333,5 @@
 	</Table>
 </Container>
 
-
 <!-- Botón para crear un nuevo fondo -->
-<Button on:click="{createFund}" color="success">Crear Nuevo Fondo</Button>
-
+<Button on:click={createFund} color="success">Crear Nuevo Fondo</Button>
