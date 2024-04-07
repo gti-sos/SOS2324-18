@@ -317,7 +317,7 @@
  
 <Card theme="auto">
     <CardHeader>
-        <CardTitle><h3>LISTA <Button on:click="{loadInitialDataFoods}" color="success">Cargar Datos</Button></h3></CardTitle>
+        <CardTitle><h3>LISTA <Button class="load" on:click="{loadInitialDataFoods}" color="success">Cargar Datos</Button></h3></CardTitle>
     </CardHeader>
     <CardBody>
 
