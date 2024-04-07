@@ -215,162 +215,43 @@ app.post(API_BASE+"/regional-politicies-acceptance/:name/:name2",(req,res)=>{
 app.get(API_BASE+"/regional-politicies-acceptance",(req,res)=>{
    
   
-
-    
     let offset=req.query.offset;
     let limitt=req.query.limit;
-    let valueName=req.query.eu_country;
-    let valueAnswerYes =req.query.answer_yes;
-    let valueYes=req.query.yes;
-    let valueAnswerNo=req.query.answer_no;
-    let valueNo=req.query.no;
-    let valueAnswerN_a=req.query.answer_n_a;
-    let valueN_a=req.query.n_a;
-    let valueTotal=req.query.total;
-    let valueYear=req.query.year;
+    let from=req.query.from;
+    let to=req.query.to;
 
 
+    let q=req.query;
+    delete q.from;delete q.to;
+    delete q.offset;delete q.limit
 
-    if(valueName==undefined && valueAnswerYes==undefined && valueYes==undefined && valueAnswerNo==undefined && valueNo==undefined && valueAnswerN_a==undefined && valueN_a==undefined && valueTotal==undefined && valueYear==undefined){
-        db.find({}).skip(offset).limit(limitt).exec((err,countries)=>{
-            if(err){
-                res.sendStatus(500,'Internal Server Error');
-            }
-            else{
-                res.send(JSON.stringify(countries.map((c)=>{
-                    delete c._id;
-                    return c;
-                })));
-            }});
-    }else{
-        if(valueName!=undefined){
-            db.find({eu_country:valueName}).skip(offset).limit(limitt).exec((err,countries)=>{
-                if(err){
-                    res.sendStatus(500,'Internal Server Error');
-                }
-                else{
-                    res.send(JSON.stringify(countries.map((c)=>{
-                        delete c._id;
-                        return c;
-                    })));
-                }});
+
+    
+
+    if(from!=undefined && to!=undefined){
+        db.find({year:{$gte:from,$lte:to}}).skip(offset).limit(limitt).exec((err,countries)=>{
+        if(err){
+            res.sendStatus(500,'Internal Server Error');
         }
-
-        
-
-        if(valueAnswerYes!=undefined){
-            db.find({answer_yes:valueAnswerYes}).skip(offset).limit(limitt).exec((err,countries)=>{
-                if(err){
-                    res.sendStatus(500,'Internal Server Error');
-                }
-                else{
-                    res.send(JSON.stringify(countries.map((c)=>{
-                        delete c._id;
-                        return c;
-                    })));
-                }});
-        }
-
-        if(valueYes!=undefined){
-            db.find({yes:valueYes}).skip(offset).limit(limitt).exec((err,countries)=>{
-                if(err){
-                    res.sendStatus(500,'Internal Server Error');
-                }
-                else{
-                    res.send(JSON.stringify(countries.map((c)=>{
-                        delete c._id;
-                        return c;
-                    })));
-                }});
-        }
-
-     
-        
-        if(valueAnswerNo!=undefined){
-            db.find({answer_no:valueAnswerNo}).skip(offset).limit(limitt).exec((err,countries)=>{
-                if(err){
-                    res.sendStatus(500,'Internal Server Error');
-                }
-                else{
-                    res.send(JSON.stringify(countries.map((c)=>{
-                        delete c._id;
-                        return c;
-                    })));
-                }});
-        }
-
-       
-        if(valueNo!=undefined){
-            db.find({no:valueNo}).skip(offset).limit(limitt).exec((err,countries)=>{
-                if(err){
-                    res.sendStatus(500,'Internal Server Error');
-                }
-                else{
-                    res.send(JSON.stringify(countries.map((c)=>{
-                        delete c._id;
-                        return c;
-                    })));
-                }});
-        }
-
-
-        
-        if(valueAnswerN_a!=undefined){
-            db.find({answer_n_a:valueAnswerN_a}).skip(offset).limit(limitt).exec((err,countries)=>{
-                if(err){
-                    res.sendStatus(500,'Internal Server Error');
-                }
-                else{
-                    res.send(JSON.stringify(countries.map((c)=>{
-                        delete c._id;
-                        return c;
-                    })));
-                }});
-        }
-
-         
-        if(valueN_a!=undefined){
-            db.find({n_a:valueN_a}).skip(offset).limit(limitt).exec((err,countries)=>{
-                if(err){
-                    res.sendStatus(500,'Internal Server Error');
-                }
-                else{
-                    res.send(JSON.stringify(countries.map((c)=>{
-                        delete c._id;
-                        return c;
-                    })));
-                }});
-        }
-
-        
-
-        if(valueTotal!=undefined){
-            db.find({total:valueTotal}).skip(offset).limit(limitt).exec((err,countries)=>{
-                if(err){
-                    res.sendStatus(500,'Internal Server Error');
-                }
-                else{
-                    res.send(JSON.stringify(countries.map((c)=>{
-                        delete c._id;
-                        return c;
-                    })));
-                }});
-        }
-
-
-        if(valueYear!=undefined){
-            db.find({year:valueYear}).skip(offset).limit(limitt).exec((err,countries)=>{
-                if(err){
-                    res.sendStatus(500,'Internal Server Error');
-                }
-                else{
-                    res.send(JSON.stringify(countries.map((c)=>{
-                        delete c._id;
-                        return c;
-                    })));
-                }});
-        }
+        else{
+            res.send(JSON.stringify(countries.map((c)=>{
+            delete c._id;
+            return c;
+            })));
         }});
+    }else{
+        db.find(q).skip(offset).limit(limitt).exec((err,countries)=>{
+        console.log(q);
+            if(err){
+            res.sendStatus(500,'Internal Server Error');
+        }
+        else{
+            res.send(JSON.stringify(countries.map((c)=>{
+            delete c._id;
+            return c;
+            })));
+        }});
+    }});
 
 
 app.get(API_BASE+"/regional-politicies-acceptance/:name/:param",(req,res)=>{
