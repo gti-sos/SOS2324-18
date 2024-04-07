@@ -220,11 +220,11 @@
 	<div class="alert alert-info">{message}</div>
 {/if}
 
-<Button on:click={loadFunds} color="primary">Crear Fondos de prueba</Button>
+<Button on:click={loadFunds} color="primary" class="load">Crear Fondos de prueba</Button>
 <Button on:click={deleteAllFunds} color="danger">Eliminar Todos los Fondos</Button>
 
 <!-- Tabla para mostrar los fondos de solidaridad -->
-<Container>
+
 	<Table bordered>
 		<!-- Encabezados de tabla y datos -->
 		<thead>
@@ -252,7 +252,7 @@
 		</thead>
 		<tbody>
 			{#each funds as fund}
-				<tr>
+				<tr class="fundItem">
 					<td>{fund.year_of_occurance}</td>
 					<td>{fund.cci_number}</td>
 					<td>{fund.applicant_country}</td>
@@ -280,10 +280,10 @@
 			{/each}
 		</tbody>
 	</Table>
-</Container>
+
 
 <!-- Formulario para crear un nuevo fondo -->
-<Container>
+
 	<Table bordered>
 		<!-- Campos de formulario -->
 		<thead>
@@ -331,7 +331,7 @@
 			</tr>
 		</tbody>
 	</Table>
-</Container>
+
 
 <!-- Botón para crear un nuevo fondo -->
 <Button on:click={createFund} color="success">Crear Nuevo Fondo</Button>
