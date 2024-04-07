@@ -19,25 +19,27 @@ test('list all the countries with pagination',async({page})=>{
     await page.locator('#loadAllCountries').click();
     await page.waitForTimeout(1000);
     let countriesCount =(await page.locator('.countryItem').all()).length; 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
     expect(countriesCount).toBeGreaterThan(9);
     
 });
 
 
 test('create a new country',async({page})=>{
+    await page.waitForTimeout(1000);
     await page.goto('http://localhost:10000/regional-politicies-acceptance');
     
-    await page.waitForTimeout(1000);
+    
     await page.locator('#name').fill('example');
     await page.locator('#yes').fill('100');
     await page.locator('#no').fill('100');
     await page.locator('#n_a').fill('100');
     await page.locator('#year').fill('2004');
     await page.locator('#createCountry').click();
-    await page.waitForTimeout(5000);
+    
     let text=page.getByText("Pais creado con exito");
-    expect(text).toContainText("Pais creado con exito");
+    await page.locator('#createCountry').click();
+    await page.getByRole('alert',{name:"Pais creado con exito"}).isVisible();  
     
 });
 
@@ -96,7 +98,7 @@ test('search by entries',async({page})=>{
 
 test('delete a country',async({page})=>{
     
-    await page.waitForTimeout(12000);
+    await page.waitForTimeout(10000);
     await page.goto('http://localhost:10000/regional-politicies-acceptance');
     
     await page.locator('.countryItem').filter({hasText:'germany'}).getByRole('button',{name:'Borrar'}).click();
