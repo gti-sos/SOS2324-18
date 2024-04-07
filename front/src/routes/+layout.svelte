@@ -6,7 +6,7 @@
 </script>
     
 <svelte:head>
-    <title>SOS2324-28</title>
+    <title>SOS2324-18</title>
 </svelte:head>
 
 <Styles/>  

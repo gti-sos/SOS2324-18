@@ -38,10 +38,10 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'operagx',
-      use: { ...devices['Desktop OperaGX'] },
-    },
+    //{
+      //name: 'operagx',
+      //use: { ...devices['Desktop OperaGX'] },
+    //},
 
     /* Test against mobile viewports. */
     // {
