@@ -38,12 +38,14 @@
 				let code = response.status;
 				// Mostrar mensaje de éxito
 				if (code === 200) {
+					// Recargar la página automáticamente
+					getFunds()
 					message = 'Fondos cargados correctamente';
 				} else {
+					// Recargar la página automáticamente
+					getFunds()
 					message = 'Error al cargar los fondos';
 				}
-				// Recargar la página automáticamente
-				location.reload();
 			} catch (error) {
 				// Mostrar mensaje de error
 				message = 'Error al cargar los fondos';
@@ -87,9 +89,9 @@
 			let code = response.status;
 			// Mostrar mensaje de éxito
 			if (code === 201) {
-				message = 'Fondo creado correctamente';
 				// Recargar la página automáticamente
-				location.reload();
+				getFunds()
+				message = 'Fondo creado correctamente';
 			} else {
 				message = 'Error al crear el fondo, rellene todos los campos';
 			}
@@ -105,11 +107,11 @@
 			// Realizar la petición DELETE a la API
 			let response = await fetch(API + '/' + cci_number, {
 				method: 'DELETE'
-			});
+			});	
+			// Recargar la página automáticamente
+			getFunds();
 			// Mostrar mensaje de éxito
 			message = 'Fondo eliminado correctamente';
-			// Recargar la página automáticamente
-			location.reload();
 		} catch (error) {
 			// Mostrar mensaje de error
 			message = 'Error al eliminar el fondo';
@@ -123,12 +125,12 @@
 			let response = await fetch(API, {
 				method: 'DELETE'
 			});
+			// Recargar la página automáticamente
+			getFunds()
 			// Mostrar mensaje de éxito
 			message = 'Todos los fondos eliminados correctamente';
 			// Limpiar el arreglo de fondos después de eliminar todos
 			funds = [];
-			// Recargar la página automáticamente
-			location.reload();
 		} catch (error) {
 			// Mostrar mensaje de error
 			message = 'Error al eliminar todos los fondos';
