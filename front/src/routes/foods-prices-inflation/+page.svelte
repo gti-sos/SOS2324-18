@@ -267,6 +267,8 @@
 </Alert>
 {/if}
 
+<p><Button href="foods-prices-inflation/graph" color="success">GRAFICOS</Button></p>
+
 <Accordion theme="auto">
     <AccordionItem>
       <h4 class="m-0" slot="header">Filtrar</h4>

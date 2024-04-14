@@ -11,17 +11,7 @@
 </script>
 
 <style>
-    :global(body) {
-      background: -webkit-gradient(
-          linear,
-          left top,
-          left bottom,
-          from(rgb(0, 67, 83)),
-          to(#cea29c)
-        )
-        fixed;
-    }
-
+    @import '/style.css';
 </style>
 
 <Container sm>
