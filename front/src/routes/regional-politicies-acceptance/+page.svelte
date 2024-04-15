@@ -27,7 +27,6 @@
     let showedCountries=[];
     let offset;
     let actualPage=0;
-    let closed=undefined;
     
     onMount(async ()=>{
         
