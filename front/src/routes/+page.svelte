@@ -17,7 +17,7 @@
 <Container sm>
     <Card theme="auto">
         <CardHeader>
-          <CardTitle><h3>SOS2324-18</h3></CardTitle>
+          <CardTitle><h3>SOS2324-18 <Button href="analytics" color="success">GRAFICOS</Button></h3></CardTitle>
         </CardHeader>
         <CardBody>
           <Row>
