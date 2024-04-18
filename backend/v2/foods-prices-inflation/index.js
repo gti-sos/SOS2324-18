@@ -52780,7 +52780,118 @@ var datos=[
   }
 ]
 
-var array=[];
+var array=[
+{
+  "id": 4800,
+  "open": 2.7,
+  "high": 2.75,
+  "low": 2.64,
+  "close": 2.7,
+  "inflation": 10.84,
+  "country": "españa",
+  "iso3": "ESP",
+  "date": "2023-01-01"
+},
+{
+  "id": 4801,
+  "open": 2.73,
+  "high": 2.77,
+  "low": 2.68,
+  "close": 2.7,
+  "inflation": 10.01,
+  "country": "alemania",
+  "iso3": "ALE",
+  "date": "2023-02-01"
+},
+{
+  "id": 4802,
+  "open": 2.71,
+  "high": 2.76,
+  "low": 2.66,
+  "close": 2.66,
+  "inflation": 0.83,
+  "country": "francia",
+  "iso3": "FRN",
+  "date": "2023-03-01"
+},
+{
+  "id": 4803,
+  "open": 2.67,
+  "high": 2.71,
+  "low": 2.62,
+  "close": 2.64,
+  "inflation": 0.32,
+  "country": "portugal",
+  "iso3": "POR",
+  "date": "2023-04-01"
+},
+{
+  "id": 4804,
+  "open": 2.67,
+  "high": 2.71,
+  "low": 2.63,
+  "close": 2.69,
+  "inflation": 0.16,
+  "country": "italia",
+  "iso3": "ITA",
+  "date": "2023-05-01"
+},
+{
+  "id": 4805,
+  "open": 2.74,
+  "high": 2.78,
+  "low": 2.7,
+  "close": 2.75,
+  "inflation": -0.28,
+  "country": "reino unido",
+  "iso3": "UK",
+  "date": "2023-06-01"
+},
+{
+  "id": 4806,
+  "open": 2.79,
+  "high": 2.83,
+  "low": 2.75,
+  "close": 2.81,
+  "inflation": -1.85,
+  "country": "grecia",
+  "iso3": "GRE",
+  "date": "2023-07-01"
+},
+{
+  "id": 4807,
+  "open": 2.85,
+  "high": 2.89,
+  "low": 2.81,
+  "close": 2.83,
+  "inflation": -3.17,
+  "country": "turquia",
+  "iso3": "TUR",
+  "date": "2023-08-01"
+},
+{
+  "id": 4808,
+  "open": 2.86,
+  "high": 2.97,
+  "low": 2.82,
+  "close": 2.97,
+  "inflation": 1.68,
+  "country": "suiza",
+  "iso3": "SUI",
+  "date": "2023-09-01"
+},
+{
+  "id": 4809,
+  "open": 3.06,
+  "high": 3.11,
+  "low": 2.98,
+  "close": 2.98,
+  "inflation": 3.76,
+  "country": "belgica",
+  "iso3": "BEL",
+  "date": "2023-10-01"
+}
+];
 
 /*var array=[{
   "id": 4797,
@@ -52818,7 +52929,7 @@ function JGVBackend(app, db){
       res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33015048/2sA35HX1Xu"));
     });
 
-    db.insert(array);
+    //db.insert(array);
       
     app.get(API_BASE+"/foods-prices-inflation", (req,res)=>{  //IMPRIME TU ARRAY
       let q = req.query;
@@ -52862,12 +52973,13 @@ function JGVBackend(app, db){
         numero=docs.length;
         if (numero>0) return res.sendStatus(409, "Conflict");
 
-        array = [];
+        let array1 = [];
         for(let i=0; i<20; i++){
             let n = Math.floor(Math.random() * 4799);
-            array.push(datos[n]);
+            array1.push(datos[n]);
         }
         //console.log(JSON.stringify(array));
+        db.insert(array1);
         db.insert(array);
         res.sendStatus(201, "Created");
       });

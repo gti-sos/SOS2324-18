@@ -2,6 +2,10 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
 </svelte:head>
 
+<style>
+    @import '/style.css';
+</style>
+
 <script>  
 
 import {onMount} from "svelte";
@@ -28,6 +32,7 @@ let Allfoods=[];
 let JGV_API = "/api/v2/foods-prices-inflation";
 
 let xAxis;
+let paises = ["españa", "alemania", "francia", "portugal", "italia", "reino unido", "grecia", "turquia", "suiza", "belgica"]
 
 
 if(dev){
@@ -120,26 +125,25 @@ async function getAllFoods(){
 async function creaLineas(){
         let open= {
             name: 'Open',
-            data: []
+            data: [0,0,0,0,0,0,0,0,0,0]
         }
-
+        cat=new Set(paises);
         for(let i=0; i<Allfoods.length; i++){
-            cat.add(Allfoods[i].country);
-            let id = Array.from(cat).indexOf(Allfoods[i].country);
-            if(id == Array.from(cat).length-1){
-                open.data.push(Allfoods[id].open);
-            }else {
-                open.data[id]+=Allfoods[id].open;
+            if(paises.includes(Allfoods[i].country)){
+                //cat.add(Allfoods[i].country);
+                let id = Array.from(cat).indexOf(Allfoods[i].country);
+                console.log(id);
+                open.data[id]+=Allfoods[i].open;
             }
         }
         ser=open
         cat=[...cat];
         console.log(open.data);
     }
-
-    /*
-    async function graficaColumn(){
-        const chart = Highcharts.chart('containerC', {
+    
+/*
+    async function graphCommon(){
+        const chart = Highcharts.chart('container', {
             chart: {
                 type: 'column'
             },
@@ -201,7 +205,7 @@ async function graphCommon(){
         align: 'left'
     },
     xAxis: [{
-        categories: xAxis,
+        categories: cat,
         crosshair: true
     }],
     yAxis: [{ // CBR yAxis
