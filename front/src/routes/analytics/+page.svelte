@@ -16,41 +16,44 @@ let countries=[];
 let container=[];
 let name;
 let showGraph=false;
-let API="/api/v2/regional-politicies-acceptance";
+let CBR_API="/api/v2/regional-politicies-acceptance";
 let countriesName=[];
+let field;
+let fieldData;
 
-
-//MMM's vars
+//JGV's vars
 let ser=[];
 let cat=new Set();
 let Allfoods=[];
-let API = "/api/v2/foods-prices-inflation";
+let JGV_API = "/api/v2/foods-prices-inflation";
+
+let xAxis;
 
 
 if(dev){
-        API="http://localhost:10000"+API;
+        CBR_API="http://localhost:10000"+CBR_API;
+        JGV_API="http://localhost:10000"+JGV_API;
     }
 
 onMount(async ()=>{
 
-
     await getCountries();
-    await createData();
     await getAllFoods();
+    xAxis=countries.map((country)=>country.eu_country);
+   
     
+      
     
 });
 
 //CBR's functions
 async function getCountries(){
     try{
-        let response=await fetch(API,{
+        let response=await fetch(CBR_API,{
             method:"GET"
         });
         let data=await response.json();
-        countries=data;
-        
-              
+        countries=data;              
     }catch(e){
         errorMSG="Error en el servidor";
 }}
@@ -58,112 +61,63 @@ async function getCountries(){
 
 
 
-async function createData(){
-    countries.filter((country)=>country.eu_country==name).map(
-        (country)=>{
-            container.push(["Respondieron si",parseInt(country.answer_yes)]);
-            container.push(["Respondieron no",parseInt(country.answer_no)]);
-            container.push(["Indecisos",parseInt(country.answer_n_a)]);
-        });
+async function createDataCBR(){
     
+
+    let data=[];
+    xAxis.forEach((country)=>{
+        for(let i=0;i<countries.length-1;i++){
+            if(country===countries[i].eu_country){
+                data.push(parseInt(countries[i][field]));
+                
+            }
+            
+        }
+    });
+   
+    fieldData= {
+            name: 'Votos',
+            type: 'spline',
+            color: Highcharts.getOptions().colors[2],
+            data: []
+        }
+    fieldData.data=data;
 } 
 
 
 async function asignValue(){
-    let element=document.getElementById("nameValue");
-    name=element.value;
-    createData();
-    console.log(container);
-    representGraph();
-    container=[];
-}
 
-
-function collectCountryRepresented(){
-    name=document.getElementById("nameValue");
-    console.log(name);
-    countries.map((country)=>{
-        console.log(name==country.eu_country);
-        if(name==country.eu_country){
-            showGraph=true;
-        }   
-    });
-
-    console.log(showGraph)
-    if(showGraph==true){
-        representGraph();
+    let element=document.getElementById("nameField");
+    field=element.value;
+    await createDataCBR();
+    switch(field){
+        case "answer_yes":
+            field="Personas que votaron si"
+            break;
+        case "answer_no":
+            field="Personas que votaron no"
+            break;
+        case "answer_n_a":
+            field="Personas que votaron no aplicable"
+            break;
     }
-
-    
+    await graphCommon();
 }
 
-function representGraph(){
 
-    chart = Highcharts.chart('container', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: 0,
-        plotShadow: false
-    },
-    title: {
-        text: `Votaciones de ${name}`,
-        align: 'center',
-        verticalAlign: 'middle',
-        y: 60,
-        style: {
-            fontSize: '1.1em'
-        }
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    accessibility: {
-        point: {
-            valueSuffix: '%'
-        }
-    },
-    plotOptions: {
-        pie: {
-            dataLabels: {
-                enabled: true,
-                distance: -80,
-                style: {
-                    fontWeight: 'bold',
-                    color: 'white'
-                }
-            },
-            startAngle: -90,
-            endAngle: 90,
-            center: ['50%', '75%'],
-            size: '110%'
-        }
-    },
-    series: [{
-        type: 'pie',
-        name: 'Porcentaje de votos',
-        innerSize: '50%',
-        data: container
-        
-    }]
-});}
-
-
-
-
-//MMM 
+//JGV 
 async function getAllFoods(){
-        let response = await fetch(API+"?pageSize=10000", {
+        let response = await fetch(JGV_API+"?pageSize=10000", {
             method: "GET"
         });
 
         let data = await response.json();
         Allfoods = data;
-        creaLineas(); 
-        graficaColumn(); 
+        creaLineas();  
         console.log(data);
     }
 
-    async function creaLineas(){
+async function creaLineas(){
         let open= {
             name: 'Open',
             data: []
@@ -178,12 +132,12 @@ async function getAllFoods(){
                 open.data[id]+=Allfoods[id].open;
             }
         }
-        
-        ser.push(open);
+        ser=open
         cat=[...cat];
         console.log(open.data);
     }
 
+    /*
     async function graficaColumn(){
         const chart = Highcharts.chart('containerC', {
             chart: {
@@ -194,17 +148,33 @@ async function getAllFoods(){
             },
             subtitle: {
                 text: 'Source: ' +
-                    '<a href= "'+ API +'"' +
+                    '<a href= "'+ JGV_API +'"' +
                     'target="_blank">foods-prices-inflation.com</a>'
             },
             xAxis: {
                 categories: cat
             },
-            yAxis: {
+            yAxis: [
+            
+            {//JGV yAxis
+            title: {
+                text: 'Open / '
+            }},
+            {//CBR yAxis
+                labels: {
+                    format: '{value}°C',
+                    style: {
+                        color: Highcharts.getOptions().colors[2]
+                    }
+                },
                 title: {
-                    text: 'Open / '
-                }
-            },
+                    text: 'Temperature',
+                    style: {
+                        color: Highcharts.getOptions().colors[2]
+                    }
+                },
+                opposite: true
+            }],
             plotOptions: {
                 column: {
                     pointPadding: 0.2,
@@ -214,6 +184,124 @@ async function getAllFoods(){
             series: ser
         });
     }
+    */
+
+
+async function graphCommon(){
+    Highcharts.chart('container', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: 'Average Monthly Weather Data for Tokyo',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com',
+        align: 'left'
+    },
+    xAxis: [{
+        categories: xAxis,
+        crosshair: true
+    }],
+    yAxis: [{ // CBR yAxis
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[2]
+            }
+        },
+        title: {
+            text: `${field}`,
+            style: {
+                color: Highcharts.getOptions().colors[2]
+            }
+        },
+        opposite: true
+
+    }, { // JGV yAxis
+        gridLineWidth: 0,
+        title: {
+            text: 'Open',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value} ',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        }
+
+    }, { // Tertiary yAxis
+        gridLineWidth: 0,
+        title: {
+            text: 'Sea-Level Pressure',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        labels: {
+            format: '{value} mb',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        opposite: true
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 55,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || // theme
+            'rgba(255,255,255,0.25)'
+    },
+    series: [fieldData, ser],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    floating: false,
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    x: 0,
+                    y: 0
+                },
+                yAxis: [{
+                    labels: {
+                        align: 'right',
+                        x: 0,
+                        y: -6
+                    },
+                    showLastLabel: false
+                }, {
+                    labels: {
+                        align: 'left',
+                        x: 0,
+                        y: -6
+                    },
+                    showLastLabel: false
+                }, {
+                    visible: false
+                }]
+            }
+        }]
+    }
+});
+}
+
 
 </script>
 
@@ -222,12 +310,13 @@ async function getAllFoods(){
 
 
 
-{#if countries!=undefined}
+{#if countries!=undefined || countries.length>0}
 <h1>Elige el pais que representar</h1>
-<select id="nameValue" class="form-select form-select-lg" style="width: 30%;">    
-    {#each countries as country}    
-        <option value={country.eu_country}>{country.eu_country}</option>
-    {/each}
+<select id="nameField" class="form-select form-select-lg" style="width: 30%;">    
+    <option value="answer_yes">Si</option>
+    <option value="answer_no">No</option>
+    <option value="answer_n_a">No aplica</option>
+    
 </select>
 {/if}
 <Button on:click={asignValue}>Seleccionar</Button>
