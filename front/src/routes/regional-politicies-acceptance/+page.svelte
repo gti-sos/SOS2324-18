@@ -308,7 +308,10 @@
     }
     
     
-    
+    async function goToGraphs(){
+        
+        window.location.href=location.href+"/graphs";
+    }
     
     </script>
     
@@ -416,7 +419,9 @@
             <CardHeader>
                 <CardTitle><h3>Lista de paises
                     <Button on:click="{loadInitialData}" color="success" id="loadAllCountries">Cargar Datos</Button>
-                    <Button on:click="{deleteCountries}" color="warning" id="deleteAllCountries">Borrar todos los paises</Button></h3></CardTitle>
+                    <Button on:click="{deleteCountries}" color="warning" id="deleteAllCountries">Borrar todos los paises</Button>
+                    <Button on:click="{goToGraphs}" color="primary" >Accede a las graficas</Button></h3>               
+                </CardTitle>
             </CardHeader>
             <CardBody>
                 <Table striped>
