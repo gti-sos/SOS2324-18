@@ -52798,7 +52798,7 @@ var array=[
   "high": 2.77,
   "low": 2.68,
   "close": 2.7,
-  "inflation": 10.01,
+  "inflation": 1.01,
   "country": "alemania",
   "iso3": "ALE",
   "date": "2023-02-01"
@@ -52820,7 +52820,7 @@ var array=[
   "high": 2.71,
   "low": 2.62,
   "close": 2.64,
-  "inflation": 0.32,
+  "inflation": 10.32,
   "country": "portugal",
   "iso3": "POR",
   "date": "2023-04-01"
