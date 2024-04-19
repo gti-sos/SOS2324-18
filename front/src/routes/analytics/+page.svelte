@@ -123,8 +123,8 @@ async function getAllFoods(){
     }
 
 async function creaLineas(){
-        let open= {
-            name: 'Open',
+        let inflation= {
+            name: 'Inflacion',
             data: [0,0,0,0,0,0,0,0,0,0]
         }
         cat=new Set(paises);
@@ -133,12 +133,12 @@ async function creaLineas(){
                 //cat.add(Allfoods[i].country);
                 let id = Array.from(cat).indexOf(Allfoods[i].country);
                 console.log(id);
-                open.data[id]+=Allfoods[i].open;
+                inflation.data[id]+=Allfoods[i].inflation;
             }
         }
-        ser=open
+        ser=inflation; open
         cat=[...cat];
-        console.log(open.data);
+        console.log(inflation.data);
     }
     
 /*
@@ -226,7 +226,7 @@ async function graphCommon(){
     }, { // JGV yAxis
         gridLineWidth: 0,
         title: {
-            text: 'Open',
+            text: 'Inflacion',
             style: {
                 color: Highcharts.getOptions().colors[0]
             }
