@@ -31,7 +31,7 @@ let cat=new Set();
 let Allfoods=[];
 let JGV_API = "/api/v2/foods-prices-inflation";
 
-let xAxis;
+
 let paises = ["españa", "alemania", "francia", "portugal", "italia", "reino unido", "grecia", "turquia", "suiza", "belgica"]
 
 
@@ -44,7 +44,7 @@ onMount(async ()=>{
 
     await getCountries();
     await getAllFoods();
-    xAxis=countries.map((country)=>country.eu_country);
+    
    
     
       
@@ -70,7 +70,7 @@ async function createDataCBR(){
     
 
     let data=[];
-    xAxis.forEach((country)=>{
+    paises.forEach((country)=>{
         for(let i=0;i<countries.length-1;i++){
             if(country===countries[i].eu_country){
                 data.push(parseInt(countries[i][field]));
@@ -140,55 +140,6 @@ async function creaLineas(){
         cat=[...cat];
         console.log(open.data);
     }
-    
-/*
-    async function graphCommon(){
-        const chart = Highcharts.chart('container', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Open / '
-            },
-            subtitle: {
-                text: 'Source: ' +
-                    '<a href= "'+ JGV_API +'"' +
-                    'target="_blank">foods-prices-inflation.com</a>'
-            },
-            xAxis: {
-                categories: cat
-            },
-            yAxis: [
-            
-            {//JGV yAxis
-            title: {
-                text: 'Open / '
-            }},
-            {//CBR yAxis
-                labels: {
-                    format: '{value}°C',
-                    style: {
-                        color: Highcharts.getOptions().colors[2]
-                    }
-                },
-                title: {
-                    text: 'Temperature',
-                    style: {
-                        color: Highcharts.getOptions().colors[2]
-                    }
-                },
-                opposite: true
-            }],
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: ser
-        });
-    }
-    */
 
 
 async function graphCommon(){
@@ -197,11 +148,11 @@ async function graphCommon(){
         zoomType: 'xy'
     },
     title: {
-        text: 'Average Monthly Weather Data for Tokyo',
+        text: 'Correlación entre votaciones,inflación en precios y fondos de solaridad',
         align: 'left'
     },
     subtitle: {
-        text: 'Source: WorldClimate.com',
+        text: 'Source: https://sos2324-18.appspot.com',
         align: 'left'
     },
     xAxis: [{
@@ -309,8 +260,6 @@ async function graphCommon(){
     }
 });
 }
-
-
 </script>
 
 
@@ -331,6 +280,7 @@ async function graphCommon(){
 
 
 
-
-<div id="container" style="width:90%; height:600px;"></div>
-<Container id="containerC" style="width:100%; height:400px;"></Container>
+<Container xxl>
+    <div id="container" style="width:90%; height:600px;">
+    </div>
+</Container>
