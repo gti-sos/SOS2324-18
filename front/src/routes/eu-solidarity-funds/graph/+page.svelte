@@ -8,15 +8,18 @@
 
 <script>
     import { onMount } from "svelte";
-    import Highcharts from "highcharts";
-    import HighchartsMore from "highcharts/highcharts-more";
-    import HighchartsExporting from "highcharts/modules/exporting";
+    //import Highcharts from "highcharts";
+    //import HighchartsMore from "highcharts/highcharts-more";
+    //import HighchartsExporting from "highcharts/modules/exporting";
     import { dev } from '$app/environment';
 
     // Importar los módulos adicionales de Highcharts
     HighchartsMore(Highcharts);
     HighchartsExporting(Highcharts);
 
+
+
+    
     let datosIniciales = [
         {
             "year_of_occurance": "2002",
