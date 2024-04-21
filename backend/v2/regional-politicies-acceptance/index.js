@@ -132,7 +132,119 @@ let initialCountries=[
             "n_a": "0.02",
             "total": "1003",
             "year": "2019"
-        }
+        },
+
+        {
+            "eu_country": 'españa',
+            "answer_yes": '500',
+            "answer_no": '300',
+            "answer_n_a": '200',
+            "year": '2023',
+            "total": "1000",
+            "yes": "0.5",
+            "no": "0.3",
+            "n_a": "0.2"
+          },
+          {
+            "eu_country": 'alemania',
+            "answer_yes": '600',
+            "answer_no": '200',
+            "answer_n_a": '200',
+            "year": '2022',
+            "total": "1000",
+            "yes": "0.6",
+            "no": "0.2",
+            "n_a": "0.2"
+          },
+          {
+            "eu_country": 'francia',
+            "answer_yes": '400',
+            "answer_no": '400',
+            "answer_n_a": '200',
+            "year": '2024',
+            "total": "1000",
+            "yes": "0.4",
+            "no": "0.4",
+            "n_a": "0.2"
+          },
+          {
+            "eu_country": 'portugal',
+            "answer_yes": '300',
+            "answer_no": '500',
+            "answer_n_a": '200',
+            "year": '2023',
+            "total": "1000",
+            "yes": "0.3",
+            "no": "0.5",
+            "n_a":"0.2"
+          },
+          {
+            "eu_country": 'italia',
+            "answer_yes": '700',
+            "answer_no": '100',
+            "answer_n_a": '200',
+            "year": '2022',
+            "total": "1000",
+            "yes": "0.7",
+            "no": "0.1",
+            "n_a": "0.2"
+          },
+          {
+            "eu_country": 'reino unido',
+            "answer_yes": '800',
+            "answer_no": '100',
+            "answer_n_a": '100',
+            "year": '2024',
+            "total": "1000",
+            "yes": "0.8",
+            "no": "0.1",
+            "n_a": "0.1"
+          },
+          {
+            "eu_country": 'grecia',
+            "answer_yes": '200',
+            "answer_no": '600',
+            "answer_n_a": '200',
+            "year": '2023',
+            "total":"1000",
+            "yes": "0.2",
+            "no": "0.6",
+            "n_a": "0.2"
+          },
+          {
+            "eu_country": 'turquia',
+            "answer_yes": '400',
+            "answer_no": '400',
+            "answer_n_a": '200',
+            "year": '2022',
+            "total": "1000",
+            "yes": "0.4",
+            "no": "0.4",
+            "n_a": "0.2"
+          },
+          {
+            "eu_country": 'suiza',
+            "answer_yes": '900',
+            "answer_no": '50',
+            "answer_n_a": '50',
+            "year": '2023',
+            "total": "1000",
+            "yes": "0.9",
+            "no": "0.05",
+            "n_a": "0.05"
+          },
+          {
+            "eu_country": 'belgica',
+            "answer_yes": '600',
+            "answer_no": '200',
+            "answer_n_a": '200',
+            "year": '2024',
+            "total": "1000",
+            "yes": "0.6",
+            "no": "0.2",
+            "n_a": "0.2"
+          }
+
     ];
 
 function carlosBackend(app,db){

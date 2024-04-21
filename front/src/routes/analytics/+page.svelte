@@ -53,7 +53,7 @@ let cat=new Set();
 let Allfoods=[];
 let JGV_API = "/api/v2/foods-prices-inflation";
 
-let xAxis;
+
 let paises = ["españa", "alemania", "francia", "portugal", "italia", "reino unido", "grecia", "turquia", "suiza", "belgica"]
 
 
@@ -66,7 +66,7 @@ onMount(async ()=>{
 
     await getCountries();
     await getAllFoods();
-    xAxis=countries.map((country)=>country.eu_country);
+    
    
     
       
@@ -92,10 +92,10 @@ async function createDataCBR(){
     
 
     let data=[];
-    xAxis.forEach((country)=>{
-        for(let i=0;i<countries.length-1;i++){
+    paises.forEach((country)=>{
+        for(let i=0;i<countries.length;i++){
             if(country===countries[i].eu_country){
-                data.push(parseInt(countries[i][field]));
+                data.push(parseFloat(countries[i][field]));
                 
             }
             
@@ -104,7 +104,7 @@ async function createDataCBR(){
    
     fieldData= {
             name: 'Votos',
-            type: 'spline',
+            type: 'bar',
             color: Highcharts.getOptions().colors[2],
             data: []
         }
@@ -118,14 +118,14 @@ async function asignValue(){
     field=element.value;
     await createDataCBR();
     switch(field){
-        case "answer_yes":
-            field="Personas que votaron si"
+        case "yes":
+            field="Porcentaje de personas que votaron si"
             break;
-        case "answer_no":
-            field="Personas que votaron no"
+        case "no":
+            field="Porcentaje de personas que votaron no"
             break;
-        case "answer_n_a":
-            field="Personas que votaron no aplicable"
+        case "n_a":
+            field="Porcentaje de personas que votaron no aplicable"
             break;
     }
     await graphCommon();
@@ -162,55 +162,6 @@ async function creaLineas(){
         cat=[...cat];
         console.log(inflation.data);
     }
-    
-/*
-    async function graphCommon(){
-        const chart = Highcharts.chart('container', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Open / '
-            },
-            subtitle: {
-                text: 'Source: ' +
-                    '<a href= "'+ JGV_API +'"' +
-                    'target="_blank">foods-prices-inflation.com</a>'
-            },
-            xAxis: {
-                categories: cat
-            },
-            yAxis: [
-            
-            {//JGV yAxis
-            title: {
-                text: 'Open / '
-            }},
-            {//CBR yAxis
-                labels: {
-                    format: '{value}°C',
-                    style: {
-                        color: Highcharts.getOptions().colors[2]
-                    }
-                },
-                title: {
-                    text: 'Temperature',
-                    style: {
-                        color: Highcharts.getOptions().colors[2]
-                    }
-                },
-                opposite: true
-            }],
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: ser
-        });
-    }
-    */
 
 
 async function graphCommon(){
@@ -221,7 +172,11 @@ async function graphCommon(){
         zoomType: 'xy'
     },
     title: {
-        text: 'Combinación de datos',
+        text: 'Correlación entre votaciones,inflación en precios y fondos de solaridad',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Source: https://sos2324-18.appspot.com',
         align: 'left'
     },
     xAxis: [{
@@ -329,8 +284,6 @@ async function graphCommon(){
     }
 });
 }
-
-
 </script>
 
 
@@ -341,9 +294,9 @@ async function graphCommon(){
 {#if countries!=undefined || countries.length>0}
 <h1>Elige el pais que representar</h1>
 <select id="nameField" class="form-select form-select-lg" style="width: 30%;">    
-    <option value="answer_yes">Si</option>
-    <option value="answer_no">No</option>
-    <option value="answer_n_a">No aplica</option>
+    <option value="yes">Porcentaje del si</option>
+    <option value="no">Porcentaje del no</option>
+    <option value="n_a">Porcentaje del no aplica</option>
     
 </select>
 {/if}
@@ -351,6 +304,7 @@ async function graphCommon(){
 
 
 
-
-<div id="container" style="width:90%; height:600px;"></div>
-<Container id="containerC" style="width:100%; height:400px;"></Container>
+<Container xxl>
+    <div id="container" style="width:90%; height:600px;">
+    </div>
+</Container>
