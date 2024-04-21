@@ -316,6 +316,7 @@
         crearGraficaColumnPyramid();
         crearGraficaColumnRange();
     });
+
 </script>
 
 <h2>Column Pyramid Chart</h2>
@@ -323,3 +324,4 @@
 
 <h2>Column Range Chart</h2>
 <div id="graficaColumnRange" style="width: 100%; height: 400px;"></div>
+  
