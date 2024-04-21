@@ -71,9 +71,9 @@ async function createDataCBR(){
 
     let data=[];
     paises.forEach((country)=>{
-        for(let i=0;i<countries.length-1;i++){
+        for(let i=0;i<countries.length;i++){
             if(country===countries[i].eu_country){
-                data.push(parseInt(countries[i][field]));
+                data.push(parseFloat(countries[i][field]));
                 
             }
             
@@ -82,7 +82,7 @@ async function createDataCBR(){
    
     fieldData= {
             name: 'Votos',
-            type: 'spline',
+            type: 'bar',
             color: Highcharts.getOptions().colors[2],
             data: []
         }
@@ -96,14 +96,14 @@ async function asignValue(){
     field=element.value;
     await createDataCBR();
     switch(field){
-        case "answer_yes":
-            field="Personas que votaron si"
+        case "yes":
+            field="Porcentaje de personas que votaron si"
             break;
-        case "answer_no":
-            field="Personas que votaron no"
+        case "no":
+            field="Porcentaje de personas que votaron no"
             break;
-        case "answer_n_a":
-            field="Personas que votaron no aplicable"
+        case "n_a":
+            field="Porcentaje de personas que votaron no aplicable"
             break;
     }
     await graphCommon();
@@ -196,7 +196,7 @@ async function graphCommon(){
     }, { // Tertiary yAxis
         gridLineWidth: 0,
         title: {
-            text: 'Sea-Level Pressure',
+            text: '',//yAxis MMM
             style: {
                 color: Highcharts.getOptions().colors[1]
             }
@@ -270,9 +270,9 @@ async function graphCommon(){
 {#if countries!=undefined || countries.length>0}
 <h1>Elige el pais que representar</h1>
 <select id="nameField" class="form-select form-select-lg" style="width: 30%;">    
-    <option value="answer_yes">Si</option>
-    <option value="answer_no">No</option>
-    <option value="answer_n_a">No aplica</option>
+    <option value="yes">Porcentaje del si</option>
+    <option value="no">Porcentaje del no</option>
+    <option value="n_a">Porcentaje del no aplica</option>
     
 </select>
 {/if}
