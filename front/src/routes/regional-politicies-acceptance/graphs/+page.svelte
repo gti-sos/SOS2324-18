@@ -20,6 +20,8 @@ let API="/api/v2/regional-politicies-acceptance";
 
 
 
+
+
 if(dev){
         API="http://localhost:10000"+API;
         
