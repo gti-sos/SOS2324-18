@@ -17,6 +17,8 @@
     HighchartsMore(Highcharts);
     HighchartsExporting(Highcharts);
 
+
+
     
     let datosIniciales = [
         {
