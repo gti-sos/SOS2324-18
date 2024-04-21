@@ -12,6 +12,28 @@ import {onMount} from "svelte";
 import {dev} from "$app/environment";
 import { Button,Container} from '@sveltestrap/sveltestrap';
 
+import { datosExtra } from "../eu-solidarity-funds/datosExtra"
+
+//Datos MMM
+async function createDataExtra() {
+    // Filtra tus datos por los países presentes en la lista de países de tus compañeros
+    let filteredData = datosExtra.filter((item) => paises.includes(item.applicant_country.toLowerCase()));
+
+    // Crea la serie de datos para tu gráfica
+    let extraData = {
+        name: 'Total Direct Damage Accepted', // Nombre de tu serie
+        type: 'spline', // Tipo de gráfica
+        yAxis: 1, // Asigna el eje Y secundario
+        data: filteredData.map((item) => parseFloat(item.total_direct_damage_accepted)), // Extrae los valores de total_direct_damage_accepted
+        tooltip: {
+            valueSuffix: '€' // Sufijo para los valores en el tooltip
+        }
+    };
+
+    return extraData;
+}
+
+
 
 //CBR's vars
 let chart;
@@ -192,16 +214,14 @@ async function creaLineas(){
 
 
 async function graphCommon(){
+    let extraSeries = await createDataExtra();
+
     Highcharts.chart('container', {
     chart: {
         zoomType: 'xy'
     },
     title: {
-        text: 'Average Monthly Weather Data for Tokyo',
-        align: 'left'
-    },
-    subtitle: {
-        text: 'Source: WorldClimate.com',
+        text: 'Combinación de datos',
         align: 'left'
     },
     xAxis: [{
@@ -245,7 +265,7 @@ async function graphCommon(){
     }, { // Tertiary yAxis
         gridLineWidth: 0,
         title: {
-            text: 'Sea-Level Pressure',
+            text: 'Total direct damage accepted',
             style: {
                 color: Highcharts.getOptions().colors[1]
             }
@@ -272,7 +292,7 @@ async function graphCommon(){
             Highcharts.defaultOptions.legend.backgroundColor || // theme
             'rgba(255,255,255,0.25)'
     },
-    series: [fieldData, ser],
+    series: [fieldData, ser, extraSeries],
     responsive: {
         rules: [{
             condition: {
