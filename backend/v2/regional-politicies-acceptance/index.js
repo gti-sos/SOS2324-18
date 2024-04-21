@@ -165,7 +165,7 @@ let initialCountries=[
             "total": "1000",
             "yes": "0.4",
             "no": "0.4",
-            "n_a": "20.2"
+            "n_a": "0.2"
           },
           {
             "eu_country": 'portugal',
