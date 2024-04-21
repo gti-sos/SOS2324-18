@@ -18,8 +18,6 @@
     HighchartsExporting(Highcharts);
 
 
-
-    
     let datosIniciales = [
         {
             "year_of_occurance": "2002",
