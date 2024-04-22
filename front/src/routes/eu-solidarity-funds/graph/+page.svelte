@@ -1,5 +1,9 @@
 <svelte:head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </svelte:head>
 
 <style>
@@ -8,14 +12,14 @@
 
 <script>
     import { onMount } from "svelte";
-    import Highcharts from "highcharts";
-    import HighchartsMore from "highcharts/highcharts-more";
-    import HighchartsExporting from "highcharts/modules/exporting";
+    //import Highcharts from "highcharts";
+    //import HighchartsMore from "highcharts/highcharts-more";
+    //import HighchartsExporting from "highcharts/modules/exporting";
     import { dev } from '$app/environment';
 
     // Importar los módulos adicionales de Highcharts
-    HighchartsMore(Highcharts);
-    HighchartsExporting(Highcharts);
+    //HighchartsMore(Highcharts);
+    //HighchartsExporting(Highcharts);
 
 
     let datosIniciales = [
@@ -221,6 +225,13 @@
         }
     ];
 
+    let countryNames = []
+
+    //datosIniciales.map((country)=>{
+        
+        //countryNames.push(country.applicant_country)
+    //})
+
     async function obtenerDatosAPI() {
         let API_URL = '/api/v1/eu-solidarity-funds';
         if (dev) API_URL = 'http://localhost:10000' + API_URL;
@@ -261,7 +272,7 @@
     function crearGraficaColumnPyramid() {
         Highcharts.chart("graficaColumnPyramid", {
             chart: {
-                type: "columnpyramid"
+                type: "scatter"
             },
             title: {
                 text: "Cost of Eligible Emergency por País"
@@ -297,7 +308,8 @@
                 type: "category",
                 title: {
                     text: "Applicant Country"
-                }
+                },
+                //categories: []
             },
             yAxis: {
                 title: {
