@@ -1,3 +1,7 @@
+<style>
+    @import '/style.css';
+</style>
+
 <script>
     import { page } from '$app/stores';
     import { dev } from "$app/environment";
@@ -9,6 +13,7 @@
     let ident = $page.params.id;
     let errorMsg="";
     let aceptadoMsg="";
+    let vacio=-1;
     let newF = {
             "id": 47942,
             "open": 2.74,
@@ -42,13 +47,19 @@
     }
 
     async function getFoods(){
+        vacio=-1;
         let response = await fetch(API+"/"+ident, {
             method: "GET"
         });
-
-        let data = await response.json();
-        console.log(data);
-        newF = data;
+        let status = await response.status;
+        if(status==404)
+            vacio=1;
+        else{
+            vacio=0;
+            let data = await response.json();
+            console.log(data);
+            newF = data;
+        }
     }
 
     async function putFoods(){
@@ -79,6 +90,7 @@
     }
 </script>
 
+{#if vacio == 0}
 <h3>Detalles del id {ident}</h3>
 
 <Table bordered>
@@ -110,8 +122,12 @@
         </tr>
     </tbody>
 </Table>
-
 <Button on:click="{putFoods}" color="success">Actualizar</Button><br>
+{/if}
+{#if vacio==1}
+<Alert color="info">ERROR: NO SE HA ENCONTRADO EL ID {ident}</Alert>
+{/if}
+
 
 {#if errorMsg != ""}
 <Alert color="info" dismissible>
