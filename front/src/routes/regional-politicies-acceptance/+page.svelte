@@ -9,6 +9,9 @@
     import {Card,CardBody,CardFooter,CardHeader,CardSubtitle,CardText,CardTitle} from '@sveltestrap/sveltestrap';
     
     
+
+
+    
         
     let API="/api/v2/regional-politicies-acceptance";
     if(dev){
@@ -16,7 +19,7 @@
     }
     
     
-    
+
     let countries=[];
     let errorMSG="";
     let newCountry={};
