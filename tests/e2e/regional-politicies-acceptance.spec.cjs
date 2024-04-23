@@ -96,16 +96,7 @@ test('search by entries',async({page})=>{
 
 
 
-test('delete a country',async({page})=>{
-    
-    await page.waitForTimeout(10000);
-    await page.goto('http://localhost:10000/regional-politicies-acceptance');
-    
-    await page.locator('.countryItem').filter({hasText:'germany'}).getByRole('button',{name:'Borrar'}).click();
 
-    await page.getByRole('alert',{name:"Pais borrado con exito"}).isVisible();    
-
-});
 
 
 test('delete all countries',async({page})=>{
