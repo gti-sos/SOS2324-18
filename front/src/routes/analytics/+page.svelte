@@ -220,7 +220,7 @@ async function graphCommon(){
     }, { // Tertiary yAxis
         gridLineWidth: 0,
         title: {
-            text: 'Total direct damage accepted',
+            text: 'Daño total directo aceptado',
             style: {
                 color: Highcharts.getOptions().colors[1]
             }

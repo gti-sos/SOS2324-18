@@ -12,15 +12,7 @@
 
 <script>
     import { onMount } from "svelte";
-    //import Highcharts from "highcharts";
-    //import HighchartsMore from "highcharts/highcharts-more";
-    //import HighchartsExporting from "highcharts/modules/exporting";
     import { dev } from '$app/environment';
-
-    // Importar los módulos adicionales de Highcharts
-    //HighchartsMore(Highcharts);
-    //HighchartsExporting(Highcharts);
-
 
     let datosIniciales = [
         {
@@ -225,14 +217,26 @@
         }
     ];
 
-    let countryNames = []
+    /**let message = '';
+    let funds = [];
+    let datosIniciales = [];
 
-    //datosIniciales.map((country)=>{
-        
-        //countryNames.push(country.applicant_country)
-    //})
+    let API="/api/v1/eu-solidarity-funds";
 
-    async function obtenerDatosAPI() {
+    if(dev){
+        API="http://localhost:10000"+API;  
+    }
+
+    async function getFunds() {
+        // Realizar la petición GET a la API
+        let response = await fetch(API, {
+            method: 'GET'
+        });
+        funds = await response.json;
+        datosIniciales = funds;
+    }**/
+
+    /**async function obtenerDatosAPI() {
         let API_URL = '/api/v1/eu-solidarity-funds';
         if (dev) API_URL = 'http://localhost:10000' + API_URL;
 
@@ -245,16 +249,16 @@
         } catch (error) {
             console.error(error);
         }
-    }
+    }**/
 
-    let columnPyramidData = [];
+    let scatterData = [];
     let columnRangeData = [];
 
     // Función para transformar los datos en el formato necesario para las gráficas
     function transformData() {
         datosIniciales.forEach((item) => {
-            // Para la gráfica de tipo Column Pyramid
-            columnPyramidData.push({
+            // Para la gráfica de tipo Scatter
+            scatterData.push({
                 name: item.applicant_country,
                 y: parseFloat(item.cost_of_eligible_emergency.replace(",", "")) // Convertir a número y eliminar comas
             });
@@ -268,9 +272,9 @@
         });
     }
 
-    // Función para crear la gráfica de tipo Column Pyramid
-    function crearGraficaColumnPyramid() {
-        Highcharts.chart("graficaColumnPyramid", {
+    // Función para crear la gráfica de tipo Scatter
+    function crearGraficaScatter() {
+        Highcharts.chart("graficaScatter", {
             chart: {
                 type: "scatter"
             },
@@ -290,7 +294,7 @@
             },
             series: [{
                 name: "Cost of Eligible Emergency",
-                data: columnPyramidData
+                data: scatterData
             }]
         });
     }
@@ -324,16 +328,17 @@
     }
 
     onMount(() => {
-        obtenerDatosAPI();
+        //getFunds();
+        //obtenerDatosAPI();
         transformData();
-        crearGraficaColumnPyramid();
+        crearGraficaScatter();
         crearGraficaColumnRange();
     });
 
 </script>
 
-<h2>Column Pyramid Chart</h2>
-<div id="graficaColumnPyramid" style="width: 100%; height: 400px;"></div>
+<h2>Scatter Chart</h2>
+<div id="graficaScatter" style="width: 100%; height: 400px;"></div>
 
 <h2>Column Range Chart</h2>
 <div id="graficaColumnRange" style="width: 100%; height: 400px;"></div>
