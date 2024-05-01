@@ -10,6 +10,7 @@ import dataStore from "nedb";
 import {handler} from "./front/build/handler.js";
 import cors from "cors";
 
+
 let dbVotes= new dataStore();
 //let JGVAPI = require("./foods-prices-inflation");
 let dbFood = new dataStore();
@@ -28,6 +29,13 @@ app.use(bodyParser.json());
 carlosBackend(app,dbVotes);
 JGVBackend(app, dbFood);
 MMMBackend(app, dbFunds);
+
+
+
+
+
+
+
 
 
 app.use(handler);
