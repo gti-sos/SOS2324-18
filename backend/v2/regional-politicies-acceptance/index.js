@@ -1,5 +1,10 @@
 const API_BASE="/api/v2";
 
+import request from 'request';
+import cors from "cors";
+
+
+
 let initialCountries=[
     {
             "eu_country": "eu",
@@ -490,6 +495,28 @@ app.delete(API_BASE+"/regional-politicies-acceptance/:name/:year",(req,res)=>{
 
 app.get(API_BASE+"/regional-politicies-acceptance/docs",(req,res)=>{
     res.redirect(200,"https://documenter.getpostman.com/view/32973833/2sA35HXLiB");
+    
+});
+
+
+app.use(cors({
+    "origin":"http://127.0.0.1:5173",
+    "preflightContinue":false,
+    "optionsSuccessStatus":204
+}));
+
+app.use('/proxy',function(req,res) {
+    var url="https://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance";
+    console.log('piped'+req.url);
+    req.pipe(request(url)).pipe(res);
+    
+    request(url,(error,response,body)=>{
+        if(error)console.log(error)
+
+
+        console.log(response)
+        res.send(body);
+    })
     
 });
 

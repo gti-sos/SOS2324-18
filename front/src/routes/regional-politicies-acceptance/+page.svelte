@@ -1,3 +1,4 @@
+
 <script>
     import { Accordion, AccordionHeader, AccordionItem, Alert, Container } from '@sveltestrap/sveltestrap';
     import { onMount } from "svelte";
@@ -7,8 +8,11 @@
     import { Table } from '@sveltestrap/sveltestrap';
     import { Pagination,PaginationItem,PaginationLink } from '@sveltestrap/sveltestrap';
     import {Card,CardBody,CardFooter,CardHeader,CardSubtitle,CardText,CardTitle} from '@sveltestrap/sveltestrap';
+	
     
     
+    
+
 
 
     
@@ -19,7 +23,8 @@
     }
     
     
-
+    let withYears=false;
+    let withFields=false;
     let countries=[];
     let errorMSG="";
     let newCountry={};
@@ -37,7 +42,7 @@
         
         await getCountries();
         await showedCountr(offset);
-        
+        await buscaPaisesGCLOUD();
         
     });
     
@@ -49,7 +54,7 @@
         if(countries.length>=1){
             errorMSG="Ya existen datos previos";
             await refreshPage(actualPage);
-            window.scroll(0,0);
+        
         }else{
             try{
                 let response=await fetch(API+"/loadInitialdata",{
@@ -59,19 +64,18 @@
                 if(data==409){
                     errorMSG="Ya se han cargado previamente los datos";
                     await refreshPage(actualPage);
-                    window.scroll(0,0);
                 }
                 if(data==201){
                     errorMSG="Se han cargado los datos correctamente";
                     await refreshPage(actualPage);
-                    window.scroll(0,0);
+                    document.getElementById('pagina').style.display='block';
+                   
                     
                 }
                 
             }catch(e){
             errorMSG=e;
             refreshPage(actualPage);
-            window.scroll(0,0);
             }
         }
     }
@@ -82,15 +86,15 @@
             let response=await fetch(API,{
                 method:"GET"
             });
+            pages=[];
             let data=await response.json();
             if(data.length==0){
                 countries=data;
-            }if(pages.length>=0){//cambiar dinamicamente
+            }if(pages.length>=0){
                 pages=[];
                 for(let i=0;i<=parseInt(data.length/10);i++){
                     pages.push(i);
                 }
-                pages=pages;
             }else{
                 countries=data;
                 
@@ -124,21 +128,21 @@
             if(status==201){
                 errorMSG="Pais creado con exito";
                 await refreshPage(actualPage);
-                window.scroll(0,0);
+               
             }if(status==400){
                 errorMSG="Debe rellenar todos los campos";
                 await refreshPage(actualPage);
-                window.scroll(0,0);
+               
             }
             if(status==409){
                 errorMSG="Ya existe un pais con ese nombre y año";
                 await refreshPage(actualPage);
-                window.scroll(0,0);
+             
             }
         }catch(e){
             errorMSG=e;
             await refreshPage(actualPage);
-            window.scroll(0,0);
+          
         }
     
         
@@ -155,12 +159,11 @@
                 case 200:
                     errorMSG="Pais borrado con exito";
                     refreshPage(actualPage);
-                    window.scroll(0,0);
+                  
                     break;
                 case 404:
                     errorMSG="El pais que ha intentado borrar no existe";
                     refreshPage(actualPage);
-                    window.scroll(0,0);
                     break;
             }
         }catch(e){
@@ -179,24 +182,22 @@
                     switch(response.status){
                         case 200:
                             errorMSG="Paises borrados con exito";
-                            await refreshPage(actualPage);
-                            window.scroll(0,0);
+                            await getCountries();
+                            await showedCountr();
+                            document.getElementById('pagina').style.display='none';
                             break;
                         case 404:
                             errorMSG="El pais que ha intentado borrar no existe";
                             await refreshPage(actualPage);
-                            window.scroll(0,0);
                             break;
                         case 400:
                             errorMSG="No existen paises que puedan ser borrados";
                             await refreshPage(actualPage);
-                            window.scroll(0,0);
                             break;
                     }
                 }catch(e){
                     errorMSG="Error en el servidor";
                     await refreshPage(actualPage);
-                    window.scroll(0,0);
             }
         }
     
@@ -204,7 +205,7 @@
     
     
     
-    async function showedCountr(page){
+    async function showedCountr(){
     
     let response=await fetch(API+"?offset="+actualPage*10+"&&limit="+10,{
         method:"GET",
@@ -215,6 +216,11 @@
     switch(response.status){
         case 200:
             showedCountries=await response.json();
+           
+            await getCountries();
+            for(let i=0;i<=parseInt(countries.length/10);i++){
+                pages.push(i);
+            }
             break;
         case 404:
             errorMSG="No hay ningun pais creado";
@@ -224,8 +230,20 @@
     
     async function refreshPage(page){
         actualPage=page;
-        await getCountries();
-        await showedCountr(page);
+        if(withYears==true){
+            await searchWithYears()
+            console.log("con años")
+        }
+        
+        if(withFields==true){
+            console.log("con campos")
+            await searchWithFields()
+        }
+        if(withFields==false && withYears==false){
+            await showedCountr()
+            console.log("sin nada")
+        }
+        
     }
     
     
@@ -236,11 +254,9 @@
     async function searchWithYears(){
         if(initialYear==undefined || lastYear==undefined){
             errorMSG="Ninguno de los dos años puede ser nulo";
-            window.scroll(0,0);
         }
         if(initialYear>lastYear){
             errorMSG="El año de inicio no puede ser superior al de fin";
-            window.scroll(0,0);
         }
         else{
             let response=await fetch(API+"?from="+initialYear+"&&to="+lastYear,{
@@ -253,7 +269,6 @@
             switch(response.status){
                 case 404:
                     errorMSG="No se ha encontrado ningún pais que cumpla con el intervalo de años dado";
-                    window.scroll(0,0);
                     break;
                 case 200:
                     if(data.length==0){
@@ -261,8 +276,11 @@
                     }else{
                     errorMSG="Paises encontrados con exito";
                     showedCountries=data;
-                    window.scroll(0,0);
-                    break;}
+                    document.getElementById('pagina').style.display='none';
+                    withYears=true;
+                    withFields=false;
+                    break;
+                }
             }
         }
     }
@@ -282,20 +300,15 @@
                 url+=key+"="+value+"&&";
             }
         }
-       
-    
-        console.log(API);
         let response=await fetch(API+"?"+url,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
         }});
-        
-        let data=await response.json();
+        let data = await response.json();
         switch(response.status){
             case 404:
                 errorMSG="No se ha encontrado ningun pais que cumpla con los filtros";
-                window.scroll(0,0);
                 break;
             case 200:
                 if(data.length==0){
@@ -303,7 +316,11 @@
                 }else{
                     errorMSG="Se han encontrado paises que cumplen los filtros";
                     showedCountries=data;
-                    window.scroll(0,0);
+                    
+                    withFields=true;
+                    withYears=false;
+                    document.getElementById('pagina').style.display='none';
+
                     break;
                 }
         }
@@ -311,10 +328,28 @@
     
     }
     
-    
+    async function deleteFilters(){
+        document.getElementById('pagina').style.display='block';
+        withFields=false
+        withYears=false
+        await refreshPage(actualPage)
+    }
     async function goToGraphs(){
         
         window.location.href=location.href+"/graphs";
+    }
+
+
+
+
+
+
+
+
+    async function buscaPaisesGCLOUD(){
+        await fetch("https://sos2324-18.appspot.com/proxy",(req,res)=>{
+            console.log(res.body);
+        })
     }
     
     </script>
@@ -346,7 +381,7 @@
         <Accordion theme="auto" id="accordion1">
             <Accordion theme="auto" id="accordion1-1">
                 <AccordionItem>
-                    <h4 class="m-0" slot="header">Filtrar paises <Button on:click="{refreshPage}" color="danger">Eliminar filtros</Button></h4>
+                    <h4 class="m-0" slot="header">Filtrar paises <Button on:click="{deleteFilters}" color="danger">Eliminar filtros</Button></h4>
                   <Accordion theme="auto" id="accordion2">
                     <AccordionItem id="accordion1-2">
                         <h4 class="m-0" slot="header">Por rango de años</h4>
@@ -467,7 +502,7 @@
             <CardFooter>
                 <!--Pasar PAG-->
                
-                <nav aria-label="Page navigation example">
+                <nav aria-label="Page navigation example" id="pagina">
                     <ul class="pagination">
                         <li class="page-item"><button class="page-link" on:click={refreshPage(pages[0])}>&ll;</button></li>
                         <li class="page-item"><button class="page-link" on:click={refreshPage(actualPage-1)}>&lt;</button></li>
