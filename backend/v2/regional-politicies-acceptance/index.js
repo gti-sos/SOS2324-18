@@ -500,7 +500,7 @@ app.get(API_BASE+"/regional-politicies-acceptance/docs",(req,res)=>{
 
 
 app.use(cors({
-    "origin":"http://127.0.0.1:5173",
+    "origin":"http://localhost:5173/",
     "preflightContinue":false,
     "optionsSuccessStatus":204
 }));

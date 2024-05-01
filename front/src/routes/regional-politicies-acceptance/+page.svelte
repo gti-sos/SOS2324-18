@@ -40,8 +40,8 @@
     onMount(async ()=>{
         
         
-        await getCountries();
-        await showedCountr(offset);
+        //await getCountries();
+        //await showedCountr(offset);
         await buscaPaisesGCLOUD();
         
     });
