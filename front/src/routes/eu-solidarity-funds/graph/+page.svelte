@@ -4,6 +4,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </svelte:head>
 
 <style>
@@ -15,6 +16,9 @@
     import { dev } from '$app/environment';
 
     let datosIniciales = [];
+    let scatterData = [];
+    let columnRangeData = [];
+    const disasterCounts = {};
 
     let API = "/api/v1/eu-solidarity-funds";
 
@@ -28,17 +32,17 @@
             const data = await response.json();
             datosIniciales = data;
 
-            // Llamar a las funciones de transformación y creación de gráficos
+            // Llamar a la función de transformación de datos
             transformData();
+
+            // Crear las gráficas después de transformar los datos
             crearGraficaScatter();
             crearGraficaColumnRange();
+            crearGraficaTiposDesastre(disasterCounts);
         } catch (error) {
             console.error('Error al obtener datos:', error);
         }
     }
-
-    let scatterData = [];
-    let columnRangeData = [];
 
     function transformData() {
         datosIniciales.forEach((item) => {
@@ -52,6 +56,13 @@
                 high: parseFloat(item.total_direct_damage_accepted.replace(",", "")),
                 low: 0
             });
+
+            const tipoDesastre = item.disaster_type;
+            if (tipoDesastre in disasterCounts) {
+                disasterCounts[tipoDesastre] += 1;
+            } else {
+                disasterCounts[tipoDesastre] = 1;
+            }
         });
     }
 
@@ -107,14 +118,58 @@
         });
     }
 
+    function crearGraficaTiposDesastre(datos) {
+        const ctx = document.getElementById("graficaTiposDesastre").getContext("2d");
+
+        const labels = Object.keys(datos);
+        const data = Object.values(datos);
+
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Número de veces que ocurrió",
+                    data: data,
+                    backgroundColor: "rgba(54, 162, 235, 0.6)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: "Tipo de Desastre"
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: "Número de veces que ocurrió"
+                        }
+                    }
+                }
+            }
+        });
+    }
+
     onMount(() => {
         obtenerDatos();
     });
 
 </script>
 
+<h1>GRÁFICAS HIGHCHARTS</h1>
+
 <h2>Scatter Chart</h2>
 <div id="graficaScatter" style="width: 100%; height: 400px;"></div>
 
 <h2>Column Range Chart</h2>
 <div id="graficaColumnRange" style="width: 100%; height: 400px;"></div>
+
+<h1>GRÁFICAS CHART.JS</h1>
+
+<h2>Disaster Type Chart</h2>
+<canvas id="graficaTiposDesastre" style="width: 100%; height: 400px;"></canvas>
