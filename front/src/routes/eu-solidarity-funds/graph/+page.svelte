@@ -18,7 +18,6 @@
     let datosIniciales = [];
     let scatterData = [];
     let columnRangeData = [];
-    const disasterCounts = {};
 
     let API = "/api/v1/eu-solidarity-funds";
 
@@ -32,13 +31,16 @@
             const data = await response.json();
             datosIniciales = data;
 
+            
             // Llamar a la función de transformación de datos
             transformData();
 
             // Crear las gráficas después de transformar los datos
             crearGraficaScatter();
             crearGraficaColumnRange();
-            crearGraficaTiposDesastre(disasterCounts);
+
+            crearGraficaDisasterType();
+            
         } catch (error) {
             console.error('Error al obtener datos:', error);
         }
@@ -56,15 +58,9 @@
                 high: parseFloat(item.total_direct_damage_accepted.replace(",", "")),
                 low: 0
             });
-
-            const tipoDesastre = item.disaster_type;
-            if (tipoDesastre in disasterCounts) {
-                disasterCounts[tipoDesastre] += 1;
-            } else {
-                disasterCounts[tipoDesastre] = 1;
-            }
         });
     }
+    
 
     function crearGraficaScatter() {
         Highcharts.chart("graficaScatter", {
@@ -118,42 +114,51 @@
         });
     }
 
-    function crearGraficaTiposDesastre(datos) {
-        const ctx = document.getElementById("graficaTiposDesastre").getContext("2d");
+    function crearGraficaDisasterType() {
+        // Datos para la gráfica
+        const datos = {
+            labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
+            datasets: [{
+                label: 'Productos Vendidos',
+                data: [12, 19, 3, 5, 2], // Cantidad de productos vendidos por día
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)', // Color de fondo de las barras
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)', // Color del borde de las barras
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
 
-        const labels = Object.keys(datos);
-        const data = Object.values(datos);
-
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Número de veces que ocurrió",
-                    data: data,
-                    backgroundColor: "rgba(54, 162, 235, 0.6)",
-                    borderColor: "rgba(54, 162, 235, 1)",
-                    borderWidth: 1
-                }]
-            },
+        // Configuración de la gráfica
+        const config = {
+            type: 'bar',
+            data: datos,
             options: {
                 scales: {
                     y: {
-                        title: {
-                            display: true,
-                            text: "Tipo de Desastre"
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: "Número de veces que ocurrió"
-                        }
+                        beginAtZero: true // Empezar en el eje Y desde cero
                     }
                 }
             }
-        });
+        };
+
+        // Crear la instancia de la gráfica
+        var myChart = new Chart(
+            document.getElementById('graficaDisasterType'),
+            config
+        );
     }
+    
 
     onMount(() => {
         obtenerDatos();
@@ -172,4 +177,4 @@
 <h1>GRÁFICAS CHART.JS</h1>
 
 <h2>Disaster Type Chart</h2>
-<canvas id="graficaTiposDesastre" style="width: 100%; height: 400px;"></canvas>
+<canvas id="graficaDisasterType" style="width: 100%; height: 400px;"></canvas>
