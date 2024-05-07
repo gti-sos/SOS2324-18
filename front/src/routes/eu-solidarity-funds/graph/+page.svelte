@@ -7,10 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </svelte:head>
 
-<style>
-    @import '/style.css';
-</style>
-
 <script>
     import { onMount } from "svelte";
     import { dev } from '$app/environment';
@@ -18,6 +14,7 @@
     let datosIniciales = [];
     let scatterData = [];
     let columnRangeData = [];
+    let disasterCounts = {};
 
     let API = "/api/v1/eu-solidarity-funds";
 
@@ -30,23 +27,16 @@
             const response = await fetch(API);
             const data = await response.json();
             datosIniciales = data;
-
-            
-            // Llamar a la función de transformación de datos
             transformData();
-
-            // Crear las gráficas después de transformar los datos
-            crearGraficaScatter();
-            crearGraficaColumnRange();
-
-            crearGraficaDisasterType();
-            
+            crearGraficas();
         } catch (error) {
             console.error('Error al obtener datos:', error);
         }
     }
 
     function transformData() {
+        const disasterCounts = {};
+
         datosIniciales.forEach((item) => {
             scatterData.push({
                 name: item.applicant_country,
@@ -58,9 +48,21 @@
                 high: parseFloat(item.total_direct_damage_accepted.replace(",", "")),
                 low: 0
             });
+
+            const tipoDesastre = item.disaster_type;
+            if (tipoDesastre in disasterCounts) {
+                disasterCounts[tipoDesastre] += 1;
+            } else {
+                disasterCounts[tipoDesastre] = 1;
+            }
         });
     }
     
+    function crearGraficas() {
+        crearGraficaScatter();
+        crearGraficaColumnRange();
+        crearGraficaDisasterType();
+    }
 
     function crearGraficaScatter() {
         Highcharts.chart("graficaScatter", {
@@ -115,50 +117,33 @@
     }
 
     function crearGraficaDisasterType() {
-        // Datos para la gráfica
-        const datos = {
-            labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
-            datasets: [{
-                label: 'Productos Vendidos',
-                data: [12, 19, 3, 5, 2], // Cantidad de productos vendidos por día
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)', // Color de fondo de las barras
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)', // Color del borde de las barras
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
+        const ctx = document.getElementById("graficaDisasterType").getContext("2d");
+    
+        const labels = Object.keys(disasterCounts);
+        const values = Object.values(disasterCounts);
 
-        // Configuración de la gráfica
-        const config = {
+        // Crear la gráfica
+        const myChart = new Chart(ctx, {
             type: 'bar',
-            data: datos,
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de desastres',
+                    data: values,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Color de las barras
+                    borderColor: 'rgba(54, 162, 235, 1)', // Borde de las barras
+                    borderWidth: 1
+                }]
+            },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true // Empezar en el eje Y desde cero
+                        beginAtZero: true // Comenzar el eje y en cero
                     }
                 }
             }
-        };
-
-        // Crear la instancia de la gráfica
-        var myChart = new Chart(
-            document.getElementById('graficaDisasterType'),
-            config
-        );
+        });
     }
-    
 
     onMount(() => {
         obtenerDatos();
@@ -178,3 +163,4 @@
 
 <h2>Disaster Type Chart</h2>
 <canvas id="graficaDisasterType" style="width: 100%; height: 400px;"></canvas>
+
