@@ -38,6 +38,13 @@
         const disasterCounts = {};
 
         datosIniciales.forEach((item) => {
+            const tipoDesastre = item.disaster_type;
+            if (tipoDesastre in disasterCounts) {
+                disasterCounts[tipoDesastre] += 1;
+            } else {
+                disasterCounts[tipoDesastre] = 1;
+            }
+
             scatterData.push({
                 name: item.applicant_country,
                 y: parseFloat(item.cost_of_eligible_emergency.replace(",", ""))
@@ -49,19 +56,42 @@
                 low: 0
             });
 
-            const tipoDesastre = item.disaster_type;
-            if (tipoDesastre in disasterCounts) {
-                disasterCounts[tipoDesastre] += 1;
-            } else {
-                disasterCounts[tipoDesastre] = 1;
-            }
         });
     }
     
     function crearGraficas() {
+        crearGraficaDisasterType();
         crearGraficaScatter();
         crearGraficaColumnRange();
-        crearGraficaDisasterType();
+    }
+
+    function crearGraficaDisasterType() {
+        const ctx = document.getElementById("graficaDisasterType").getContext("2d");
+    
+        const labels = Object.keys(disasterCounts);
+        const values = Object.values(disasterCounts);
+
+        // Crear la gráfica
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de desastres',
+                    data: values,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Color de las barras
+                    borderColor: 'rgba(54, 162, 235, 1)', // Borde de las barras
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true // Comenzar el eje y en cero
+                    }
+                }
+            }
+        });
     }
 
     function crearGraficaScatter() {
@@ -116,40 +146,16 @@
         });
     }
 
-    function crearGraficaDisasterType() {
-        const ctx = document.getElementById("graficaDisasterType").getContext("2d");
-    
-        const labels = Object.keys(disasterCounts);
-        const values = Object.values(disasterCounts);
-
-        // Crear la gráfica
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Cantidad de desastres',
-                    data: values,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Color de las barras
-                    borderColor: 'rgba(54, 162, 235, 1)', // Borde de las barras
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true // Comenzar el eje y en cero
-                    }
-                }
-            }
-        });
-    }
-
     onMount(() => {
         obtenerDatos();
     });
 
 </script>
+
+<h1>GRÁFICAS CHART.JS</h1>
+
+<h2>Disaster Type Chart</h2>
+<canvas id="graficaDisasterType" style="width: 100%; height: 400px;"></canvas>
 
 <h1>GRÁFICAS HIGHCHARTS</h1>
 
@@ -158,9 +164,3 @@
 
 <h2>Column Range Chart</h2>
 <div id="graficaColumnRange" style="width: 100%; height: 400px;"></div>
-
-<h1>GRÁFICAS CHART.JS</h1>
-
-<h2>Disaster Type Chart</h2>
-<canvas id="graficaDisasterType" style="width: 100%; height: 400px;"></canvas>
-
