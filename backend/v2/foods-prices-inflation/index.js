@@ -1,4 +1,7 @@
 const API_BASE = "/api/v2";
+import request from 'request';
+import cors from "cors";
+
 var datos=[
   {
     "id": 1,
@@ -52924,7 +52927,28 @@ const port = (process.env.port || 10000);
 
 app.use(bodyParser.json());*/
 
+
+
 function JGVBackend(app, db){
+    app.use(cors({
+      "origin":"http://localhost:5173",
+      "preflightContinue":false,
+      "optionsSuccessStatus":204
+    }));
+
+    app.use('/proxy',function(req,res) {
+        var url="https://sos2324-18.appspot.com/api/v2/foods-prices-inflation";
+        console.log('piped'+req.url);
+        req.pipe(request(url)).pipe(res);
+        
+        request(url,(error,response,body)=>{
+            if(error)
+              console.log(error)
+            console.log(response)
+            res.send(body);
+        })
+    });
+
     app.get(API_BASE+"/foods-prices-inflation/docs", (req,res)=>{
       res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33015048/2sA35HX1Xu"));
     });
@@ -53121,7 +53145,6 @@ function JGVBackend(app, db){
         console.log(200, "OK");
     });
 
-    
 }
 
 export { JGVBackend };

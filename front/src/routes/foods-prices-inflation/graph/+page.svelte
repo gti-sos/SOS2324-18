@@ -1,5 +1,6 @@
 <svelte:head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 </svelte:head>
 
 <style>
@@ -11,6 +12,7 @@
     Container
     } from '@sveltestrap/sveltestrap';
     import {onMount} from "svelte";
+    import * as echarts from 'echarts';
     import { dev } from "$app/environment";
 
     let ser=[];
@@ -31,6 +33,7 @@
         creaLineas(); 
         graficaColumn(); 
         graficaArea();
+        graficaECharts();
         console.log(data);
     }
 
@@ -126,6 +129,31 @@
         });
     }
 
+    var chartDom;
+    var myChart;
+    async function graficaECharts(){
+        chartDom = document.getElementById('grafica');
+        myChart = echarts.init(chartDom, "dark");
+        const option = {
+            title: {
+                text: 'ECharts - Ejemplo Simple'
+            },
+            tooltip: {},
+            xAxis: {
+                data: cat
+            },
+            yAxis: {},
+            series: [
+                {
+                name: 'Open',
+                type: 'line', // Tipo de gráfico (barras)
+                data: ser[0].data
+                }
+            ]
+        };
+        myChart.setOption(option);
+    }
+
     onMount(() =>{
         getAllFoods();
     });
@@ -134,3 +162,4 @@
 <Container id="containerArea" style="width:100%; height:400px;"></Container>
 <br>
 <Container id="containerC" style="width:100%; height:400px;"></Container>
+<Container id="grafica" style="width:100%; height:400px;"></Container>
