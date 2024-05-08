@@ -14,7 +14,6 @@
     let datosIniciales = [];
     let scatterData = [];
     let columnRangeData = [];
-    let disasterCounts = {};
 
     let API = "/api/v1/eu-solidarity-funds";
 
@@ -35,16 +34,8 @@
     }
 
     function transformData() {
-        const disasterCounts = {};
 
         datosIniciales.forEach((item) => {
-            const tipoDesastre = item.disaster_type;
-            if (tipoDesastre in disasterCounts) {
-                disasterCounts[tipoDesastre] += 1;
-            } else {
-                disasterCounts[tipoDesastre] = 1;
-            }
-
             scatterData.push({
                 name: item.applicant_country,
                 y: parseFloat(item.cost_of_eligible_emergency.replace(",", ""))
@@ -66,6 +57,18 @@
     }
 
     function crearGraficaDisasterType() {
+
+        let disasterCounts = {};
+
+        datosIniciales.forEach((item) => {
+            const tipoDesastre = item.disaster_type;
+                if (tipoDesastre in disasterCounts) {
+                    disasterCounts[tipoDesastre] += 1;
+                } else {
+                    disasterCounts[tipoDesastre] = 1;
+                }
+        })
+
         const ctx = document.getElementById("graficaDisasterType").getContext("2d");
     
         const labels = Object.keys(disasterCounts);
@@ -85,6 +88,8 @@
                 }]
             },
             options: {
+                maintainAspectRatio: true,
+                responsive: false,
                 scales: {
                     y: {
                         beginAtZero: true // Comenzar el eje y en cero
@@ -160,7 +165,7 @@
 <h1>GRÁFICAS HIGHCHARTS</h1>
 
 <h2>Scatter Chart</h2>
-<div id="graficaScatter" style="width: 100%; height: 400px;"></div>
+<div id="graficaScatter" style="width: 100%; height: 400px; background-color: white;"></div>
 
 <h2>Column Range Chart</h2>
 <div id="graficaColumnRange" style="width: 100%; height: 400px;"></div>
