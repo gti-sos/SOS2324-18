@@ -141,3 +141,5 @@ front/node_modules
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+/front/src/routes/integrations/migmormar7/keys

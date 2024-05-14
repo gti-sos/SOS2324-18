@@ -348,7 +348,10 @@
 <Button on:click={loadFunds} color="primary" class="load">Crear Fondos de prueba</Button>
 <Button on:click={deleteAllFunds} color="danger">Eliminar Todos los Fondos</Button>
 <Button href="eu-solidarity-funds/graph" color="success">Gráficos</Button>
-<Button href="../integrations/migmormar7/NASA_API" color="primary">Integracion NASA</Button>
+<p>
+	<!--<Button href="../integrations/migmormar7/NASA_API" color="primary">Uso de API NASA</Button>-->
+	<Button href="../integrations/migmormar7/BaseballAPI" color="primary" style="background-color: purple;">Uso de BaseballAPI</Button>
+</p>
 
 <!-- Formulario de búsqueda con todos los campos disponibles -->
 <form on:submit|preventDefault={searchResources}>
