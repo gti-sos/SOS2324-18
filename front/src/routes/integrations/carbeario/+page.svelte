@@ -389,7 +389,7 @@ async function createIntegrationPib() {
 
 
 
-    let data=await fetch('http://localhost:10000/api/v2/regional-politicies-acceptance/proxy')
+    let data=await fetch('https://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/proxy')
     .then(response => response.json())
 
     data[1].forEach(e=>{
