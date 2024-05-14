@@ -1,4 +1,7 @@
 const API_BASE = "/api/v2";
+import request from 'request';
+import cors from "cors";
+
 var datos=[
   {
     "id": 1,
@@ -11117,9 +11120,9 @@ var datos=[
     "low": 0.52,
     "close": 0.52,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-01-01"
   },
   {
     "id": 1012,
@@ -11128,9 +11131,9 @@ var datos=[
     "low": 0.52,
     "close": 0.53,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-02-01"
   },
   {
     "id": 1013,
@@ -11139,9 +11142,9 @@ var datos=[
     "low": 0.53,
     "close": 0.53,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-03-01"
   },
   {
     "id": 1014,
@@ -11150,9 +11153,9 @@ var datos=[
     "low": 0.52,
     "close": 0.52,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-04-01"
   },
   {
     "id": 1015,
@@ -11161,9 +11164,9 @@ var datos=[
     "low": 0.52,
     "close": 0.52,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-05-01"
   },
   {
     "id": 1016,
@@ -11172,9 +11175,9 @@ var datos=[
     "low": 0.52,
     "close": 0.52,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-06-01"
   },
   {
     "id": 1017,
@@ -11183,9 +11186,9 @@ var datos=[
     "low": 0.51,
     "close": 0.52,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-07-01"
   },
   {
     "id": 1018,
@@ -11194,9 +11197,9 @@ var datos=[
     "low": 0.52,
     "close": 0.52,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-08-01"
   },
   {
     "id": 1019,
@@ -11205,9 +11208,9 @@ var datos=[
     "low": 0.51,
     "close": 0.52,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-09-01"
   },
   {
     "id": 1020,
@@ -11216,9 +11219,9 @@ var datos=[
     "low": 0.51,
     "close": 0.52,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-10-01"
   },
   {
     "id": 1021,
@@ -11227,9 +11230,9 @@ var datos=[
     "low": 0.52,
     "close": 0.53,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-11-01"
   },
   {
     "id": 1022,
@@ -11238,9 +11241,9 @@ var datos=[
     "low": 0.53,
     "close": 0.54,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2007-12-01"
   },
   {
     "id": 1023,
@@ -11249,9 +11252,9 @@ var datos=[
     "low": 0.54,
     "close": 0.56,
     "inflation": 6.8,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-01-01"
   },
   {
     "id": 1024,
@@ -11260,9 +11263,9 @@ var datos=[
     "low": 0.56,
     "close": 0.56,
     "inflation": 5.85,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-02-01"
   },
   {
     "id": 1025,
@@ -11271,9 +11274,9 @@ var datos=[
     "low": 0.56,
     "close": 0.56,
     "inflation": 5.64,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-03-01"
   },
   {
     "id": 1026,
@@ -11282,9 +11285,9 @@ var datos=[
     "low": 0.55,
     "close": 0.55,
     "inflation": 5.71,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-04-01"
   },
   {
     "id": 1027,
@@ -11293,9 +11296,9 @@ var datos=[
     "low": 0.55,
     "close": 0.56,
     "inflation": 7.85,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-05-01"
   },
   {
     "id": 1028,
@@ -11304,9 +11307,9 @@ var datos=[
     "low": 0.56,
     "close": 0.58,
     "inflation": 11.29,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-06-01"
   },
   {
     "id": 1029,
@@ -11315,9 +11318,9 @@ var datos=[
     "low": 0.57,
     "close": 0.59,
     "inflation": 14.24,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-07-01"
   },
   {
     "id": 1030,
@@ -11326,9 +11329,9 @@ var datos=[
     "low": 0.59,
     "close": 0.6,
     "inflation": 14.92,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-08-01"
   },
   {
     "id": 1031,
@@ -11337,9 +11340,9 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": 14.6,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-09-01"
   },
   {
     "id": 1032,
@@ -11348,9 +11351,9 @@ var datos=[
     "low": 0.59,
     "close": 0.6,
     "inflation": 15.66,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-10-01"
   },
   {
     "id": 1033,
@@ -11359,9 +11362,9 @@ var datos=[
     "low": 0.6,
     "close": 0.63,
     "inflation": 18.31,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-11-01"
   },
   {
     "id": 1034,
@@ -11370,9 +11373,9 @@ var datos=[
     "low": 0.63,
     "close": 0.65,
     "inflation": 20.63,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2008-12-01"
   },
   {
     "id": 1035,
@@ -11381,9 +11384,9 @@ var datos=[
     "low": 0.65,
     "close": 0.68,
     "inflation": 22.2,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-01-01"
   },
   {
     "id": 1036,
@@ -11392,9 +11395,9 @@ var datos=[
     "low": 0.68,
     "close": 0.7,
     "inflation": 23.6,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-02-01"
   },
   {
     "id": 1037,
@@ -11403,9 +11406,9 @@ var datos=[
     "low": 0.69,
     "close": 0.71,
     "inflation": 25.87,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-03-01"
   },
   {
     "id": 1038,
@@ -11414,9 +11417,9 @@ var datos=[
     "low": 0.7,
     "close": 0.73,
     "inflation": 31.43,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-04-01"
   },
   {
     "id": 1039,
@@ -11425,9 +11428,9 @@ var datos=[
     "low": 0.69,
     "close": 0.69,
     "inflation": 22.8,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-05-01"
   },
   {
     "id": 1040,
@@ -11436,9 +11439,9 @@ var datos=[
     "low": 0.68,
     "close": 0.68,
     "inflation": 18.05,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-06-01"
   },
   {
     "id": 1041,
@@ -11447,9 +11450,9 @@ var datos=[
     "low": 0.65,
     "close": 0.65,
     "inflation": 10.06,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-07-01"
   },
   {
     "id": 1042,
@@ -11458,9 +11461,9 @@ var datos=[
     "low": 0.64,
     "close": 0.66,
     "inflation": 11.03,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-08-01"
   },
   {
     "id": 1043,
@@ -11469,9 +11472,9 @@ var datos=[
     "low": 0.65,
     "close": 0.66,
     "inflation": 11.26,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-09-01"
   },
   {
     "id": 1044,
@@ -11480,9 +11483,9 @@ var datos=[
     "low": 0.65,
     "close": 0.69,
     "inflation": 13.69,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-10-01"
   },
   {
     "id": 1045,
@@ -11491,9 +11494,9 @@ var datos=[
     "low": 0.68,
     "close": 0.7,
     "inflation": 12.08,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-11-01"
   },
   {
     "id": 1046,
@@ -11502,9 +11505,9 @@ var datos=[
     "low": 0.7,
     "close": 0.72,
     "inflation": 11.14,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2009-12-01"
   },
   {
     "id": 1047,
@@ -11513,9 +11516,9 @@ var datos=[
     "low": 0.72,
     "close": 0.74,
     "inflation": 8.71,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-01-01"
   },
   {
     "id": 1048,
@@ -11524,9 +11527,9 @@ var datos=[
     "low": 0.74,
     "close": 0.75,
     "inflation": 7.3,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-02-01"
   },
   {
     "id": 1049,
@@ -11535,9 +11538,9 @@ var datos=[
     "low": 0.73,
     "close": 0.73,
     "inflation": 4.13,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-03-01"
   },
   {
     "id": 1050,
@@ -11546,9 +11549,9 @@ var datos=[
     "low": 0.72,
     "close": 0.72,
     "inflation": -1.3,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-04-01"
   },
   {
     "id": 1051,
@@ -11557,9 +11560,9 @@ var datos=[
     "low": 0.71,
     "close": 0.71,
     "inflation": 2.75,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-05-01"
   },
   {
     "id": 1052,
@@ -11568,9 +11571,9 @@ var datos=[
     "low": 0.7,
     "close": 0.7,
     "inflation": 2.58,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-06-01"
   },
   {
     "id": 1053,
@@ -11579,9 +11582,9 @@ var datos=[
     "low": 0.69,
     "close": 0.7,
     "inflation": 6.94,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-07-01"
   },
   {
     "id": 1054,
@@ -11590,9 +11593,9 @@ var datos=[
     "low": 0.69,
     "close": 0.69,
     "inflation": 4.61,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-08-01"
   },
   {
     "id": 1055,
@@ -11601,9 +11604,9 @@ var datos=[
     "low": 0.68,
     "close": 0.69,
     "inflation": 4.91,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-09-01"
   },
   {
     "id": 1056,
@@ -11612,9 +11615,9 @@ var datos=[
     "low": 0.69,
     "close": 0.7,
     "inflation": 2.29,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-10-01"
   },
   {
     "id": 1057,
@@ -11623,9 +11626,9 @@ var datos=[
     "low": 0.7,
     "close": 0.71,
     "inflation": 1.36,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-11-01"
   },
   {
     "id": 1058,
@@ -11634,9 +11637,9 @@ var datos=[
     "low": 0.71,
     "close": 0.72,
     "inflation": -0.39,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2010-12-01"
   },
   {
     "id": 1059,
@@ -11645,9 +11648,9 @@ var datos=[
     "low": 0.71,
     "close": 0.75,
     "inflation": 0.8,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-01-01"
   },
   {
     "id": 1060,
@@ -11656,9 +11659,9 @@ var datos=[
     "low": 0.75,
     "close": 0.78,
     "inflation": 4.01,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-02-01"
   },
   {
     "id": 1061,
@@ -11667,9 +11670,9 @@ var datos=[
     "low": 0.78,
     "close": 0.78,
     "inflation": 6.49,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-03-01"
   },
   {
     "id": 1062,
@@ -11678,9 +11681,9 @@ var datos=[
     "low": 0.78,
     "close": 0.79,
     "inflation": 9.14,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-04-01"
   },
   {
     "id": 1063,
@@ -11689,9 +11692,9 @@ var datos=[
     "low": 0.78,
     "close": 0.79,
     "inflation": 10.39,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-05-01"
   },
   {
     "id": 1064,
@@ -11700,9 +11703,9 @@ var datos=[
     "low": 0.78,
     "close": 0.79,
     "inflation": 13.16,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-06-01"
   },
   {
     "id": 1065,
@@ -11711,9 +11714,9 @@ var datos=[
     "low": 0.78,
     "close": 0.81,
     "inflation": 15.82,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-07-01"
   },
   {
     "id": 1066,
@@ -11722,9 +11725,9 @@ var datos=[
     "low": 0.81,
     "close": 0.82,
     "inflation": 18.67,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-08-01"
   },
   {
     "id": 1067,
@@ -11733,9 +11736,9 @@ var datos=[
     "low": 0.82,
     "close": 0.83,
     "inflation": 20.01,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-09-01"
   },
   {
     "id": 1068,
@@ -11744,9 +11747,9 @@ var datos=[
     "low": 0.83,
     "close": 0.84,
     "inflation": 20.16,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-10-01"
   },
   {
     "id": 1069,
@@ -11755,9 +11758,9 @@ var datos=[
     "low": 0.84,
     "close": 0.87,
     "inflation": 22.26,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-11-01"
   },
   {
     "id": 1070,
@@ -11766,9 +11769,9 @@ var datos=[
     "low": 0.87,
     "close": 0.89,
     "inflation": 23.98,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2011-12-01"
   },
   {
     "id": 1071,
@@ -11777,9 +11780,9 @@ var datos=[
     "low": 0.89,
     "close": 0.91,
     "inflation": 21.23,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-01-01"
   },
   {
     "id": 1072,
@@ -11788,9 +11791,9 @@ var datos=[
     "low": 0.91,
     "close": 0.93,
     "inflation": 20.17,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-02-01"
   },
   {
     "id": 1073,
@@ -11799,9 +11802,9 @@ var datos=[
     "low": 0.93,
     "close": 0.95,
     "inflation": 20.9,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-03-01"
   },
   {
     "id": 1074,
@@ -11810,9 +11813,9 @@ var datos=[
     "low": 0.94,
     "close": 0.94,
     "inflation": 19.88,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-04-01"
   },
   {
     "id": 1075,
@@ -11821,9 +11824,9 @@ var datos=[
     "low": 0.93,
     "close": 0.93,
     "inflation": 17.8,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-05-01"
   },
   {
     "id": 1076,
@@ -11832,9 +11835,9 @@ var datos=[
     "low": 0.91,
     "close": 0.92,
     "inflation": 16.6,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-06-01"
   },
   {
     "id": 1077,
@@ -11843,9 +11846,9 @@ var datos=[
     "low": 0.91,
     "close": 0.93,
     "inflation": 14.4,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-07-01"
   },
   {
     "id": 1078,
@@ -11854,9 +11857,9 @@ var datos=[
     "low": 0.91,
     "close": 0.91,
     "inflation": 11.53,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-08-01"
   },
   {
     "id": 1079,
@@ -11865,9 +11868,9 @@ var datos=[
     "low": 0.91,
     "close": 0.92,
     "inflation": 10.6,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-09-01"
   },
   {
     "id": 1080,
@@ -11876,9 +11879,9 @@ var datos=[
     "low": 0.91,
     "close": 0.93,
     "inflation": 9.98,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-10-01"
   },
   {
     "id": 1081,
@@ -11887,9 +11890,9 @@ var datos=[
     "low": 0.92,
     "close": 0.93,
     "inflation": 6.53,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-11-01"
   },
   {
     "id": 1082,
@@ -11898,9 +11901,9 @@ var datos=[
     "low": 0.92,
     "close": 0.93,
     "inflation": 4.88,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2012-12-01"
   },
   {
     "id": 1083,
@@ -11909,9 +11912,9 @@ var datos=[
     "low": 0.93,
     "close": 0.94,
     "inflation": 3.51,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-01-01"
   },
   {
     "id": 1084,
@@ -11920,9 +11923,9 @@ var datos=[
     "low": 0.94,
     "close": 0.94,
     "inflation": 0.33,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-02-01"
   },
   {
     "id": 1085,
@@ -11931,9 +11934,9 @@ var datos=[
     "low": 0.93,
     "close": 0.93,
     "inflation": -1.76,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-03-01"
   },
   {
     "id": 1086,
@@ -11942,9 +11945,9 @@ var datos=[
     "low": 0.92,
     "close": 0.93,
     "inflation": -1.34,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-04-01"
   },
   {
     "id": 1087,
@@ -11953,9 +11956,9 @@ var datos=[
     "low": 0.92,
     "close": 0.93,
     "inflation": 0.16,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-05-01"
   },
   {
     "id": 1088,
@@ -11964,9 +11967,9 @@ var datos=[
     "low": 0.91,
     "close": 0.91,
     "inflation": -0.68,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-06-01"
   },
   {
     "id": 1089,
@@ -11975,9 +11978,9 @@ var datos=[
     "low": 0.9,
     "close": 0.91,
     "inflation": -1.37,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-07-01"
   },
   {
     "id": 1090,
@@ -11986,9 +11989,9 @@ var datos=[
     "low": 0.9,
     "close": 0.92,
     "inflation": 0.05,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-08-01"
   },
   {
     "id": 1091,
@@ -11997,9 +12000,9 @@ var datos=[
     "low": 0.91,
     "close": 0.91,
     "inflation": -0.89,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-09-01"
   },
   {
     "id": 1092,
@@ -12008,9 +12011,9 @@ var datos=[
     "low": 0.91,
     "close": 0.92,
     "inflation": -0.64,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-10-01"
   },
   {
     "id": 1093,
@@ -12019,9 +12022,9 @@ var datos=[
     "low": 0.92,
     "close": 0.93,
     "inflation": -0.22,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-11-01"
   },
   {
     "id": 1094,
@@ -12030,9 +12033,9 @@ var datos=[
     "low": 0.92,
     "close": 0.92,
     "inflation": -1.14,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2013-12-01"
   },
   {
     "id": 1095,
@@ -12041,9 +12044,9 @@ var datos=[
     "low": 0.91,
     "close": 0.93,
     "inflation": -1.05,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-01-01"
   },
   {
     "id": 1096,
@@ -12052,9 +12055,9 @@ var datos=[
     "low": 0.92,
     "close": 0.93,
     "inflation": -0.3,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-02-01"
   },
   {
     "id": 1097,
@@ -12063,9 +12066,9 @@ var datos=[
     "low": 0.92,
     "close": 0.92,
     "inflation": -1.38,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-03-01"
   },
   {
     "id": 1098,
@@ -12074,9 +12077,9 @@ var datos=[
     "low": 0.87,
     "close": 0.87,
     "inflation": -5.92,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-04-01"
   },
   {
     "id": 1099,
@@ -12085,9 +12088,9 @@ var datos=[
     "low": 0.85,
     "close": 0.9,
     "inflation": -3.25,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-05-01"
   },
   {
     "id": 1100,
@@ -12096,9 +12099,9 @@ var datos=[
     "low": 0.88,
     "close": 0.88,
     "inflation": -4.14,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-06-01"
   },
   {
     "id": 1101,
@@ -12107,9 +12110,9 @@ var datos=[
     "low": 0.86,
     "close": 0.86,
     "inflation": -5.72,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-07-01"
   },
   {
     "id": 1102,
@@ -12118,9 +12121,9 @@ var datos=[
     "low": 0.84,
     "close": 0.85,
     "inflation": -6.62,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-08-01"
   },
   {
     "id": 1103,
@@ -12129,9 +12132,9 @@ var datos=[
     "low": 0.84,
     "close": 0.85,
     "inflation": -6.9,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-09-01"
   },
   {
     "id": 1104,
@@ -12140,9 +12143,9 @@ var datos=[
     "low": 0.84,
     "close": 0.85,
     "inflation": -7.33,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-10-01"
   },
   {
     "id": 1105,
@@ -12151,9 +12154,9 @@ var datos=[
     "low": 0.85,
     "close": 0.86,
     "inflation": -6.8,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-11-01"
   },
   {
     "id": 1106,
@@ -12162,9 +12165,9 @@ var datos=[
     "low": 0.86,
     "close": 0.86,
     "inflation": -6.45,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2014-12-01"
   },
   {
     "id": 1107,
@@ -12173,9 +12176,9 @@ var datos=[
     "low": 0.85,
     "close": 0.85,
     "inflation": -8.27,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-01-01"
   },
   {
     "id": 1108,
@@ -12184,9 +12187,9 @@ var datos=[
     "low": 0.84,
     "close": 0.86,
     "inflation": -7.9,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-02-01"
   },
   {
     "id": 1109,
@@ -12195,9 +12198,9 @@ var datos=[
     "low": 0.85,
     "close": 0.86,
     "inflation": -5.69,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-03-01"
   },
   {
     "id": 1110,
@@ -12206,9 +12209,9 @@ var datos=[
     "low": 0.86,
     "close": 0.86,
     "inflation": -1.06,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-04-01"
   },
   {
     "id": 1111,
@@ -12217,9 +12220,9 @@ var datos=[
     "low": 0.85,
     "close": 0.85,
     "inflation": -4.82,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-05-01"
   },
   {
     "id": 1112,
@@ -12228,9 +12231,9 @@ var datos=[
     "low": 0.83,
     "close": 0.83,
     "inflation": -4.96,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-06-01"
   },
   {
     "id": 1113,
@@ -12239,9 +12242,9 @@ var datos=[
     "low": 0.82,
     "close": 0.83,
     "inflation": -3.78,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-07-01"
   },
   {
     "id": 1114,
@@ -12250,9 +12253,9 @@ var datos=[
     "low": 0.8,
     "close": 0.8,
     "inflation": -6.8,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-08-01"
   },
   {
     "id": 1115,
@@ -12261,9 +12264,9 @@ var datos=[
     "low": 0.78,
     "close": 0.8,
     "inflation": -6.08,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-09-01"
   },
   {
     "id": 1116,
@@ -12272,9 +12275,9 @@ var datos=[
     "low": 0.79,
     "close": 0.81,
     "inflation": -5.29,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-10-01"
   },
   {
     "id": 1117,
@@ -12283,9 +12286,9 @@ var datos=[
     "low": 0.8,
     "close": 0.8,
     "inflation": -7.4,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-11-01"
   },
   {
     "id": 1118,
@@ -12294,9 +12297,9 @@ var datos=[
     "low": 0.79,
     "close": 0.82,
     "inflation": -4.68,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2015-12-01"
   },
   {
     "id": 1119,
@@ -12305,9 +12308,9 @@ var datos=[
     "low": 0.82,
     "close": 0.83,
     "inflation": -3.01,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-01-01"
   },
   {
     "id": 1120,
@@ -12316,9 +12319,9 @@ var datos=[
     "low": 0.82,
     "close": 0.83,
     "inflation": -3.91,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-02-01"
   },
   {
     "id": 1121,
@@ -12327,9 +12330,9 @@ var datos=[
     "low": 0.82,
     "close": 0.82,
     "inflation": -5.08,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-03-01"
   },
   {
     "id": 1122,
@@ -12338,9 +12341,9 @@ var datos=[
     "low": 0.81,
     "close": 0.83,
     "inflation": -3.52,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-04-01"
   },
   {
     "id": 1123,
@@ -12349,9 +12352,9 @@ var datos=[
     "low": 0.83,
     "close": 0.84,
     "inflation": -1.5,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-05-01"
   },
   {
     "id": 1124,
@@ -12360,9 +12363,9 @@ var datos=[
     "low": 0.81,
     "close": 0.81,
     "inflation": -2.46,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-06-01"
   },
   {
     "id": 1125,
@@ -12371,9 +12374,9 @@ var datos=[
     "low": 0.8,
     "close": 0.83,
     "inflation": 0.76,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-07-01"
   },
   {
     "id": 1126,
@@ -12382,9 +12385,9 @@ var datos=[
     "low": 0.81,
     "close": 0.81,
     "inflation": 1.88,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-08-01"
   },
   {
     "id": 1127,
@@ -12393,9 +12396,9 @@ var datos=[
     "low": 0.8,
     "close": 0.85,
     "inflation": 6.57,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-09-01"
   },
   {
     "id": 1128,
@@ -12404,9 +12407,9 @@ var datos=[
     "low": 0.83,
     "close": 0.83,
     "inflation": 2.44,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-10-01"
   },
   {
     "id": 1129,
@@ -12415,9 +12418,9 @@ var datos=[
     "low": 0.81,
     "close": 0.87,
     "inflation": 8.56,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-11-01"
   },
   {
     "id": 1130,
@@ -12426,9 +12429,9 @@ var datos=[
     "low": 0.86,
     "close": 0.88,
     "inflation": 7.58,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2016-12-01"
   },
   {
     "id": 1131,
@@ -12437,9 +12440,9 @@ var datos=[
     "low": 0.88,
     "close": 0.9,
     "inflation": 8.86,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-01-01"
   },
   {
     "id": 1132,
@@ -12448,9 +12451,9 @@ var datos=[
     "low": 0.9,
     "close": 0.92,
     "inflation": 11.24,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-02-01"
   },
   {
     "id": 1133,
@@ -12459,9 +12462,9 @@ var datos=[
     "low": 0.91,
     "close": 0.93,
     "inflation": 13.11,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-03-01"
   },
   {
     "id": 1134,
@@ -12470,9 +12473,9 @@ var datos=[
     "low": 0.93,
     "close": 0.94,
     "inflation": 12.55,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-04-01"
   },
   {
     "id": 1135,
@@ -12481,9 +12484,9 @@ var datos=[
     "low": 0.87,
     "close": 0.87,
     "inflation": 2.94,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-05-01"
   },
   {
     "id": 1136,
@@ -12492,9 +12495,9 @@ var datos=[
     "low": 0.84,
     "close": 0.9,
     "inflation": 10.12,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-06-01"
   },
   {
     "id": 1137,
@@ -12503,9 +12506,9 @@ var datos=[
     "low": 0.88,
     "close": 0.9,
     "inflation": 8.03,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-07-01"
   },
   {
     "id": 1138,
@@ -12514,9 +12517,9 @@ var datos=[
     "low": 0.9,
     "close": 0.95,
     "inflation": 16.65,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-08-01"
   },
   {
     "id": 1139,
@@ -12525,9 +12528,9 @@ var datos=[
     "low": 0.94,
     "close": 0.99,
     "inflation": 16.9,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-09-01"
   },
   {
     "id": 1140,
@@ -12536,9 +12539,9 @@ var datos=[
     "low": 0.99,
     "close": 0.99,
     "inflation": 20,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-10-01"
   },
   {
     "id": 1141,
@@ -12547,9 +12550,9 @@ var datos=[
     "low": 0.99,
     "close": 1.02,
     "inflation": 17.23,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-11-01"
   },
   {
     "id": 1142,
@@ -12558,9 +12561,9 @@ var datos=[
     "low": 1.01,
     "close": 1.01,
     "inflation": 14.27,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2017-12-01"
   },
   {
     "id": 1143,
@@ -12569,9 +12572,9 @@ var datos=[
     "low": 1,
     "close": 1,
     "inflation": 10.95,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-01-01"
   },
   {
     "id": 1144,
@@ -12580,9 +12583,9 @@ var datos=[
     "low": 0.99,
     "close": 1.02,
     "inflation": 10.65,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-02-01"
   },
   {
     "id": 1145,
@@ -12591,9 +12594,9 @@ var datos=[
     "low": 1.01,
     "close": 1.03,
     "inflation": 11.44,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-03-01"
   },
   {
     "id": 1146,
@@ -12602,9 +12605,9 @@ var datos=[
     "low": 1.03,
     "close": 1.07,
     "inflation": 13.69,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-04-01"
   },
   {
     "id": 1147,
@@ -12613,9 +12616,9 @@ var datos=[
     "low": 1.07,
     "close": 1.08,
     "inflation": 24.34,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-05-01"
   },
   {
     "id": 1148,
@@ -12624,9 +12627,9 @@ var datos=[
     "low": 1.07,
     "close": 1.1,
     "inflation": 22.46,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-06-01"
   },
   {
     "id": 1149,
@@ -12635,9 +12638,9 @@ var datos=[
     "low": 1.08,
     "close": 1.08,
     "inflation": 19.69,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-07-01"
   },
   {
     "id": 1150,
@@ -12646,9 +12649,9 @@ var datos=[
     "low": 1.06,
     "close": 1.06,
     "inflation": 11.48,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-08-01"
   },
   {
     "id": 1151,
@@ -12657,9 +12660,9 @@ var datos=[
     "low": 1.04,
     "close": 1.05,
     "inflation": 5.64,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-09-01"
   },
   {
     "id": 1152,
@@ -12668,9 +12671,9 @@ var datos=[
     "low": 1.03,
     "close": 1.06,
     "inflation": 6.89,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-10-01"
   },
   {
     "id": 1153,
@@ -12679,9 +12682,9 @@ var datos=[
     "low": 1.06,
     "close": 1.1,
     "inflation": 8.18,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-11-01"
   },
   {
     "id": 1154,
@@ -12690,9 +12693,9 @@ var datos=[
     "low": 1.1,
     "close": 1.1,
     "inflation": 9.02,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2018-12-01"
   },
   {
     "id": 1155,
@@ -12701,9 +12704,9 @@ var datos=[
     "low": 1.1,
     "close": 1.12,
     "inflation": 12.15,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-01-01"
   },
   {
     "id": 1156,
@@ -12712,9 +12715,9 @@ var datos=[
     "low": 1.1,
     "close": 1.1,
     "inflation": 8.44,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-02-01"
   },
   {
     "id": 1157,
@@ -12723,9 +12726,9 @@ var datos=[
     "low": 1.07,
     "close": 1.07,
     "inflation": 3.98,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-03-01"
   },
   {
     "id": 1158,
@@ -12734,9 +12737,9 @@ var datos=[
     "low": 1.05,
     "close": 1.1,
     "inflation": 3.24,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-04-01"
   },
   {
     "id": 1159,
@@ -12745,9 +12748,9 @@ var datos=[
     "low": 1.08,
     "close": 1.08,
     "inflation": 0.79,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-05-01"
   },
   {
     "id": 1160,
@@ -12756,9 +12759,9 @@ var datos=[
     "low": 1.07,
     "close": 1.11,
     "inflation": 1.29,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-06-01"
   },
   {
     "id": 1161,
@@ -12767,9 +12770,9 @@ var datos=[
     "low": 1.09,
     "close": 1.09,
     "inflation": 1.23,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-07-01"
   },
   {
     "id": 1162,
@@ -12778,9 +12781,9 @@ var datos=[
     "low": 1.08,
     "close": 1.09,
     "inflation": 3.4,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-08-01"
   },
   {
     "id": 1163,
@@ -12789,9 +12792,9 @@ var datos=[
     "low": 1.07,
     "close": 1.07,
     "inflation": 2.19,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-09-01"
   },
   {
     "id": 1164,
@@ -12800,9 +12803,9 @@ var datos=[
     "low": 1.05,
     "close": 1.06,
     "inflation": 0.04,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-10-01"
   },
   {
     "id": 1165,
@@ -12811,9 +12814,9 @@ var datos=[
     "low": 1.05,
     "close": 1.08,
     "inflation": -1.71,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-11-01"
   },
   {
     "id": 1166,
@@ -12822,9 +12825,9 @@ var datos=[
     "low": 1.07,
     "close": 1.09,
     "inflation": -1,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2019-12-01"
   },
   {
     "id": 1167,
@@ -12833,9 +12836,9 @@ var datos=[
     "low": 1.09,
     "close": 1.11,
     "inflation": -0.62,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-01-01"
   },
   {
     "id": 1168,
@@ -12844,9 +12847,9 @@ var datos=[
     "low": 1.11,
     "close": 1.14,
     "inflation": 3.24,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-02-01"
   },
   {
     "id": 1169,
@@ -12855,9 +12858,9 @@ var datos=[
     "low": 1.14,
     "close": 1.19,
     "inflation": 10.96,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-03-01"
   },
   {
     "id": 1170,
@@ -12866,9 +12869,9 @@ var datos=[
     "low": 1.18,
     "close": 1.18,
     "inflation": 6.81,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-04-01"
   },
   {
     "id": 1171,
@@ -12877,9 +12880,9 @@ var datos=[
     "low": 1.16,
     "close": 1.16,
     "inflation": 6.82,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-05-01"
   },
   {
     "id": 1172,
@@ -12888,9 +12891,9 @@ var datos=[
     "low": 1.14,
     "close": 1.17,
     "inflation": 5.48,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-06-01"
   },
   {
     "id": 1173,
@@ -12899,9 +12902,9 @@ var datos=[
     "low": 1.16,
     "close": 1.2,
     "inflation": 9.5,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-07-01"
   },
   {
     "id": 1174,
@@ -12910,9 +12913,9 @@ var datos=[
     "low": 1.16,
     "close": 1.16,
     "inflation": 6.47,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-08-01"
   },
   {
     "id": 1175,
@@ -12921,9 +12924,9 @@ var datos=[
     "low": 1.13,
     "close": 1.13,
     "inflation": 5.11,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-09-01"
   },
   {
     "id": 1176,
@@ -12932,9 +12935,9 @@ var datos=[
     "low": 1.1,
     "close": 1.13,
     "inflation": 5.86,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-10-01"
   },
   {
     "id": 1177,
@@ -12943,9 +12946,9 @@ var datos=[
     "low": 1.11,
     "close": 1.16,
     "inflation": 6.97,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-11-01"
   },
   {
     "id": 1178,
@@ -12954,9 +12957,9 @@ var datos=[
     "low": 1.15,
     "close": 1.16,
     "inflation": 6.29,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2020-12-01"
   },
   {
     "id": 1179,
@@ -12965,9 +12968,9 @@ var datos=[
     "low": 1.15,
     "close": 1.15,
     "inflation": 3.51,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-01-01"
   },
   {
     "id": 1180,
@@ -12976,9 +12979,9 @@ var datos=[
     "low": 1.14,
     "close": 1.16,
     "inflation": 2.44,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-02-01"
   },
   {
     "id": 1181,
@@ -12987,9 +12990,9 @@ var datos=[
     "low": 1.15,
     "close": 1.17,
     "inflation": -2.07,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-03-01"
   },
   {
     "id": 1182,
@@ -12998,9 +13001,9 @@ var datos=[
     "low": 1.16,
     "close": 1.17,
     "inflation": -0.44,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-04-01"
   },
   {
     "id": 1183,
@@ -13009,9 +13012,9 @@ var datos=[
     "low": 1.14,
     "close": 1.14,
     "inflation": -1.95,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-05-01"
   },
   {
     "id": 1184,
@@ -13020,9 +13023,9 @@ var datos=[
     "low": 1.12,
     "close": 1.12,
     "inflation": -4.78,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-06-01"
   },
   {
     "id": 1185,
@@ -13031,9 +13034,9 @@ var datos=[
     "low": 1.09,
     "close": 1.13,
     "inflation": -5.32,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-07-01"
   },
   {
     "id": 1186,
@@ -13042,9 +13045,9 @@ var datos=[
     "low": 1.12,
     "close": 1.15,
     "inflation": -1.33,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-08-01"
   },
   {
     "id": 1187,
@@ -13053,9 +13056,9 @@ var datos=[
     "low": 1.14,
     "close": 1.15,
     "inflation": 1.83,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-09-01"
   },
   {
     "id": 1188,
@@ -13064,9 +13067,9 @@ var datos=[
     "low": 1.14,
     "close": 1.15,
     "inflation": 1.87,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-10-01"
   },
   {
     "id": 1189,
@@ -13075,9 +13078,9 @@ var datos=[
     "low": 1.14,
     "close": 1.15,
     "inflation": -0.86,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-11-01"
   },
   {
     "id": 1190,
@@ -13086,9 +13089,9 @@ var datos=[
     "low": 1.14,
     "close": 1.19,
     "inflation": 2.54,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2021-12-01"
   },
   {
     "id": 1191,
@@ -13097,9 +13100,9 @@ var datos=[
     "low": 1.19,
     "close": 1.22,
     "inflation": 5.89,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-01-01"
   },
   {
     "id": 1192,
@@ -13108,9 +13111,9 @@ var datos=[
     "low": 1.22,
     "close": 1.24,
     "inflation": 6.41,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-02-01"
   },
   {
     "id": 1193,
@@ -13119,9 +13122,9 @@ var datos=[
     "low": 1.23,
     "close": 1.26,
     "inflation": 7.99,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-03-01"
   },
   {
     "id": 1194,
@@ -13130,9 +13133,9 @@ var datos=[
     "low": 1.25,
     "close": 1.31,
     "inflation": 11.43,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-04-01"
   },
   {
     "id": 1195,
@@ -13141,9 +13144,9 @@ var datos=[
     "low": 1.3,
     "close": 1.32,
     "inflation": 16.55,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-05-01"
   },
   {
     "id": 1196,
@@ -13152,9 +13155,9 @@ var datos=[
     "low": 1.32,
     "close": 1.34,
     "inflation": 19.8,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-06-01"
   },
   {
     "id": 1197,
@@ -13163,9 +13166,9 @@ var datos=[
     "low": 1.33,
     "close": 1.34,
     "inflation": 18.65,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-07-01"
   },
   {
     "id": 1198,
@@ -13174,9 +13177,9 @@ var datos=[
     "low": 1.32,
     "close": 1.32,
     "inflation": 15.54,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-08-01"
   },
   {
     "id": 1199,
@@ -13185,9 +13188,9 @@ var datos=[
     "low": 1.31,
     "close": 1.33,
     "inflation": 16.13,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-09-01"
   },
   {
     "id": 1200,
@@ -13196,9 +13199,9 @@ var datos=[
     "low": 1.32,
     "close": 1.41,
     "inflation": 23.17,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-10-01"
   },
   {
     "id": 1201,
@@ -13207,9 +13210,9 @@ var datos=[
     "low": 1.41,
     "close": 1.41,
     "inflation": 23.31,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-11-01"
   },
   {
     "id": 1202,
@@ -13218,9 +13221,9 @@ var datos=[
     "low": 1.4,
     "close": 1.41,
     "inflation": 18.77,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2022-12-01"
   },
   {
     "id": 1203,
@@ -13229,9 +13232,9 @@ var datos=[
     "low": 1.39,
     "close": 1.39,
     "inflation": 14.09,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-01-01"
   },
   {
     "id": 1204,
@@ -13240,9 +13243,9 @@ var datos=[
     "low": 1.37,
     "close": 1.45,
     "inflation": 17.31,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-02-01"
   },
   {
     "id": 1205,
@@ -13251,9 +13254,9 @@ var datos=[
     "low": 1.45,
     "close": 1.47,
     "inflation": 16.39,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-03-01"
   },
   {
     "id": 1206,
@@ -13262,9 +13265,9 @@ var datos=[
     "low": 1.46,
     "close": 1.48,
     "inflation": 13.22,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-04-01"
   },
   {
     "id": 1207,
@@ -13273,9 +13276,9 @@ var datos=[
     "low": 1.47,
     "close": 1.47,
     "inflation": 11.37,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-05-01"
   },
   {
     "id": 1208,
@@ -13284,9 +13287,9 @@ var datos=[
     "low": 1.45,
     "close": 1.49,
     "inflation": 11.47,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-06-01"
   },
   {
     "id": 1209,
@@ -13295,9 +13298,9 @@ var datos=[
     "low": 1.48,
     "close": 1.5,
     "inflation": 11.77,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-07-01"
   },
   {
     "id": 1210,
@@ -13306,9 +13309,9 @@ var datos=[
     "low": 1.49,
     "close": 1.51,
     "inflation": 13.64,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-08-01"
   },
   {
     "id": 1211,
@@ -13317,9 +13320,9 @@ var datos=[
     "low": 1.5,
     "close": 1.51,
     "inflation": 13.47,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-09-01"
   },
   {
     "id": 1212,
@@ -13328,9 +13331,9 @@ var datos=[
     "low": 1.5,
     "close": 1.54,
     "inflation": 8.84,
-    "country": "Congo",
-    "iso3": "Dem. Rep.",
-    "date": "COD"
+    "country": "Congo, Dem. Rep.",
+    "iso3": "COD",
+    "date": "2023-10-01"
   },
   {
     "id": 1213,
@@ -13339,9 +13342,9 @@ var datos=[
     "low": 0.87,
     "close": 0.88,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-01-01"
   },
   {
     "id": 1214,
@@ -13350,9 +13353,9 @@ var datos=[
     "low": 0.87,
     "close": 0.87,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-02-01"
   },
   {
     "id": 1215,
@@ -13361,9 +13364,9 @@ var datos=[
     "low": 0.86,
     "close": 0.86,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-03-01"
   },
   {
     "id": 1216,
@@ -13372,9 +13375,9 @@ var datos=[
     "low": 0.85,
     "close": 0.88,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-04-01"
   },
   {
     "id": 1217,
@@ -13383,9 +13386,9 @@ var datos=[
     "low": 0.87,
     "close": 0.87,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-05-01"
   },
   {
     "id": 1218,
@@ -13394,9 +13397,9 @@ var datos=[
     "low": 0.86,
     "close": 0.87,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-06-01"
   },
   {
     "id": 1219,
@@ -13405,9 +13408,9 @@ var datos=[
     "low": 0.86,
     "close": 0.86,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-07-01"
   },
   {
     "id": 1220,
@@ -13416,9 +13419,9 @@ var datos=[
     "low": 0.85,
     "close": 0.87,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-08-01"
   },
   {
     "id": 1221,
@@ -13427,9 +13430,9 @@ var datos=[
     "low": 0.86,
     "close": 0.88,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-09-01"
   },
   {
     "id": 1222,
@@ -13438,9 +13441,9 @@ var datos=[
     "low": 0.86,
     "close": 0.89,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-10-01"
   },
   {
     "id": 1223,
@@ -13449,9 +13452,9 @@ var datos=[
     "low": 0.87,
     "close": 0.89,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-11-01"
   },
   {
     "id": 1224,
@@ -13460,9 +13463,9 @@ var datos=[
     "low": 0.88,
     "close": 0.89,
     "inflation": "",
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2011-12-01"
   },
   {
     "id": 1225,
@@ -13471,9 +13474,9 @@ var datos=[
     "low": 0.88,
     "close": 0.88,
     "inflation": -0.96,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-01-01"
   },
   {
     "id": 1226,
@@ -13482,9 +13485,9 @@ var datos=[
     "low": 0.86,
     "close": 0.88,
     "inflation": 0.11,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-02-01"
   },
   {
     "id": 1227,
@@ -13493,9 +13496,9 @@ var datos=[
     "low": 0.86,
     "close": 0.87,
     "inflation": 1.92,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-03-01"
   },
   {
     "id": 1228,
@@ -13504,9 +13507,9 @@ var datos=[
     "low": 0.86,
     "close": 0.88,
     "inflation": -0.32,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-04-01"
   },
   {
     "id": 1229,
@@ -13515,9 +13518,9 @@ var datos=[
     "low": 0.86,
     "close": 0.86,
     "inflation": -1.17,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-05-01"
   },
   {
     "id": 1230,
@@ -13526,9 +13529,9 @@ var datos=[
     "low": 0.85,
     "close": 0.85,
     "inflation": -2.66,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-06-01"
   },
   {
     "id": 1231,
@@ -13537,9 +13540,9 @@ var datos=[
     "low": 0.84,
     "close": 0.86,
     "inflation": -0.06,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-07-01"
   },
   {
     "id": 1232,
@@ -13548,9 +13551,9 @@ var datos=[
     "low": 0.85,
     "close": 0.85,
     "inflation": -2.53,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-08-01"
   },
   {
     "id": 1233,
@@ -13559,9 +13562,9 @@ var datos=[
     "low": 0.84,
     "close": 0.88,
     "inflation": -0.03,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-09-01"
   },
   {
     "id": 1234,
@@ -13570,9 +13573,9 @@ var datos=[
     "low": 0.86,
     "close": 0.87,
     "inflation": -1.53,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-10-01"
   },
   {
     "id": 1235,
@@ -13581,9 +13584,9 @@ var datos=[
     "low": 0.86,
     "close": 0.87,
     "inflation": -2.83,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-11-01"
   },
   {
     "id": 1236,
@@ -13592,9 +13595,9 @@ var datos=[
     "low": 0.86,
     "close": 0.89,
     "inflation": 0.55,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2012-12-01"
   },
   {
     "id": 1237,
@@ -13603,9 +13606,9 @@ var datos=[
     "low": 0.88,
     "close": 0.89,
     "inflation": 2.11,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-01-01"
   },
   {
     "id": 1238,
@@ -13614,9 +13617,9 @@ var datos=[
     "low": 0.88,
     "close": 0.88,
     "inflation": 0.23,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-02-01"
   },
   {
     "id": 1239,
@@ -13625,9 +13628,9 @@ var datos=[
     "low": 0.85,
     "close": 0.85,
     "inflation": -2.25,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-03-01"
   },
   {
     "id": 1240,
@@ -13636,9 +13639,9 @@ var datos=[
     "low": 0.84,
     "close": 0.87,
     "inflation": -0.39,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-04-01"
   },
   {
     "id": 1241,
@@ -13647,9 +13650,9 @@ var datos=[
     "low": 0.86,
     "close": 0.88,
     "inflation": 1.46,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-05-01"
   },
   {
     "id": 1242,
@@ -13658,9 +13661,9 @@ var datos=[
     "low": 0.87,
     "close": 0.88,
     "inflation": 3.18,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-06-01"
   },
   {
     "id": 1243,
@@ -13669,9 +13672,9 @@ var datos=[
     "low": 0.87,
     "close": 0.88,
     "inflation": 2.55,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-07-01"
   },
   {
     "id": 1244,
@@ -13680,9 +13683,9 @@ var datos=[
     "low": 0.87,
     "close": 0.91,
     "inflation": 6.68,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-08-01"
   },
   {
     "id": 1245,
@@ -13691,9 +13694,9 @@ var datos=[
     "low": 0.9,
     "close": 0.92,
     "inflation": 5.57,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-09-01"
   },
   {
     "id": 1246,
@@ -13702,9 +13705,9 @@ var datos=[
     "low": 0.91,
     "close": 0.95,
     "inflation": 8.9,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-10-01"
   },
   {
     "id": 1247,
@@ -13713,9 +13716,9 @@ var datos=[
     "low": 0.93,
     "close": 0.93,
     "inflation": 7.57,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-11-01"
   },
   {
     "id": 1248,
@@ -13724,9 +13727,9 @@ var datos=[
     "low": 0.92,
     "close": 0.92,
     "inflation": 3.58,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2013-12-01"
   },
   {
     "id": 1249,
@@ -13735,9 +13738,9 @@ var datos=[
     "low": 0.91,
     "close": 0.91,
     "inflation": 1.3,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-01-01"
   },
   {
     "id": 1250,
@@ -13746,9 +13749,9 @@ var datos=[
     "low": 0.89,
     "close": 0.92,
     "inflation": 4.47,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-02-01"
   },
   {
     "id": 1251,
@@ -13757,9 +13760,9 @@ var datos=[
     "low": 0.91,
     "close": 0.92,
     "inflation": 7.71,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-03-01"
   },
   {
     "id": 1252,
@@ -13768,9 +13771,9 @@ var datos=[
     "low": 0.91,
     "close": 0.93,
     "inflation": 6.06,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-04-01"
   },
   {
     "id": 1253,
@@ -13779,9 +13782,9 @@ var datos=[
     "low": 0.91,
     "close": 0.92,
     "inflation": 5.52,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-05-01"
   },
   {
     "id": 1254,
@@ -13790,9 +13793,9 @@ var datos=[
     "low": 0.91,
     "close": 0.93,
     "inflation": 5.48,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-06-01"
   },
   {
     "id": 1255,
@@ -13801,9 +13804,9 @@ var datos=[
     "low": 0.91,
     "close": 0.93,
     "inflation": 4.78,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-07-01"
   },
   {
     "id": 1256,
@@ -13812,9 +13815,9 @@ var datos=[
     "low": 0.91,
     "close": 0.91,
     "inflation": 0.59,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-08-01"
   },
   {
     "id": 1257,
@@ -13823,9 +13826,9 @@ var datos=[
     "low": 0.89,
     "close": 0.89,
     "inflation": -3.82,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-09-01"
   },
   {
     "id": 1258,
@@ -13834,9 +13837,9 @@ var datos=[
     "low": 0.88,
     "close": 0.89,
     "inflation": -6.59,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-10-01"
   },
   {
     "id": 1259,
@@ -13845,9 +13848,9 @@ var datos=[
     "low": 0.88,
     "close": 0.89,
     "inflation": -4.27,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-11-01"
   },
   {
     "id": 1260,
@@ -13856,9 +13859,9 @@ var datos=[
     "low": 0.88,
     "close": 0.95,
     "inflation": 2.36,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2014-12-01"
   },
   {
     "id": 1261,
@@ -13867,9 +13870,9 @@ var datos=[
     "low": 0.92,
     "close": 0.92,
     "inflation": 2.08,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-01-01"
   },
   {
     "id": 1262,
@@ -13878,9 +13881,9 @@ var datos=[
     "low": 0.89,
     "close": 0.89,
     "inflation": -3.12,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-02-01"
   },
   {
     "id": 1263,
@@ -13889,9 +13892,9 @@ var datos=[
     "low": 0.88,
     "close": 0.88,
     "inflation": -4.73,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-03-01"
   },
   {
     "id": 1264,
@@ -13900,9 +13903,9 @@ var datos=[
     "low": 0.87,
     "close": 0.89,
     "inflation": -3.55,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-04-01"
   },
   {
     "id": 1265,
@@ -13911,9 +13914,9 @@ var datos=[
     "low": 0.88,
     "close": 0.9,
     "inflation": -3.1,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-05-01"
   },
   {
     "id": 1266,
@@ -13922,9 +13925,9 @@ var datos=[
     "low": 0.89,
     "close": 0.89,
     "inflation": -4.03,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-06-01"
   },
   {
     "id": 1267,
@@ -13933,9 +13936,9 @@ var datos=[
     "low": 0.88,
     "close": 0.9,
     "inflation": -2.34,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-07-01"
   },
   {
     "id": 1268,
@@ -13944,9 +13947,9 @@ var datos=[
     "low": 0.89,
     "close": 0.91,
     "inflation": -0.53,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-08-01"
   },
   {
     "id": 1269,
@@ -13955,9 +13958,9 @@ var datos=[
     "low": 0.9,
     "close": 0.91,
     "inflation": 2.29,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-09-01"
   },
   {
     "id": 1270,
@@ -13966,9 +13969,9 @@ var datos=[
     "low": 0.9,
     "close": 0.91,
     "inflation": 2.8,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-10-01"
   },
   {
     "id": 1271,
@@ -13977,9 +13980,9 @@ var datos=[
     "low": 0.9,
     "close": 0.91,
     "inflation": 1.75,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-11-01"
   },
   {
     "id": 1272,
@@ -13988,9 +13991,9 @@ var datos=[
     "low": 0.9,
     "close": 0.92,
     "inflation": -2.88,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2015-12-01"
   },
   {
     "id": 1273,
@@ -13999,9 +14002,9 @@ var datos=[
     "low": 0.91,
     "close": 0.91,
     "inflation": -1.78,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-01-01"
   },
   {
     "id": 1274,
@@ -14010,9 +14013,9 @@ var datos=[
     "low": 0.9,
     "close": 0.91,
     "inflation": 2.27,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-02-01"
   },
   {
     "id": 1275,
@@ -14021,9 +14024,9 @@ var datos=[
     "low": 0.9,
     "close": 0.91,
     "inflation": 3.52,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-03-01"
   },
   {
     "id": 1276,
@@ -14032,9 +14035,9 @@ var datos=[
     "low": 0.9,
     "close": 0.92,
     "inflation": 2.86,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-04-01"
   },
   {
     "id": 1277,
@@ -14043,9 +14046,9 @@ var datos=[
     "low": 0.9,
     "close": 0.9,
     "inflation": 0.44,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-05-01"
   },
   {
     "id": 1278,
@@ -14054,9 +14057,9 @@ var datos=[
     "low": 0.89,
     "close": 0.91,
     "inflation": 2.58,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-06-01"
   },
   {
     "id": 1279,
@@ -14065,9 +14068,9 @@ var datos=[
     "low": 0.9,
     "close": 0.9,
     "inflation": -0.71,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-07-01"
   },
   {
     "id": 1280,
@@ -14076,9 +14079,9 @@ var datos=[
     "low": 0.89,
     "close": 0.9,
     "inflation": -1.57,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-08-01"
   },
   {
     "id": 1281,
@@ -14087,9 +14090,9 @@ var datos=[
     "low": 0.87,
     "close": 0.87,
     "inflation": -4.09,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-09-01"
   },
   {
     "id": 1282,
@@ -14098,9 +14101,9 @@ var datos=[
     "low": 0.86,
     "close": 0.88,
     "inflation": -3.9,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-10-01"
   },
   {
     "id": 1283,
@@ -14109,9 +14112,9 @@ var datos=[
     "low": 0.87,
     "close": 0.89,
     "inflation": -2.02,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-11-01"
   },
   {
     "id": 1284,
@@ -14120,9 +14123,9 @@ var datos=[
     "low": 0.88,
     "close": 0.91,
     "inflation": -1.35,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2016-12-01"
   },
   {
     "id": 1285,
@@ -14131,9 +14134,9 @@ var datos=[
     "low": 0.9,
     "close": 0.9,
     "inflation": -0.77,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-01-01"
   },
   {
     "id": 1286,
@@ -14142,9 +14145,9 @@ var datos=[
     "low": 0.89,
     "close": 0.9,
     "inflation": -0.38,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-02-01"
   },
   {
     "id": 1287,
@@ -14153,9 +14156,9 @@ var datos=[
     "low": 0.89,
     "close": 0.89,
     "inflation": -1.65,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-03-01"
   },
   {
     "id": 1288,
@@ -14164,9 +14167,9 @@ var datos=[
     "low": 0.88,
     "close": 0.89,
     "inflation": -2.84,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-04-01"
   },
   {
     "id": 1289,
@@ -14175,9 +14178,9 @@ var datos=[
     "low": 0.88,
     "close": 0.92,
     "inflation": 1.76,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-05-01"
   },
   {
     "id": 1290,
@@ -14186,9 +14189,9 @@ var datos=[
     "low": 0.91,
     "close": 0.92,
     "inflation": 1,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-06-01"
   },
   {
     "id": 1291,
@@ -14197,9 +14200,9 @@ var datos=[
     "low": 0.91,
     "close": 0.92,
     "inflation": 2.07,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-07-01"
   },
   {
     "id": 1292,
@@ -14208,9 +14211,9 @@ var datos=[
     "low": 0.9,
     "close": 0.93,
     "inflation": 4.23,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-08-01"
   },
   {
     "id": 1293,
@@ -14219,9 +14222,9 @@ var datos=[
     "low": 0.92,
     "close": 0.94,
     "inflation": 7.35,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-09-01"
   },
   {
     "id": 1294,
@@ -14230,9 +14233,9 @@ var datos=[
     "low": 0.92,
     "close": 0.94,
     "inflation": 7.25,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-10-01"
   },
   {
     "id": 1295,
@@ -14241,9 +14244,9 @@ var datos=[
     "low": 0.93,
     "close": 0.96,
     "inflation": 8.12,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-11-01"
   },
   {
     "id": 1296,
@@ -14252,9 +14255,9 @@ var datos=[
     "low": 0.95,
     "close": 0.99,
     "inflation": 9.29,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2017-12-01"
   },
   {
     "id": 1297,
@@ -14263,9 +14266,9 @@ var datos=[
     "low": 0.98,
     "close": 1,
     "inflation": 11.04,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-01-01"
   },
   {
     "id": 1298,
@@ -14274,9 +14277,9 @@ var datos=[
     "low": 0.99,
     "close": 1,
     "inflation": 10.07,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-02-01"
   },
   {
     "id": 1299,
@@ -14285,9 +14288,9 @@ var datos=[
     "low": 0.98,
     "close": 0.98,
     "inflation": 9.46,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-03-01"
   },
   {
     "id": 1300,
@@ -14296,9 +14299,9 @@ var datos=[
     "low": 0.96,
     "close": 0.97,
     "inflation": 8.33,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-04-01"
   },
   {
     "id": 1301,
@@ -14307,9 +14310,9 @@ var datos=[
     "low": 0.95,
     "close": 0.98,
     "inflation": 7.29,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-05-01"
   },
   {
     "id": 1302,
@@ -14318,9 +14321,9 @@ var datos=[
     "low": 0.97,
     "close": 0.98,
     "inflation": 6.9,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-06-01"
   },
   {
     "id": 1303,
@@ -14329,9 +14332,9 @@ var datos=[
     "low": 0.97,
     "close": 0.99,
     "inflation": 7.95,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-07-01"
   },
   {
     "id": 1304,
@@ -14340,9 +14343,9 @@ var datos=[
     "low": 0.93,
     "close": 0.93,
     "inflation": -0.17,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-08-01"
   },
   {
     "id": 1305,
@@ -14351,9 +14354,9 @@ var datos=[
     "low": 0.92,
     "close": 0.95,
     "inflation": 1.51,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-09-01"
   },
   {
     "id": 1306,
@@ -14362,9 +14365,9 @@ var datos=[
     "low": 0.93,
     "close": 0.93,
     "inflation": -1.19,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-10-01"
   },
   {
     "id": 1307,
@@ -14373,9 +14376,9 @@ var datos=[
     "low": 0.92,
     "close": 0.94,
     "inflation": -2.44,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-11-01"
   },
   {
     "id": 1308,
@@ -14384,9 +14387,9 @@ var datos=[
     "low": 0.93,
     "close": 0.95,
     "inflation": -4.46,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2018-12-01"
   },
   {
     "id": 1309,
@@ -14395,9 +14398,9 @@ var datos=[
     "low": 0.94,
     "close": 0.96,
     "inflation": -4.31,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-01-01"
   },
   {
     "id": 1310,
@@ -14406,9 +14409,9 @@ var datos=[
     "low": 0.95,
     "close": 0.96,
     "inflation": -3.36,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-02-01"
   },
   {
     "id": 1311,
@@ -14417,9 +14420,9 @@ var datos=[
     "low": 0.94,
     "close": 0.94,
     "inflation": -3.32,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-03-01"
   },
   {
     "id": 1312,
@@ -14428,9 +14431,9 @@ var datos=[
     "low": 0.93,
     "close": 0.96,
     "inflation": -0.48,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-04-01"
   },
   {
     "id": 1313,
@@ -14439,9 +14442,9 @@ var datos=[
     "low": 0.95,
     "close": 0.96,
     "inflation": -2.1,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-05-01"
   },
   {
     "id": 1314,
@@ -14450,9 +14453,9 @@ var datos=[
     "low": 0.95,
     "close": 0.97,
     "inflation": -1.62,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-06-01"
   },
   {
     "id": 1315,
@@ -14461,9 +14464,9 @@ var datos=[
     "low": 0.96,
     "close": 0.96,
     "inflation": -3.07,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-07-01"
   },
   {
     "id": 1316,
@@ -14472,9 +14475,9 @@ var datos=[
     "low": 0.94,
     "close": 0.94,
     "inflation": 1.03,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-08-01"
   },
   {
     "id": 1317,
@@ -14483,9 +14486,9 @@ var datos=[
     "low": 0.92,
     "close": 0.92,
     "inflation": -2.93,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-09-01"
   },
   {
     "id": 1318,
@@ -14494,9 +14497,9 @@ var datos=[
     "low": 0.91,
     "close": 0.92,
     "inflation": -0.92,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-10-01"
   },
   {
     "id": 1319,
@@ -14505,9 +14508,9 @@ var datos=[
     "low": 0.91,
     "close": 0.92,
     "inflation": -1.98,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-11-01"
   },
   {
     "id": 1320,
@@ -14516,9 +14519,9 @@ var datos=[
     "low": 0.91,
     "close": 0.95,
     "inflation": 0.58,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2019-12-01"
   },
   {
     "id": 1321,
@@ -14527,9 +14530,9 @@ var datos=[
     "low": 0.94,
     "close": 0.95,
     "inflation": -1.09,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-01-01"
   },
   {
     "id": 1322,
@@ -14538,9 +14541,9 @@ var datos=[
     "low": 0.94,
     "close": 0.95,
     "inflation": -1.71,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-02-01"
   },
   {
     "id": 1323,
@@ -14549,9 +14552,9 @@ var datos=[
     "low": 0.94,
     "close": 0.98,
     "inflation": 3.78,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-03-01"
   },
   {
     "id": 1324,
@@ -14560,9 +14563,9 @@ var datos=[
     "low": 0.97,
     "close": 0.99,
     "inflation": 3.35,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-04-01"
   },
   {
     "id": 1325,
@@ -14571,9 +14574,9 @@ var datos=[
     "low": 0.98,
     "close": 1.02,
     "inflation": 6.11,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-05-01"
   },
   {
     "id": 1326,
@@ -14582,9 +14585,9 @@ var datos=[
     "low": 1.01,
     "close": 1.01,
     "inflation": 4.13,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-06-01"
   },
   {
     "id": 1327,
@@ -14593,9 +14596,9 @@ var datos=[
     "low": 0.99,
     "close": 0.99,
     "inflation": 3.55,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-07-01"
   },
   {
     "id": 1328,
@@ -14604,9 +14607,9 @@ var datos=[
     "low": 0.98,
     "close": 1,
     "inflation": 6.43,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-08-01"
   },
   {
     "id": 1329,
@@ -14615,9 +14618,9 @@ var datos=[
     "low": 0.99,
     "close": 1,
     "inflation": 7.93,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-09-01"
   },
   {
     "id": 1330,
@@ -14626,9 +14629,9 @@ var datos=[
     "low": 0.99,
     "close": 1,
     "inflation": 8.98,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-10-01"
   },
   {
     "id": 1331,
@@ -14637,9 +14640,9 @@ var datos=[
     "low": 0.99,
     "close": 1.02,
     "inflation": 10.9,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-11-01"
   },
   {
     "id": 1332,
@@ -14648,9 +14651,9 @@ var datos=[
     "low": 1.01,
     "close": 1.04,
     "inflation": 8.87,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2020-12-01"
   },
   {
     "id": 1333,
@@ -14659,9 +14662,9 @@ var datos=[
     "low": 1.03,
     "close": 1.04,
     "inflation": 9.8,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-01-01"
   },
   {
     "id": 1334,
@@ -14670,9 +14673,9 @@ var datos=[
     "low": 1.03,
     "close": 1.03,
     "inflation": 8.92,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-02-01"
   },
   {
     "id": 1335,
@@ -14681,9 +14684,9 @@ var datos=[
     "low": 1.02,
     "close": 1.02,
     "inflation": 4.08,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-03-01"
   },
   {
     "id": 1336,
@@ -14692,9 +14695,9 @@ var datos=[
     "low": 1.01,
     "close": 1.01,
     "inflation": 2.04,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-04-01"
   },
   {
     "id": 1337,
@@ -14703,9 +14706,9 @@ var datos=[
     "low": 1,
     "close": 1.04,
     "inflation": 1.77,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-05-01"
   },
   {
     "id": 1338,
@@ -14714,9 +14717,9 @@ var datos=[
     "low": 1.03,
     "close": 1.04,
     "inflation": 3.01,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-06-01"
   },
   {
     "id": 1339,
@@ -14725,9 +14728,9 @@ var datos=[
     "low": 1.03,
     "close": 1.03,
     "inflation": 3.55,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-07-01"
   },
   {
     "id": 1340,
@@ -14736,9 +14739,9 @@ var datos=[
     "low": 1.02,
     "close": 1.03,
     "inflation": 2.7,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-08-01"
   },
   {
     "id": 1341,
@@ -14747,9 +14750,9 @@ var datos=[
     "low": 1.02,
     "close": 1.02,
     "inflation": 2.01,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-09-01"
   },
   {
     "id": 1342,
@@ -14758,9 +14761,9 @@ var datos=[
     "low": 1,
     "close": 1,
     "inflation": -0.19,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-10-01"
   },
   {
     "id": 1343,
@@ -14769,9 +14772,9 @@ var datos=[
     "low": 0.99,
     "close": 1.02,
     "inflation": 0.15,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-11-01"
   },
   {
     "id": 1344,
@@ -14780,9 +14783,9 @@ var datos=[
     "low": 1.01,
     "close": 1.04,
     "inflation": 0.37,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2021-12-01"
   },
   {
     "id": 1345,
@@ -14791,9 +14794,9 @@ var datos=[
     "low": 1.03,
     "close": 1.04,
     "inflation": -0.13,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-01-01"
   },
   {
     "id": 1346,
@@ -14802,9 +14805,9 @@ var datos=[
     "low": 1.03,
     "close": 1.05,
     "inflation": 2.32,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-02-01"
   },
   {
     "id": 1347,
@@ -14813,9 +14816,9 @@ var datos=[
     "low": 1.04,
     "close": 1.06,
     "inflation": 4.39,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-03-01"
   },
   {
     "id": 1348,
@@ -14824,9 +14827,9 @@ var datos=[
     "low": 1.05,
     "close": 1.06,
     "inflation": 4.14,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-04-01"
   },
   {
     "id": 1349,
@@ -14835,9 +14838,9 @@ var datos=[
     "low": 1.03,
     "close": 1.03,
     "inflation": -0.43,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-05-01"
   },
   {
     "id": 1350,
@@ -14846,9 +14849,9 @@ var datos=[
     "low": 1.02,
     "close": 1.03,
     "inflation": -1.08,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-06-01"
   },
   {
     "id": 1351,
@@ -14857,9 +14860,9 @@ var datos=[
     "low": 1,
     "close": 1,
     "inflation": -2.17,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-07-01"
   },
   {
     "id": 1352,
@@ -14868,9 +14871,9 @@ var datos=[
     "low": 0.99,
     "close": 1,
     "inflation": -2.44,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-08-01"
   },
   {
     "id": 1353,
@@ -14879,9 +14882,9 @@ var datos=[
     "low": 0.99,
     "close": 1,
     "inflation": -2.02,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-09-01"
   },
   {
     "id": 1354,
@@ -14890,9 +14893,9 @@ var datos=[
     "low": 0.98,
     "close": 1,
     "inflation": -0.27,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-10-01"
   },
   {
     "id": 1355,
@@ -14901,9 +14904,9 @@ var datos=[
     "low": 0.99,
     "close": 1.01,
     "inflation": -1.17,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-11-01"
   },
   {
     "id": 1356,
@@ -14912,9 +14915,9 @@ var datos=[
     "low": 1,
     "close": 1.04,
     "inflation": -0.36,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2022-12-01"
   },
   {
     "id": 1357,
@@ -14923,9 +14926,9 @@ var datos=[
     "low": 1.03,
     "close": 1.04,
     "inflation": -0.05,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-01-01"
   },
   {
     "id": 1358,
@@ -14934,9 +14937,9 @@ var datos=[
     "low": 1.03,
     "close": 1.03,
     "inflation": -1.99,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-02-01"
   },
   {
     "id": 1359,
@@ -14945,9 +14948,9 @@ var datos=[
     "low": 1.02,
     "close": 1.03,
     "inflation": -3.13,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-03-01"
   },
   {
     "id": 1360,
@@ -14956,9 +14959,9 @@ var datos=[
     "low": 1.02,
     "close": 1.04,
     "inflation": -1.18,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-04-01"
   },
   {
     "id": 1361,
@@ -14967,9 +14970,9 @@ var datos=[
     "low": 1.03,
     "close": 1.04,
     "inflation": 0.97,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-05-01"
   },
   {
     "id": 1362,
@@ -14978,9 +14981,9 @@ var datos=[
     "low": 1.03,
     "close": 1.04,
     "inflation": 1.54,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-06-01"
   },
   {
     "id": 1363,
@@ -14989,9 +14992,9 @@ var datos=[
     "low": 1.03,
     "close": 1.04,
     "inflation": 3.12,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-07-01"
   },
   {
     "id": 1364,
@@ -15000,9 +15003,9 @@ var datos=[
     "low": 1.02,
     "close": 1.05,
     "inflation": 4.64,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-08-01"
   },
   {
     "id": 1365,
@@ -15011,9 +15014,9 @@ var datos=[
     "low": 1.04,
     "close": 1.04,
     "inflation": 4.28,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-09-01"
   },
   {
     "id": 1366,
@@ -15022,9 +15025,9 @@ var datos=[
     "low": 1.02,
     "close": 1.03,
     "inflation": 3.64,
-    "country": "Congo",
-    "iso3": "Rep.",
-    "date": "COG"
+    "country": "Congo, Rep.",
+    "iso3": "COG",
+    "date": "2023-10-01"
   },
   {
     "id": 1367,
@@ -15033,9 +15036,9 @@ var datos=[
     "low": 0.58,
     "close": 0.59,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-01-01"
   },
   {
     "id": 1368,
@@ -15044,9 +15047,9 @@ var datos=[
     "low": 0.58,
     "close": 0.58,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-02-01"
   },
   {
     "id": 1369,
@@ -15055,9 +15058,9 @@ var datos=[
     "low": 0.58,
     "close": 0.59,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-03-01"
   },
   {
     "id": 1370,
@@ -15066,9 +15069,9 @@ var datos=[
     "low": 0.59,
     "close": 0.6,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-04-01"
   },
   {
     "id": 1371,
@@ -15077,9 +15080,9 @@ var datos=[
     "low": 0.59,
     "close": 0.6,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-05-01"
   },
   {
     "id": 1372,
@@ -15088,9 +15091,9 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-06-01"
   },
   {
     "id": 1373,
@@ -15099,9 +15102,9 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-07-01"
   },
   {
     "id": 1374,
@@ -15110,9 +15113,9 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-08-01"
   },
   {
     "id": 1375,
@@ -15121,9 +15124,9 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-09-01"
   },
   {
     "id": 1376,
@@ -15132,9 +15135,9 @@ var datos=[
     "low": 0.58,
     "close": 0.59,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-10-01"
   },
   {
     "id": 1377,
@@ -15143,9 +15146,9 @@ var datos=[
     "low": 0.58,
     "close": 0.59,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-11-01"
   },
   {
     "id": 1378,
@@ -15154,9 +15157,9 @@ var datos=[
     "low": 0.58,
     "close": 0.59,
     "inflation": "",
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2007-12-01"
   },
   {
     "id": 1379,
@@ -15165,9 +15168,9 @@ var datos=[
     "low": 0.58,
     "close": 0.58,
     "inflation": -0.28,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-01-01"
   },
   {
     "id": 1380,
@@ -15176,9 +15179,9 @@ var datos=[
     "low": 0.58,
     "close": 0.59,
     "inflation": 1.04,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-02-01"
   },
   {
     "id": 1381,
@@ -15187,9 +15190,9 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": -0.33,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-03-01"
   },
   {
     "id": 1382,
@@ -15198,9 +15201,9 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": -0.58,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-04-01"
   },
   {
     "id": 1383,
@@ -15209,9 +15212,9 @@ var datos=[
     "low": 0.59,
     "close": 0.6,
     "inflation": 0.84,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-05-01"
   },
   {
     "id": 1384,
@@ -15220,9 +15223,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 1.66,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-06-01"
   },
   {
     "id": 1385,
@@ -15231,9 +15234,9 @@ var datos=[
     "low": 0.6,
     "close": 0.61,
     "inflation": 3.06,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-07-01"
   },
   {
     "id": 1386,
@@ -15242,9 +15245,9 @@ var datos=[
     "low": 0.61,
     "close": 0.62,
     "inflation": 3.9,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-08-01"
   },
   {
     "id": 1387,
@@ -15253,9 +15256,9 @@ var datos=[
     "low": 0.62,
     "close": 0.62,
     "inflation": 5.39,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-09-01"
   },
   {
     "id": 1388,
@@ -15264,9 +15267,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": 3.76,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-10-01"
   },
   {
     "id": 1389,
@@ -15275,9 +15278,9 @@ var datos=[
     "low": 0.6,
     "close": 0.61,
     "inflation": 3.37,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-11-01"
   },
   {
     "id": 1390,
@@ -15286,9 +15289,9 @@ var datos=[
     "low": 0.6,
     "close": 0.61,
     "inflation": 4.72,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2008-12-01"
   },
   {
     "id": 1391,
@@ -15297,9 +15300,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 3.65,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-01-01"
   },
   {
     "id": 1392,
@@ -15308,9 +15311,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 2.37,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-02-01"
   },
   {
     "id": 1393,
@@ -15319,9 +15322,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 2.08,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-03-01"
   },
   {
     "id": 1394,
@@ -15330,9 +15333,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 1.75,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-04-01"
   },
   {
     "id": 1395,
@@ -15341,9 +15344,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 0.54,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-05-01"
   },
   {
     "id": 1396,
@@ -15352,9 +15355,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": -0.38,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-06-01"
   },
   {
     "id": 1397,
@@ -15363,9 +15366,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": -2.14,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-07-01"
   },
   {
     "id": 1398,
@@ -15374,9 +15377,9 @@ var datos=[
     "low": 0.59,
     "close": 0.6,
     "inflation": -3.3,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-08-01"
   },
   {
     "id": 1399,
@@ -15385,9 +15388,9 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": -3.98,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-09-01"
   },
   {
     "id": 1400,
@@ -15396,9 +15399,9 @@ var datos=[
     "low": 0.59,
     "close": 0.6,
     "inflation": -2.24,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-10-01"
   },
   {
     "id": 1401,
@@ -15407,9 +15410,9 @@ var datos=[
     "low": 0.59,
     "close": 0.6,
     "inflation": -0.88,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-11-01"
   },
   {
     "id": 1402,
@@ -15418,9 +15421,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": -1.94,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2009-12-01"
   },
   {
     "id": 1403,
@@ -15429,9 +15432,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": -0.78,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-01-01"
   },
   {
     "id": 1404,
@@ -15440,9 +15443,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": -0.22,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-02-01"
   },
   {
     "id": 1405,
@@ -15451,9 +15454,9 @@ var datos=[
     "low": 0.6,
     "close": 0.61,
     "inflation": 0.36,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-03-01"
   },
   {
     "id": 1406,
@@ -15462,9 +15465,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 0.09,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-04-01"
   },
   {
     "id": 1407,
@@ -15473,9 +15476,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": -0.09,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-05-01"
   },
   {
     "id": 1408,
@@ -15484,9 +15487,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": -0.47,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-06-01"
   },
   {
     "id": 1409,
@@ -15495,9 +15498,9 @@ var datos=[
     "low": 0.59,
     "close": 0.6,
     "inflation": 0.8,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-07-01"
   },
   {
     "id": 1410,
@@ -15506,9 +15509,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 1.45,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-08-01"
   },
   {
     "id": 1411,
@@ -15517,9 +15520,9 @@ var datos=[
     "low": 0.6,
     "close": 0.61,
     "inflation": 2.39,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-09-01"
   },
   {
     "id": 1412,
@@ -15528,9 +15531,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 1.52,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-10-01"
   },
   {
     "id": 1413,
@@ -15539,9 +15542,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 0.44,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-11-01"
   },
   {
     "id": 1414,
@@ -15550,9 +15553,9 @@ var datos=[
     "low": 0.6,
     "close": 0.61,
     "inflation": 0.79,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2010-12-01"
   },
   {
     "id": 1415,
@@ -15561,9 +15564,9 @@ var datos=[
     "low": 0.6,
     "close": 0.6,
     "inflation": 0.53,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-01-01"
   },
   {
     "id": 1416,
@@ -15572,9 +15575,9 @@ var datos=[
     "low": 0.6,
     "close": 0.61,
     "inflation": 1.3,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-02-01"
   },
   {
     "id": 1417,
@@ -15583,9 +15586,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": 1.47,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-03-01"
   },
   {
     "id": 1418,
@@ -15594,9 +15597,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": 1.86,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-04-01"
   },
   {
     "id": 1419,
@@ -15605,9 +15608,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": 2.02,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-05-01"
   },
   {
     "id": 1420,
@@ -15616,9 +15619,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": 2.27,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-06-01"
   },
   {
     "id": 1421,
@@ -15627,9 +15630,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": 1.43,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-07-01"
   },
   {
     "id": 1422,
@@ -15638,9 +15641,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": 1.38,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-08-01"
   },
   {
     "id": 1423,
@@ -15649,9 +15652,9 @@ var datos=[
     "low": 0.61,
     "close": 0.62,
     "inflation": 1.35,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-09-01"
   },
   {
     "id": 1424,
@@ -15660,9 +15663,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": 1.55,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-10-01"
   },
   {
     "id": 1425,
@@ -15671,9 +15674,9 @@ var datos=[
     "low": 0.61,
     "close": 0.62,
     "inflation": 1.98,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-11-01"
   },
   {
     "id": 1426,
@@ -15682,9 +15685,9 @@ var datos=[
     "low": 0.61,
     "close": 0.62,
     "inflation": 1.85,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2011-12-01"
   },
   {
     "id": 1427,
@@ -15693,9 +15696,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": 1.92,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-01-01"
   },
   {
     "id": 1428,
@@ -15704,9 +15707,9 @@ var datos=[
     "low": 0.61,
     "close": 0.62,
     "inflation": 0.66,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-02-01"
   },
   {
     "id": 1429,
@@ -15715,9 +15718,9 @@ var datos=[
     "low": 0.61,
     "close": 0.62,
     "inflation": 0.41,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-03-01"
   },
   {
     "id": 1430,
@@ -15726,9 +15729,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": -0.46,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-04-01"
   },
   {
     "id": 1431,
@@ -15737,9 +15740,9 @@ var datos=[
     "low": 0.61,
     "close": 0.61,
     "inflation": -0.47,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-05-01"
   },
   {
     "id": 1432,
@@ -15748,9 +15751,9 @@ var datos=[
     "low": 0.61,
     "close": 0.62,
     "inflation": 0.84,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-06-01"
   },
   {
     "id": 1433,
@@ -15759,9 +15762,9 @@ var datos=[
     "low": 0.61,
     "close": 0.62,
     "inflation": 2.07,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-07-01"
   },
   {
     "id": 1434,
@@ -15770,9 +15773,9 @@ var datos=[
     "low": 0.62,
     "close": 0.63,
     "inflation": 2.34,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-08-01"
   },
   {
     "id": 1435,
@@ -15781,9 +15784,9 @@ var datos=[
     "low": 0.63,
     "close": 0.63,
     "inflation": 2.07,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-09-01"
   },
   {
     "id": 1436,
@@ -15792,9 +15795,9 @@ var datos=[
     "low": 0.63,
     "close": 0.63,
     "inflation": 2.64,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-10-01"
   },
   {
     "id": 1437,
@@ -15803,9 +15806,9 @@ var datos=[
     "low": 0.63,
     "close": 0.63,
     "inflation": 2.31,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-11-01"
   },
   {
     "id": 1438,
@@ -15814,9 +15817,9 @@ var datos=[
     "low": 0.63,
     "close": 0.63,
     "inflation": 2.81,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2012-12-01"
   },
   {
     "id": 1439,
@@ -15825,9 +15828,9 @@ var datos=[
     "low": 0.63,
     "close": 0.63,
     "inflation": 2.6,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-01-01"
   },
   {
     "id": 1440,
@@ -15836,9 +15839,9 @@ var datos=[
     "low": 0.63,
     "close": 0.64,
     "inflation": 3.43,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-02-01"
   },
   {
     "id": 1441,
@@ -15847,9 +15850,9 @@ var datos=[
     "low": 0.63,
     "close": 0.64,
     "inflation": 3.11,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-03-01"
   },
   {
     "id": 1442,
@@ -15858,9 +15861,9 @@ var datos=[
     "low": 0.63,
     "close": 0.64,
     "inflation": 3.88,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-04-01"
   },
   {
     "id": 1443,
@@ -15869,9 +15872,9 @@ var datos=[
     "low": 0.63,
     "close": 0.63,
     "inflation": 3.43,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-05-01"
   },
   {
     "id": 1444,
@@ -15880,9 +15883,9 @@ var datos=[
     "low": 0.63,
     "close": 0.64,
     "inflation": 4.17,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-06-01"
   },
   {
     "id": 1445,
@@ -15891,9 +15894,9 @@ var datos=[
     "low": 0.64,
     "close": 0.65,
     "inflation": 4.8,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-07-01"
   },
   {
     "id": 1446,
@@ -15902,9 +15905,9 @@ var datos=[
     "low": 0.65,
     "close": 0.65,
     "inflation": 4.44,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-08-01"
   },
   {
     "id": 1447,
@@ -15913,9 +15916,9 @@ var datos=[
     "low": 0.65,
     "close": 0.67,
     "inflation": 6.34,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-09-01"
   },
   {
     "id": 1448,
@@ -15924,9 +15927,9 @@ var datos=[
     "low": 0.67,
     "close": 0.7,
     "inflation": 10.46,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-10-01"
   },
   {
     "id": 1449,
@@ -15935,9 +15938,9 @@ var datos=[
     "low": 0.68,
     "close": 0.68,
     "inflation": 7.78,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-11-01"
   },
   {
     "id": 1450,
@@ -15946,9 +15949,9 @@ var datos=[
     "low": 0.67,
     "close": 0.68,
     "inflation": 7.46,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2013-12-01"
   },
   {
     "id": 1451,
@@ -15957,9 +15960,9 @@ var datos=[
     "low": 0.67,
     "close": 0.68,
     "inflation": 8.09,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-01-01"
   },
   {
     "id": 1452,
@@ -15968,9 +15971,9 @@ var datos=[
     "low": 0.67,
     "close": 0.68,
     "inflation": 7.38,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-02-01"
   },
   {
     "id": 1453,
@@ -15979,9 +15982,9 @@ var datos=[
     "low": 0.68,
     "close": 0.69,
     "inflation": 8.92,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-03-01"
   },
   {
     "id": 1454,
@@ -15990,9 +15993,9 @@ var datos=[
     "low": 0.69,
     "close": 0.69,
     "inflation": 8.74,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-04-01"
   },
   {
     "id": 1455,
@@ -16001,9 +16004,9 @@ var datos=[
     "low": 0.69,
     "close": 0.7,
     "inflation": 9.92,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-05-01"
   },
   {
     "id": 1456,
@@ -16012,9 +16015,9 @@ var datos=[
     "low": 0.69,
     "close": 0.71,
     "inflation": 10.09,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-06-01"
   },
   {
     "id": 1457,
@@ -16023,9 +16026,9 @@ var datos=[
     "low": 0.71,
     "close": 0.71,
     "inflation": 8.53,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-07-01"
   },
   {
     "id": 1458,
@@ -16034,9 +16037,9 @@ var datos=[
     "low": 0.71,
     "close": 0.71,
     "inflation": 8.89,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-08-01"
   },
   {
     "id": 1459,
@@ -16045,9 +16048,9 @@ var datos=[
     "low": 0.71,
     "close": 0.73,
     "inflation": 9.27,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-09-01"
   },
   {
     "id": 1460,
@@ -16056,9 +16059,9 @@ var datos=[
     "low": 0.73,
     "close": 0.74,
     "inflation": 6.46,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-10-01"
   },
   {
     "id": 1461,
@@ -16067,9 +16070,9 @@ var datos=[
     "low": 0.74,
     "close": 0.74,
     "inflation": 9.51,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-11-01"
   },
   {
     "id": 1462,
@@ -16078,9 +16081,9 @@ var datos=[
     "low": 0.74,
     "close": 0.76,
     "inflation": 11.79,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2014-12-01"
   },
   {
     "id": 1463,
@@ -16089,9 +16092,9 @@ var datos=[
     "low": 0.76,
     "close": 0.77,
     "inflation": 13.57,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-01-01"
   },
   {
     "id": 1464,
@@ -16100,9 +16103,9 @@ var datos=[
     "low": 0.78,
     "close": 0.79,
     "inflation": 15.27,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-02-01"
   },
   {
     "id": 1465,
@@ -16111,9 +16114,9 @@ var datos=[
     "low": 0.79,
     "close": 0.81,
     "inflation": 16.23,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-03-01"
   },
   {
     "id": 1466,
@@ -16122,9 +16125,9 @@ var datos=[
     "low": 0.81,
     "close": 0.82,
     "inflation": 18.86,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-04-01"
   },
   {
     "id": 1467,
@@ -16133,9 +16136,9 @@ var datos=[
     "low": 0.82,
     "close": 0.84,
     "inflation": 21.29,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-05-01"
   },
   {
     "id": 1468,
@@ -16144,9 +16147,9 @@ var datos=[
     "low": 0.85,
     "close": 0.85,
     "inflation": 20.25,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-06-01"
   },
   {
     "id": 1469,
@@ -16155,9 +16158,9 @@ var datos=[
     "low": 0.85,
     "close": 0.86,
     "inflation": 20.62,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-07-01"
   },
   {
     "id": 1470,
@@ -16166,9 +16169,9 @@ var datos=[
     "low": 0.85,
     "close": 0.87,
     "inflation": 21.3,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-08-01"
   },
   {
     "id": 1471,
@@ -16177,9 +16180,9 @@ var datos=[
     "low": 0.86,
     "close": 0.87,
     "inflation": 19.88,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-09-01"
   },
   {
     "id": 1472,
@@ -16188,9 +16191,9 @@ var datos=[
     "low": 0.87,
     "close": 0.87,
     "inflation": 18.14,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-10-01"
   },
   {
     "id": 1473,
@@ -16199,9 +16202,9 @@ var datos=[
     "low": 0.84,
     "close": 0.84,
     "inflation": 13.45,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-11-01"
   },
   {
     "id": 1474,
@@ -16210,9 +16213,9 @@ var datos=[
     "low": 0.83,
     "close": 0.83,
     "inflation": 9.42,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2015-12-01"
   },
   {
     "id": 1475,
@@ -16221,9 +16224,9 @@ var datos=[
     "low": 0.82,
     "close": 0.84,
     "inflation": 8.23,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-01-01"
   },
   {
     "id": 1476,
@@ -16232,9 +16235,9 @@ var datos=[
     "low": 0.83,
     "close": 0.84,
     "inflation": 6.76,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-02-01"
   },
   {
     "id": 1477,
@@ -16243,9 +16246,9 @@ var datos=[
     "low": 0.84,
     "close": 0.84,
     "inflation": 4.52,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-03-01"
   },
   {
     "id": 1478,
@@ -16254,9 +16257,9 @@ var datos=[
     "low": 0.84,
     "close": 0.84,
     "inflation": 1.95,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-04-01"
   },
   {
     "id": 1479,
@@ -16265,9 +16268,9 @@ var datos=[
     "low": 0.83,
     "close": 0.84,
     "inflation": -0.56,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-05-01"
   },
   {
     "id": 1480,
@@ -16276,9 +16279,9 @@ var datos=[
     "low": 0.83,
     "close": 0.86,
     "inflation": 0.63,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-06-01"
   },
   {
     "id": 1481,
@@ -16287,9 +16290,9 @@ var datos=[
     "low": 0.86,
     "close": 0.87,
     "inflation": 1.23,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-07-01"
   },
   {
     "id": 1482,
@@ -16298,9 +16301,9 @@ var datos=[
     "low": 0.87,
     "close": 0.89,
     "inflation": 3.34,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-08-01"
   },
   {
     "id": 1483,
@@ -16309,9 +16312,9 @@ var datos=[
     "low": 0.9,
     "close": 0.92,
     "inflation": 4.81,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-09-01"
   },
   {
     "id": 1484,
@@ -16320,9 +16323,9 @@ var datos=[
     "low": 0.92,
     "close": 0.93,
     "inflation": 6.16,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-10-01"
   },
   {
     "id": 1485,
@@ -16331,9 +16334,9 @@ var datos=[
     "low": 0.93,
     "close": 0.93,
     "inflation": 10.44,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-11-01"
   },
   {
     "id": 1486,
@@ -16342,9 +16345,9 @@ var datos=[
     "low": 0.93,
     "close": 1.02,
     "inflation": 22.38,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2016-12-01"
   },
   {
     "id": 1487,
@@ -16353,9 +16356,9 @@ var datos=[
     "low": 0.96,
     "close": 0.96,
     "inflation": 15,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-01-01"
   },
   {
     "id": 1488,
@@ -16364,9 +16367,9 @@ var datos=[
     "low": 0.94,
     "close": 0.97,
     "inflation": 15.46,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-02-01"
   },
   {
     "id": 1489,
@@ -16375,9 +16378,9 @@ var datos=[
     "low": 0.96,
     "close": 0.96,
     "inflation": 13.61,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-03-01"
   },
   {
     "id": 1490,
@@ -16386,9 +16389,9 @@ var datos=[
     "low": 0.94,
     "close": 0.96,
     "inflation": 15.11,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-04-01"
   },
   {
     "id": 1491,
@@ -16397,9 +16400,9 @@ var datos=[
     "low": 0.96,
     "close": 0.98,
     "inflation": 16.2,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-05-01"
   },
   {
     "id": 1492,
@@ -16408,9 +16411,9 @@ var datos=[
     "low": 0.97,
     "close": 0.98,
     "inflation": 14.06,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-06-01"
   },
   {
     "id": 1493,
@@ -16419,9 +16422,9 @@ var datos=[
     "low": 0.97,
     "close": 0.98,
     "inflation": 12.86,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-07-01"
   },
   {
     "id": 1494,
@@ -16430,9 +16433,9 @@ var datos=[
     "low": 0.97,
     "close": 0.98,
     "inflation": 9.94,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-08-01"
   },
   {
     "id": 1495,
@@ -16441,9 +16444,9 @@ var datos=[
     "low": 0.98,
     "close": 1.01,
     "inflation": 9.74,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-09-01"
   },
   {
     "id": 1496,
@@ -16452,9 +16455,9 @@ var datos=[
     "low": 1.01,
     "close": 1.01,
     "inflation": 8.82,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-10-01"
   },
   {
     "id": 1497,
@@ -16463,9 +16466,9 @@ var datos=[
     "low": 1.01,
     "close": 1.01,
     "inflation": 8.44,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-11-01"
   },
   {
     "id": 1498,
@@ -16474,9 +16477,9 @@ var datos=[
     "low": 0.99,
     "close": 0.99,
     "inflation": -3.09,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2017-12-01"
   },
   {
     "id": 1499,
@@ -16485,9 +16488,9 @@ var datos=[
     "low": 0.97,
     "close": 1,
     "inflation": 3.76,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-01-01"
   },
   {
     "id": 1500,
@@ -16496,9 +16499,9 @@ var datos=[
     "low": 0.99,
     "close": 0.99,
     "inflation": 1.63,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-02-01"
   },
   {
     "id": 1501,
@@ -16507,9 +16510,9 @@ var datos=[
     "low": 0.98,
     "close": 0.99,
     "inflation": 3.84,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-03-01"
   },
   {
     "id": 1502,
@@ -16518,9 +16521,9 @@ var datos=[
     "low": 0.99,
     "close": 0.99,
     "inflation": 2.91,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-04-01"
   },
   {
     "id": 1503,
@@ -16529,9 +16532,9 @@ var datos=[
     "low": 0.98,
     "close": 1.02,
     "inflation": 4.34,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-05-01"
   },
   {
     "id": 1504,
@@ -16540,9 +16543,9 @@ var datos=[
     "low": 1.01,
     "close": 1.01,
     "inflation": 3.2,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-06-01"
   },
   {
     "id": 1505,
@@ -16551,9 +16554,9 @@ var datos=[
     "low": 0.99,
     "close": 1.01,
     "inflation": 3,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-07-01"
   },
   {
     "id": 1506,
@@ -16562,9 +16565,9 @@ var datos=[
     "low": 1,
     "close": 1.01,
     "inflation": 2.85,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-08-01"
   },
   {
     "id": 1507,
@@ -16573,9 +16576,9 @@ var datos=[
     "low": 1,
     "close": 1.01,
     "inflation": 0.76,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-09-01"
   },
   {
     "id": 1508,
@@ -16584,9 +16587,9 @@ var datos=[
     "low": 1.01,
     "close": 1.05,
     "inflation": 4.38,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-10-01"
   },
   {
     "id": 1509,
@@ -16595,9 +16598,9 @@ var datos=[
     "low": 1.03,
     "close": 1.03,
     "inflation": 2.22,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-11-01"
   },
   {
     "id": 1510,
@@ -16606,9 +16609,9 @@ var datos=[
     "low": 1.02,
     "close": 1.19,
     "inflation": 20.42,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2018-12-01"
   },
   {
     "id": 1511,
@@ -16617,9 +16620,9 @@ var datos=[
     "low": 1.05,
     "close": 1.05,
     "inflation": 5.34,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-01-01"
   },
   {
     "id": 1512,
@@ -16628,9 +16631,9 @@ var datos=[
     "low": 1.02,
     "close": 1.02,
     "inflation": 3.1,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-02-01"
   },
   {
     "id": 1513,
@@ -16639,9 +16642,9 @@ var datos=[
     "low": 0.99,
     "close": 1.01,
     "inflation": 1.68,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-03-01"
   },
   {
     "id": 1514,
@@ -16650,9 +16653,9 @@ var datos=[
     "low": 0.98,
     "close": 1.01,
     "inflation": 1.74,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-04-01"
   },
   {
     "id": 1515,
@@ -16661,9 +16664,9 @@ var datos=[
     "low": 1,
     "close": 1.02,
     "inflation": 0.57,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-05-01"
   },
   {
     "id": 1516,
@@ -16672,9 +16675,9 @@ var datos=[
     "low": 0.96,
     "close": 0.96,
     "inflation": -4.17,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-06-01"
   },
   {
     "id": 1517,
@@ -16683,9 +16686,9 @@ var datos=[
     "low": 0.94,
     "close": 0.95,
     "inflation": -5.91,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-07-01"
   },
   {
     "id": 1518,
@@ -16694,9 +16697,9 @@ var datos=[
     "low": 0.92,
     "close": 0.94,
     "inflation": -6.76,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-08-01"
   },
   {
     "id": 1519,
@@ -16705,9 +16708,9 @@ var datos=[
     "low": 0.93,
     "close": 0.95,
     "inflation": -6.32,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-09-01"
   },
   {
     "id": 1520,
@@ -16716,9 +16719,9 @@ var datos=[
     "low": 0.94,
     "close": 0.96,
     "inflation": -9.1,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-10-01"
   },
   {
     "id": 1521,
@@ -16727,9 +16730,9 @@ var datos=[
     "low": 0.95,
     "close": 0.96,
     "inflation": -6.81,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-11-01"
   },
   {
     "id": 1522,
@@ -16738,9 +16741,9 @@ var datos=[
     "low": 0.95,
     "close": 0.96,
     "inflation": -18.96,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2019-12-01"
   },
   {
     "id": 1523,
@@ -16749,9 +16752,9 @@ var datos=[
     "low": 0.95,
     "close": 0.95,
     "inflation": -9.69,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-01-01"
   },
   {
     "id": 1524,
@@ -16760,9 +16763,9 @@ var datos=[
     "low": 0.94,
     "close": 0.95,
     "inflation": -6.61,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-02-01"
   },
   {
     "id": 1525,
@@ -16771,9 +16774,9 @@ var datos=[
     "low": 0.94,
     "close": 0.99,
     "inflation": -2.23,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-03-01"
   },
   {
     "id": 1526,
@@ -16782,9 +16785,9 @@ var datos=[
     "low": 0.99,
     "close": 1.06,
     "inflation": 4.64,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-04-01"
   },
   {
     "id": 1527,
@@ -16793,9 +16796,9 @@ var datos=[
     "low": 1.06,
     "close": 1.1,
     "inflation": 7.96,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-05-01"
   },
   {
     "id": 1528,
@@ -16804,9 +16807,9 @@ var datos=[
     "low": 1.11,
     "close": 1.13,
     "inflation": 17.5,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-06-01"
   },
   {
     "id": 1529,
@@ -16815,9 +16818,9 @@ var datos=[
     "low": 1.13,
     "close": 1.15,
     "inflation": 21.74,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-07-01"
   },
   {
     "id": 1530,
@@ -16826,9 +16829,9 @@ var datos=[
     "low": 1.15,
     "close": 1.18,
     "inflation": 25.37,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-08-01"
   },
   {
     "id": 1531,
@@ -16837,9 +16840,9 @@ var datos=[
     "low": 1.18,
     "close": 1.2,
     "inflation": 26.67,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-09-01"
   },
   {
     "id": 1532,
@@ -16848,9 +16851,9 @@ var datos=[
     "low": 1.2,
     "close": 1.22,
     "inflation": 27.11,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-10-01"
   },
   {
     "id": 1533,
@@ -16859,9 +16862,9 @@ var datos=[
     "low": 1.22,
     "close": 1.24,
     "inflation": 28.36,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-11-01"
   },
   {
     "id": 1534,
@@ -16870,9 +16873,9 @@ var datos=[
     "low": 1.23,
     "close": 1.25,
     "inflation": 29.25,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2020-12-01"
   },
   {
     "id": 1535,
@@ -16881,9 +16884,9 @@ var datos=[
     "low": 1.24,
     "close": 1.25,
     "inflation": 31.4,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-01-01"
   },
   {
     "id": 1536,
@@ -16892,9 +16895,9 @@ var datos=[
     "low": 1.22,
     "close": 1.22,
     "inflation": 28.31,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-02-01"
   },
   {
     "id": 1537,
@@ -16903,9 +16906,9 @@ var datos=[
     "low": 1.2,
     "close": 1.21,
     "inflation": 22.26,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-03-01"
   },
   {
     "id": 1538,
@@ -16914,9 +16917,9 @@ var datos=[
     "low": 1.19,
     "close": 1.19,
     "inflation": 12.64,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-04-01"
   },
   {
     "id": 1539,
@@ -16925,9 +16928,9 @@ var datos=[
     "low": 1.17,
     "close": 1.2,
     "inflation": 8.18,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-05-01"
   },
   {
     "id": 1540,
@@ -16936,9 +16939,9 @@ var datos=[
     "low": 1.19,
     "close": 1.22,
     "inflation": 7.73,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-06-01"
   },
   {
     "id": 1541,
@@ -16947,9 +16950,9 @@ var datos=[
     "low": 1.22,
     "close": 1.23,
     "inflation": 6.95,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-07-01"
   },
   {
     "id": 1542,
@@ -16958,9 +16961,9 @@ var datos=[
     "low": 1.23,
     "close": 1.24,
     "inflation": 4.76,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-08-01"
   },
   {
     "id": 1543,
@@ -16969,9 +16972,9 @@ var datos=[
     "low": 1.23,
     "close": 1.25,
     "inflation": 3.68,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-09-01"
   },
   {
     "id": 1544,
@@ -16980,9 +16983,9 @@ var datos=[
     "low": 1.24,
     "close": 1.27,
     "inflation": 4,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-10-01"
   },
   {
     "id": 1545,
@@ -16991,9 +16994,9 @@ var datos=[
     "low": 1.27,
     "close": 1.27,
     "inflation": 3.05,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-11-01"
   },
   {
     "id": 1546,
@@ -17002,9 +17005,9 @@ var datos=[
     "low": 1.27,
     "close": 1.28,
     "inflation": 2.93,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2021-12-01"
   },
   {
     "id": 1547,
@@ -17013,9 +17016,9 @@ var datos=[
     "low": 1.28,
     "close": 1.29,
     "inflation": 3.49,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-01-01"
   },
   {
     "id": 1548,
@@ -17024,9 +17027,9 @@ var datos=[
     "low": 1.29,
     "close": 1.3,
     "inflation": 6.57,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-02-01"
   },
   {
     "id": 1549,
@@ -17035,9 +17038,9 @@ var datos=[
     "low": 1.3,
     "close": 1.32,
     "inflation": 9.34,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-03-01"
   },
   {
     "id": 1550,
@@ -17046,9 +17049,9 @@ var datos=[
     "low": 1.32,
     "close": 1.35,
     "inflation": 13.23,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-04-01"
   },
   {
     "id": 1551,
@@ -17057,9 +17060,9 @@ var datos=[
     "low": 1.35,
     "close": 1.37,
     "inflation": 14.37,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-05-01"
   },
   {
     "id": 1552,
@@ -17068,9 +17071,9 @@ var datos=[
     "low": 1.37,
     "close": 1.39,
     "inflation": 13.8,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-06-01"
   },
   {
     "id": 1553,
@@ -17079,9 +17082,9 @@ var datos=[
     "low": 1.39,
     "close": 1.4,
     "inflation": 13.53,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-07-01"
   },
   {
     "id": 1554,
@@ -17090,9 +17093,9 @@ var datos=[
     "low": 1.4,
     "close": 1.41,
     "inflation": 14.3,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-08-01"
   },
   {
     "id": 1555,
@@ -17101,9 +17104,9 @@ var datos=[
     "low": 1.42,
     "close": 1.42,
     "inflation": 13.97,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-09-01"
   },
   {
     "id": 1556,
@@ -17112,9 +17115,9 @@ var datos=[
     "low": 1.42,
     "close": 1.43,
     "inflation": 13.03,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-10-01"
   },
   {
     "id": 1557,
@@ -17123,9 +17126,9 @@ var datos=[
     "low": 1.44,
     "close": 1.44,
     "inflation": 12.92,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-11-01"
   },
   {
     "id": 1558,
@@ -17134,9 +17137,9 @@ var datos=[
     "low": 1.44,
     "close": 1.47,
     "inflation": 14.56,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2022-12-01"
   },
   {
     "id": 1559,
@@ -17145,9 +17148,9 @@ var datos=[
     "low": 1.48,
     "close": 1.49,
     "inflation": 15.4,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-01-01"
   },
   {
     "id": 1560,
@@ -17156,9 +17159,9 @@ var datos=[
     "low": 1.5,
     "close": 1.52,
     "inflation": 16.87,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-02-01"
   },
   {
     "id": 1561,
@@ -17167,9 +17170,9 @@ var datos=[
     "low": 1.53,
     "close": 1.53,
     "inflation": 15.96,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-03-01"
   },
   {
     "id": 1562,
@@ -17178,9 +17181,9 @@ var datos=[
     "low": 1.53,
     "close": 1.58,
     "inflation": 17.56,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-04-01"
   },
   {
     "id": 1563,
@@ -17189,9 +17192,9 @@ var datos=[
     "low": 1.6,
     "close": 1.64,
     "inflation": 19.63,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-05-01"
   },
   {
     "id": 1564,
@@ -17200,9 +17203,9 @@ var datos=[
     "low": 1.65,
     "close": 1.68,
     "inflation": 20.65,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-06-01"
   },
   {
     "id": 1565,
@@ -17211,9 +17214,9 @@ var datos=[
     "low": 1.69,
     "close": 1.7,
     "inflation": 21.56,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-07-01"
   },
   {
     "id": 1566,
@@ -17222,9 +17225,9 @@ var datos=[
     "low": 1.69,
     "close": 1.69,
     "inflation": 19.79,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-08-01"
   },
   {
     "id": 1567,
@@ -17233,9 +17236,9 @@ var datos=[
     "low": 1.69,
     "close": 1.71,
     "inflation": 20.6,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-09-01"
   },
   {
     "id": 1568,
@@ -17244,9 +17247,9 @@ var datos=[
     "low": 1.71,
     "close": 1.73,
     "inflation": 20.62,
-    "country": "Gambia",
-    "iso3": "The",
-    "date": "GMB"
+    "country": "Gambia, The",
+    "iso3": "GMB",
+    "date": "2023-10-01"
   },
   {
     "id": 1569,
@@ -50827,7 +50830,7 @@ var datos=[
     "low": 0.47,
     "close": 0.48,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-01-01"
   },
@@ -50838,7 +50841,7 @@ var datos=[
     "low": 0.47,
     "close": 0.48,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-02-01"
   },
@@ -50849,7 +50852,7 @@ var datos=[
     "low": 0.48,
     "close": 0.49,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-03-01"
   },
@@ -50860,7 +50863,7 @@ var datos=[
     "low": 0.48,
     "close": 0.49,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-04-01"
   },
@@ -50871,7 +50874,7 @@ var datos=[
     "low": 0.49,
     "close": 0.49,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-05-01"
   },
@@ -50882,7 +50885,7 @@ var datos=[
     "low": 0.49,
     "close": 0.5,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-06-01"
   },
@@ -50893,7 +50896,7 @@ var datos=[
     "low": 0.5,
     "close": 0.51,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-07-01"
   },
@@ -50904,7 +50907,7 @@ var datos=[
     "low": 0.51,
     "close": 0.51,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-08-01"
   },
@@ -50915,7 +50918,7 @@ var datos=[
     "low": 0.5,
     "close": 0.51,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-09-01"
   },
@@ -50926,7 +50929,7 @@ var datos=[
     "low": 0.52,
     "close": 0.53,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-10-01"
   },
@@ -50937,7 +50940,7 @@ var datos=[
     "low": 0.52,
     "close": 0.53,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-11-01"
   },
@@ -50948,7 +50951,7 @@ var datos=[
     "low": 0.53,
     "close": 0.53,
     "inflation": "",
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2009-12-01"
   },
@@ -50959,7 +50962,7 @@ var datos=[
     "low": 0.53,
     "close": 0.53,
     "inflation": 11.07,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-01-01"
   },
@@ -50970,7 +50973,7 @@ var datos=[
     "low": 0.52,
     "close": 0.54,
     "inflation": 12.32,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-02-01"
   },
@@ -50981,7 +50984,7 @@ var datos=[
     "low": 0.55,
     "close": 0.55,
     "inflation": 13.28,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-03-01"
   },
@@ -50992,7 +50995,7 @@ var datos=[
     "low": 0.53,
     "close": 0.53,
     "inflation": 8.49,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-04-01"
   },
@@ -51003,7 +51006,7 @@ var datos=[
     "low": 0.52,
     "close": 0.55,
     "inflation": 11.58,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-05-01"
   },
@@ -51014,7 +51017,7 @@ var datos=[
     "low": 0.56,
     "close": 0.57,
     "inflation": 13.84,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-06-01"
   },
@@ -51025,7 +51028,7 @@ var datos=[
     "low": 0.56,
     "close": 0.57,
     "inflation": 13.23,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-07-01"
   },
@@ -51036,7 +51039,7 @@ var datos=[
     "low": 0.57,
     "close": 0.58,
     "inflation": 14.79,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-08-01"
   },
@@ -51047,7 +51050,7 @@ var datos=[
     "low": 0.58,
     "close": 0.58,
     "inflation": 12.41,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-09-01"
   },
@@ -51058,7 +51061,7 @@ var datos=[
     "low": 0.57,
     "close": 0.59,
     "inflation": 11.71,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-10-01"
   },
@@ -51069,7 +51072,7 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": 11.9,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-11-01"
   },
@@ -51080,7 +51083,7 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": 10.22,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2010-12-01"
   },
@@ -51091,7 +51094,7 @@ var datos=[
     "low": 0.58,
     "close": 0.59,
     "inflation": 11.74,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-01-01"
   },
@@ -51102,7 +51105,7 @@ var datos=[
     "low": 0.59,
     "close": 0.59,
     "inflation": 9.61,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-02-01"
   },
@@ -51113,7 +51116,7 @@ var datos=[
     "low": 0.59,
     "close": 0.62,
     "inflation": 11.8,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-03-01"
   },
@@ -51124,7 +51127,7 @@ var datos=[
     "low": 0.62,
     "close": 0.62,
     "inflation": 15.8,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-04-01"
   },
@@ -51135,7 +51138,7 @@ var datos=[
     "low": 0.61,
     "close": 0.63,
     "inflation": 13.53,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-05-01"
   },
@@ -51146,7 +51149,7 @@ var datos=[
     "low": 0.63,
     "close": 0.63,
     "inflation": 10.88,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-06-01"
   },
@@ -51157,7 +51160,7 @@ var datos=[
     "low": 0.62,
     "close": 0.65,
     "inflation": 13.01,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-07-01"
   },
@@ -51168,7 +51171,7 @@ var datos=[
     "low": 0.65,
     "close": 0.66,
     "inflation": 13.09,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-08-01"
   },
@@ -51179,7 +51182,7 @@ var datos=[
     "low": 0.65,
     "close": 0.66,
     "inflation": 14.61,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-09-01"
   },
@@ -51190,7 +51193,7 @@ var datos=[
     "low": 0.66,
     "close": 0.68,
     "inflation": 16.02,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-10-01"
   },
@@ -51201,7 +51204,7 @@ var datos=[
     "low": 0.67,
     "close": 0.67,
     "inflation": 13.52,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-11-01"
   },
@@ -51212,7 +51215,7 @@ var datos=[
     "low": 0.66,
     "close": 0.67,
     "inflation": 13.54,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2011-12-01"
   },
@@ -51223,7 +51226,7 @@ var datos=[
     "low": 0.66,
     "close": 0.66,
     "inflation": 11.72,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-01-01"
   },
@@ -51234,7 +51237,7 @@ var datos=[
     "low": 0.65,
     "close": 0.66,
     "inflation": 11.29,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-02-01"
   },
@@ -51245,7 +51248,7 @@ var datos=[
     "low": 0.66,
     "close": 0.67,
     "inflation": 8.13,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-03-01"
   },
@@ -51256,7 +51259,7 @@ var datos=[
     "low": 0.67,
     "close": 0.67,
     "inflation": 8.91,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-04-01"
   },
@@ -51267,7 +51270,7 @@ var datos=[
     "low": 0.67,
     "close": 0.69,
     "inflation": 9.65,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-05-01"
   },
@@ -51278,7 +51281,7 @@ var datos=[
     "low": 0.69,
     "close": 0.7,
     "inflation": 10.34,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-06-01"
   },
@@ -51289,7 +51292,7 @@ var datos=[
     "low": 0.7,
     "close": 0.71,
     "inflation": 8.8,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-07-01"
   },
@@ -51300,7 +51303,7 @@ var datos=[
     "low": 0.7,
     "close": 0.7,
     "inflation": 6.49,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-08-01"
   },
@@ -51311,7 +51314,7 @@ var datos=[
     "low": 0.69,
     "close": 0.7,
     "inflation": 5.76,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-09-01"
   },
@@ -51322,7 +51325,7 @@ var datos=[
     "low": 0.69,
     "close": 0.69,
     "inflation": 1.74,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-10-01"
   },
@@ -51333,7 +51336,7 @@ var datos=[
     "low": 0.68,
     "close": 0.69,
     "inflation": 1.68,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-11-01"
   },
@@ -51344,7 +51347,7 @@ var datos=[
     "low": 0.68,
     "close": 0.69,
     "inflation": 2.72,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2012-12-01"
   },
@@ -51355,7 +51358,7 @@ var datos=[
     "low": 0.68,
     "close": 0.68,
     "inflation": 3.52,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-01-01"
   },
@@ -51366,7 +51369,7 @@ var datos=[
     "low": 0.68,
     "close": 0.72,
     "inflation": 8.68,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-02-01"
   },
@@ -51377,7 +51380,7 @@ var datos=[
     "low": 0.73,
     "close": 0.74,
     "inflation": 10.33,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-03-01"
   },
@@ -51388,7 +51391,7 @@ var datos=[
     "low": 0.7,
     "close": 0.7,
     "inflation": 3.63,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-04-01"
   },
@@ -51399,7 +51402,7 @@ var datos=[
     "low": 0.67,
     "close": 0.7,
     "inflation": 1.49,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-05-01"
   },
@@ -51410,7 +51413,7 @@ var datos=[
     "low": 0.69,
     "close": 0.69,
     "inflation": -1.1,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-06-01"
   },
@@ -51421,7 +51424,7 @@ var datos=[
     "low": 0.67,
     "close": 0.7,
     "inflation": -0.29,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-07-01"
   },
@@ -51432,7 +51435,7 @@ var datos=[
     "low": 0.69,
     "close": 0.69,
     "inflation": -1.44,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-08-01"
   },
@@ -51443,7 +51446,7 @@ var datos=[
     "low": 0.67,
     "close": 0.7,
     "inflation": -0.48,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-09-01"
   },
@@ -51454,7 +51457,7 @@ var datos=[
     "low": 0.7,
     "close": 0.72,
     "inflation": 4.61,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-10-01"
   },
@@ -51465,7 +51468,7 @@ var datos=[
     "low": 0.71,
     "close": 0.71,
     "inflation": 3.32,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-11-01"
   },
@@ -51476,7 +51479,7 @@ var datos=[
     "low": 0.69,
     "close": 0.71,
     "inflation": 3.07,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2013-12-01"
   },
@@ -51487,7 +51490,7 @@ var datos=[
     "low": 0.71,
     "close": 0.71,
     "inflation": 3.06,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-01-01"
   },
@@ -51498,7 +51501,7 @@ var datos=[
     "low": 0.66,
     "close": 0.66,
     "inflation": -8.5,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-02-01"
   },
@@ -51509,7 +51512,7 @@ var datos=[
     "low": 0.63,
     "close": 0.65,
     "inflation": -11.38,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-03-01"
   },
@@ -51520,7 +51523,7 @@ var datos=[
     "low": 0.65,
     "close": 0.69,
     "inflation": -1.12,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-04-01"
   },
@@ -51531,7 +51534,7 @@ var datos=[
     "low": 0.69,
     "close": 0.73,
     "inflation": 5.18,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-05-01"
   },
@@ -51542,7 +51545,7 @@ var datos=[
     "low": 0.74,
     "close": 0.76,
     "inflation": 10.45,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-06-01"
   },
@@ -51553,7 +51556,7 @@ var datos=[
     "low": 0.76,
     "close": 0.78,
     "inflation": 10.36,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-07-01"
   },
@@ -51564,7 +51567,7 @@ var datos=[
     "low": 0.77,
     "close": 0.77,
     "inflation": 12.2,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-08-01"
   },
@@ -51575,7 +51578,7 @@ var datos=[
     "low": 0.76,
     "close": 0.76,
     "inflation": 9.37,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-09-01"
   },
@@ -51586,7 +51589,7 @@ var datos=[
     "low": 0.73,
     "close": 0.73,
     "inflation": 0.95,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-10-01"
   },
@@ -51597,7 +51600,7 @@ var datos=[
     "low": 0.71,
     "close": 0.74,
     "inflation": 3.85,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-11-01"
   },
@@ -51608,7 +51611,7 @@ var datos=[
     "low": 0.73,
     "close": 0.73,
     "inflation": 2.99,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2014-12-01"
   },
@@ -51619,7 +51622,7 @@ var datos=[
     "low": 0.7,
     "close": 0.7,
     "inflation": -1.04,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-01-01"
   },
@@ -51630,7 +51633,7 @@ var datos=[
     "low": 0.68,
     "close": 0.69,
     "inflation": 4.9,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-02-01"
   },
@@ -51641,7 +51644,7 @@ var datos=[
     "low": 0.68,
     "close": 0.73,
     "inflation": 11.43,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-03-01"
   },
@@ -51652,7 +51655,7 @@ var datos=[
     "low": 0.74,
     "close": 0.78,
     "inflation": 13.63,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-04-01"
   },
@@ -51663,7 +51666,7 @@ var datos=[
     "low": 0.79,
     "close": 0.79,
     "inflation": 7.94,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-05-01"
   },
@@ -51674,7 +51677,7 @@ var datos=[
     "low": 0.77,
     "close": 0.83,
     "inflation": 9.08,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-06-01"
   },
@@ -51685,7 +51688,7 @@ var datos=[
     "low": 0.82,
     "close": 0.82,
     "inflation": 6,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-07-01"
   },
@@ -51696,7 +51699,7 @@ var datos=[
     "low": 0.79,
     "close": 0.87,
     "inflation": 12.25,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-08-01"
   },
@@ -51707,7 +51710,7 @@ var datos=[
     "low": 0.88,
     "close": 0.94,
     "inflation": 22.6,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-09-01"
   },
@@ -51718,7 +51721,7 @@ var datos=[
     "low": 0.92,
     "close": 0.98,
     "inflation": 34.16,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-10-01"
   },
@@ -51729,7 +51732,7 @@ var datos=[
     "low": 0.97,
     "close": 0.99,
     "inflation": 35.18,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-11-01"
   },
@@ -51740,7 +51743,7 @@ var datos=[
     "low": 0.92,
     "close": 0.92,
     "inflation": 26.75,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2015-12-01"
   },
@@ -51751,7 +51754,7 @@ var datos=[
     "low": 0.87,
     "close": 0.89,
     "inflation": 27.08,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-01-01"
   },
@@ -51762,7 +51765,7 @@ var datos=[
     "low": 0.87,
     "close": 0.87,
     "inflation": 25.7,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-02-01"
   },
@@ -51773,7 +51776,7 @@ var datos=[
     "low": 0.84,
     "close": 0.85,
     "inflation": 16.27,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-03-01"
   },
@@ -51784,7 +51787,7 @@ var datos=[
     "low": 0.83,
     "close": 0.85,
     "inflation": 8.15,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-04-01"
   },
@@ -51795,7 +51798,7 @@ var datos=[
     "low": 0.84,
     "close": 0.89,
     "inflation": 12.89,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-05-01"
   },
@@ -51806,7 +51809,7 @@ var datos=[
     "low": 0.9,
     "close": 0.91,
     "inflation": 9.99,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-06-01"
   },
@@ -51817,7 +51820,7 @@ var datos=[
     "low": 0.88,
     "close": 0.88,
     "inflation": 6.78,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-07-01"
   },
@@ -51828,7 +51831,7 @@ var datos=[
     "low": 0.85,
     "close": 0.86,
     "inflation": -1.1,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-08-01"
   },
@@ -51839,7 +51842,7 @@ var datos=[
     "low": 0.85,
     "close": 0.89,
     "inflation": -4.95,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-09-01"
   },
@@ -51850,7 +51853,7 @@ var datos=[
     "low": 0.89,
     "close": 0.92,
     "inflation": -5.92,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-10-01"
   },
@@ -51861,7 +51864,7 @@ var datos=[
     "low": 0.91,
     "close": 0.91,
     "inflation": -8.45,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-11-01"
   },
@@ -51872,7 +51875,7 @@ var datos=[
     "low": 0.87,
     "close": 0.87,
     "inflation": -5.71,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2016-12-01"
   },
@@ -51883,7 +51886,7 @@ var datos=[
     "low": 0.85,
     "close": 0.89,
     "inflation": 0.2,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-01-01"
   },
@@ -51894,7 +51897,7 @@ var datos=[
     "low": 0.89,
     "close": 0.91,
     "inflation": 4.66,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-02-01"
   },
@@ -51905,7 +51908,7 @@ var datos=[
     "low": 0.9,
     "close": 0.9,
     "inflation": 6.02,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-03-01"
   },
@@ -51916,7 +51919,7 @@ var datos=[
     "low": 0.88,
     "close": 0.89,
     "inflation": 5.09,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-04-01"
   },
@@ -51927,7 +51930,7 @@ var datos=[
     "low": 0.88,
     "close": 0.88,
     "inflation": -1.74,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-05-01"
   },
@@ -51938,7 +51941,7 @@ var datos=[
     "low": 0.87,
     "close": 0.88,
     "inflation": -3.9,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-06-01"
   },
@@ -51949,7 +51952,7 @@ var datos=[
     "low": 0.88,
     "close": 0.88,
     "inflation": 0.65,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-07-01"
   },
@@ -51960,7 +51963,7 @@ var datos=[
     "low": 0.88,
     "close": 0.89,
     "inflation": 3.83,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-08-01"
   },
@@ -51971,7 +51974,7 @@ var datos=[
     "low": 0.89,
     "close": 0.91,
     "inflation": 1.74,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-09-01"
   },
@@ -51982,7 +51985,7 @@ var datos=[
     "low": 0.91,
     "close": 0.94,
     "inflation": 2.2,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-10-01"
   },
@@ -51993,7 +51996,7 @@ var datos=[
     "low": 0.95,
     "close": 0.97,
     "inflation": 7.09,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-11-01"
   },
@@ -52004,7 +52007,7 @@ var datos=[
     "low": 0.97,
     "close": 0.98,
     "inflation": 12.36,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2017-12-01"
   },
@@ -52015,7 +52018,7 @@ var datos=[
     "low": 0.97,
     "close": 1,
     "inflation": 12.43,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-01-01"
   },
@@ -52026,7 +52029,7 @@ var datos=[
     "low": 1,
     "close": 1,
     "inflation": 10.41,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-02-01"
   },
@@ -52037,7 +52040,7 @@ var datos=[
     "low": 0.99,
     "close": 1.02,
     "inflation": 13.8,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-03-01"
   },
@@ -52048,7 +52051,7 @@ var datos=[
     "low": 1.02,
     "close": 1.05,
     "inflation": 18.11,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-04-01"
   },
@@ -52059,7 +52062,7 @@ var datos=[
     "low": 1.05,
     "close": 1.06,
     "inflation": 20.69,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-05-01"
   },
@@ -52070,7 +52073,7 @@ var datos=[
     "low": 1.05,
     "close": 1.05,
     "inflation": 19.74,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-06-01"
   },
@@ -52081,7 +52084,7 @@ var datos=[
     "low": 1.04,
     "close": 1.05,
     "inflation": 18.56,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-07-01"
   },
@@ -52092,7 +52095,7 @@ var datos=[
     "low": 1.04,
     "close": 1.12,
     "inflation": 25.27,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-08-01"
   },
@@ -52103,7 +52106,7 @@ var datos=[
     "low": 1.13,
     "close": 1.24,
     "inflation": 37.48,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-09-01"
   },
@@ -52114,7 +52117,7 @@ var datos=[
     "low": 1.25,
     "close": 1.39,
     "inflation": 47.17,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-10-01"
   },
@@ -52125,7 +52128,7 @@ var datos=[
     "low": 1.36,
     "close": 1.36,
     "inflation": 39.4,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-11-01"
   },
@@ -52136,7 +52139,7 @@ var datos=[
     "low": 1.27,
     "close": 1.29,
     "inflation": 31.75,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2018-12-01"
   },
@@ -52147,7 +52150,7 @@ var datos=[
     "low": 1.24,
     "close": 1.28,
     "inflation": 27.88,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-01-01"
   },
@@ -52158,7 +52161,7 @@ var datos=[
     "low": 1.25,
     "close": 1.29,
     "inflation": 28.63,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-02-01"
   },
@@ -52169,7 +52172,7 @@ var datos=[
     "low": 1.27,
     "close": 1.3,
     "inflation": 27.26,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-03-01"
   },
@@ -52180,7 +52183,7 @@ var datos=[
     "low": 1.28,
     "close": 1.28,
     "inflation": 21.22,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-04-01"
   },
@@ -52191,7 +52194,7 @@ var datos=[
     "low": 1.25,
     "close": 1.33,
     "inflation": 25.45,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-05-01"
   },
@@ -52202,7 +52205,7 @@ var datos=[
     "low": 1.3,
     "close": 1.3,
     "inflation": 24.14,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-06-01"
   },
@@ -52213,7 +52216,7 @@ var datos=[
     "low": 1.25,
     "close": 1.31,
     "inflation": 24.55,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-07-01"
   },
@@ -52224,7 +52227,7 @@ var datos=[
     "low": 1.3,
     "close": 1.37,
     "inflation": 22.1,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-08-01"
   },
@@ -52235,7 +52238,7 @@ var datos=[
     "low": 1.36,
     "close": 1.38,
     "inflation": 11.29,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-09-01"
   },
@@ -52246,7 +52249,7 @@ var datos=[
     "low": 1.36,
     "close": 1.38,
     "inflation": -0.36,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-10-01"
   },
@@ -52257,7 +52260,7 @@ var datos=[
     "low": 1.34,
     "close": 1.34,
     "inflation": -1.51,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-11-01"
   },
@@ -52268,7 +52271,7 @@ var datos=[
     "low": 1.3,
     "close": 1.33,
     "inflation": 2.8,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2019-12-01"
   },
@@ -52279,7 +52282,7 @@ var datos=[
     "low": 1.32,
     "close": 1.34,
     "inflation": 4.6,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-01-01"
   },
@@ -52290,7 +52293,7 @@ var datos=[
     "low": 1.33,
     "close": 1.35,
     "inflation": 4.85,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-02-01"
   },
@@ -52301,7 +52304,7 @@ var datos=[
     "low": 1.35,
     "close": 1.38,
     "inflation": 6.53,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-03-01"
   },
@@ -52312,7 +52315,7 @@ var datos=[
     "low": 1.39,
     "close": 1.45,
     "inflation": 13.57,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-04-01"
   },
@@ -52323,7 +52326,7 @@ var datos=[
     "low": 1.45,
     "close": 1.45,
     "inflation": 9.32,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-05-01"
   },
@@ -52334,7 +52337,7 @@ var datos=[
     "low": 1.42,
     "close": 1.46,
     "inflation": 11.88,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-06-01"
   },
@@ -52345,7 +52348,7 @@ var datos=[
     "low": 1.45,
     "close": 1.52,
     "inflation": 16.38,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-07-01"
   },
@@ -52356,7 +52359,7 @@ var datos=[
     "low": 1.53,
     "close": 1.56,
     "inflation": 14.46,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-08-01"
   },
@@ -52367,7 +52370,7 @@ var datos=[
     "low": 1.55,
     "close": 1.68,
     "inflation": 21.27,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-09-01"
   },
@@ -52378,7 +52381,7 @@ var datos=[
     "low": 1.69,
     "close": 1.75,
     "inflation": 26.42,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-10-01"
   },
@@ -52389,7 +52392,7 @@ var datos=[
     "low": 1.71,
     "close": 1.74,
     "inflation": 29.97,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-11-01"
   },
@@ -52400,7 +52403,7 @@ var datos=[
     "low": 1.7,
     "close": 1.74,
     "inflation": 30.95,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2020-12-01"
   },
@@ -52411,7 +52414,7 @@ var datos=[
     "low": 1.69,
     "close": 1.69,
     "inflation": 26.42,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-01-01"
   },
@@ -52422,7 +52425,7 @@ var datos=[
     "low": 1.64,
     "close": 1.7,
     "inflation": 25.83,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-02-01"
   },
@@ -52433,7 +52436,7 @@ var datos=[
     "low": 1.7,
     "close": 1.73,
     "inflation": 25.11,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-03-01"
   },
@@ -52444,7 +52447,7 @@ var datos=[
     "low": 1.72,
     "close": 1.78,
     "inflation": 22.54,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-04-01"
   },
@@ -52455,7 +52458,7 @@ var datos=[
     "low": 1.78,
     "close": 1.8,
     "inflation": 23.98,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-05-01"
   },
@@ -52466,7 +52469,7 @@ var datos=[
     "low": 1.79,
     "close": 1.84,
     "inflation": 26.27,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-06-01"
   },
@@ -52477,7 +52480,7 @@ var datos=[
     "low": 1.84,
     "close": 1.89,
     "inflation": 24.59,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-07-01"
   },
@@ -52488,7 +52491,7 @@ var datos=[
     "low": 1.89,
     "close": 2.02,
     "inflation": 29.19,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-08-01"
   },
@@ -52499,7 +52502,7 @@ var datos=[
     "low": 2.03,
     "close": 2.14,
     "inflation": 27.31,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-09-01"
   },
@@ -52510,7 +52513,7 @@ var datos=[
     "low": 2.12,
     "close": 2.32,
     "inflation": 32.76,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-10-01"
   },
@@ -52521,7 +52524,7 @@ var datos=[
     "low": 2.32,
     "close": 2.58,
     "inflation": 48.63,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-11-01"
   },
@@ -52532,7 +52535,7 @@ var datos=[
     "low": 2.56,
     "close": 2.59,
     "inflation": 49.29,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2021-12-01"
   },
@@ -52543,7 +52546,7 @@ var datos=[
     "low": 2.43,
     "close": 2.43,
     "inflation": 43.78,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-01-01"
   },
@@ -52554,7 +52557,7 @@ var datos=[
     "low": 2.3,
     "close": 2.45,
     "inflation": 44.16,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-02-01"
   },
@@ -52565,7 +52568,7 @@ var datos=[
     "low": 2.42,
     "close": 2.64,
     "inflation": 52.32,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-03-01"
   },
@@ -52576,7 +52579,7 @@ var datos=[
     "low": 2.63,
     "close": 2.63,
     "inflation": 48.17,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-04-01"
   },
@@ -52587,7 +52590,7 @@ var datos=[
     "low": 2.52,
     "close": 2.69,
     "inflation": 49.27,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-05-01"
   },
@@ -52598,7 +52601,7 @@ var datos=[
     "low": 2.66,
     "close": 2.76,
     "inflation": 49.67,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-06-01"
   },
@@ -52609,7 +52612,7 @@ var datos=[
     "low": 2.71,
     "close": 2.86,
     "inflation": 51.01,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-07-01"
   },
@@ -52620,7 +52623,7 @@ var datos=[
     "low": 2.84,
     "close": 2.93,
     "inflation": 44.83,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-08-01"
   },
@@ -52631,7 +52634,7 @@ var datos=[
     "low": 2.88,
     "close": 2.92,
     "inflation": 36.59,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-09-01"
   },
@@ -52642,7 +52645,7 @@ var datos=[
     "low": 2.87,
     "close": 2.87,
     "inflation": 23.63,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-10-01"
   },
@@ -52653,7 +52656,7 @@ var datos=[
     "low": 2.78,
     "close": 2.78,
     "inflation": 7.51,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-11-01"
   },
@@ -52664,7 +52667,7 @@ var datos=[
     "low": 2.7,
     "close": 2.7,
     "inflation": 3.98,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2022-12-01"
   },
@@ -52675,7 +52678,7 @@ var datos=[
     "low": 2.64,
     "close": 2.7,
     "inflation": 10.84,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-01-01"
   },
@@ -52686,7 +52689,7 @@ var datos=[
     "low": 2.68,
     "close": 2.7,
     "inflation": 10.01,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-02-01"
   },
@@ -52697,7 +52700,7 @@ var datos=[
     "low": 2.66,
     "close": 2.66,
     "inflation": 0.83,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-03-01"
   },
@@ -52708,7 +52711,7 @@ var datos=[
     "low": 2.62,
     "close": 2.64,
     "inflation": 0.32,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-04-01"
   },
@@ -52719,7 +52722,7 @@ var datos=[
     "low": 2.63,
     "close": 2.69,
     "inflation": 0.16,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-05-01"
   },
@@ -52730,7 +52733,7 @@ var datos=[
     "low": 2.7,
     "close": 2.75,
     "inflation": -0.28,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-06-01"
   },
@@ -52741,7 +52744,7 @@ var datos=[
     "low": 2.75,
     "close": 2.81,
     "inflation": -1.85,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-07-01"
   },
@@ -52752,7 +52755,7 @@ var datos=[
     "low": 2.81,
     "close": 2.83,
     "inflation": -3.17,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-08-01"
   },
@@ -52763,7 +52766,7 @@ var datos=[
     "low": 2.82,
     "close": 2.97,
     "inflation": 1.68,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-09-01"
   },
@@ -52774,7 +52777,7 @@ var datos=[
     "low": 2.98,
     "close": 2.98,
     "inflation": 3.76,
-    "country": "Yemen",
+    "country": "Yemen, Rep.",
     "iso3": "YEM",
     "date": "2023-10-01"
   }
@@ -52924,7 +52927,28 @@ const port = (process.env.port || 10000);
 
 app.use(bodyParser.json());*/
 
+
+
 function JGVBackend(app, db){
+    app.use(cors({
+      "origin":"http://localhost:5173",
+      "preflightContinue":false,
+      "optionsSuccessStatus":204
+    }));
+
+    app.use('/proxy',function(req,res) {
+        var url="https://sos2324-18.appspot.com/api/v2/foods-prices-inflation";
+        console.log('piped'+req.url);
+        req.pipe(request(url)).pipe(res);
+        
+        request(url,(error,response,body)=>{
+            if(error)
+              console.log(error)
+            console.log(response)
+            res.send(body);
+        })
+    });
+
     app.get(API_BASE+"/foods-prices-inflation/docs", (req,res)=>{
       res.redirect(res.redirect(200, "https://documenter.getpostman.com/view/33015048/2sA35HX1Xu"));
     });
@@ -53121,7 +53145,6 @@ function JGVBackend(app, db){
         console.log(200, "OK");
     });
 
-    
 }
 
 export { JGVBackend };

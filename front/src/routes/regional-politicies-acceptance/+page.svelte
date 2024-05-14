@@ -43,7 +43,6 @@
         
         await getCountries();
         await showedCountr(offset);
-        await buscaPaisesGCLOUD();
         
     });
     
@@ -346,15 +345,6 @@
 
 
 
-
-    async function buscaPaisesGCLOUD(){
-        let response=await fetch("https://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance",{
-            method:"GET",
-            headers:{
-                "Content-Type":"application/json"
-        }});
-        console.log(await response.json());
-    }
     
     </script>
     

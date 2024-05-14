@@ -13,9 +13,9 @@
 
 import {onMount} from "svelte";
 import {dev} from "$app/environment";
-import { Button,Container,Accordion, AccordionItem,Alert, Card} from '@sveltestrap/sveltestrap';
-import {apiCountriesCarbeario,apiCovidCarbeario} from '../../../../keys'
-
+import { Button,Container,Accordion, AccordionItem,Alert} from '@sveltestrap/sveltestrap';
+import {apiCountriesCarbeario,apiCovidCarbeario} from '../../../../../keys'
+import {Card,CardBody,CardFooter,CardHeader,CardSubtitle,CardText,CardTitle} from '@sveltestrap/sveltestrap';
 
 
 	
@@ -381,7 +381,7 @@ async function createCountriesIntegration(){
 
     
 
-async function createIntegration() {
+async function createIntegrationPib() {
 
     let pibCountries=[]
 
@@ -473,7 +473,7 @@ async function createIntegration() {
         }
     }],
     series: [{
-        name: 'Pib(miles de millones)',
+        name: 'Pib(miles de millones de euros)',
         data: pibs,
     }, {
         name: 'Votos',
@@ -488,20 +488,59 @@ async function createIntegration() {
 }
 
 
+
+
+
+
+
+
+
+async function createAllIntegrations(){
+    await createCovid19Integration()
+    await createPopulationIntegration()
+    await createCountriesIntegration()
+    await createIntegrationPib()
+    
+}
+
+
+
+
 </script>
 
 
 
+
+
+
+
 <Container>
-<h1>Que usuario quiere elegir?</h1>
-    <div class="container" style="display: grid; grid-template-columns: 33% 33% 33%">
-        
-        <div class="card">
-            <div class="photo">
-                <a href="http://localhost:5173/integrations/carbeario"><img src = "https://th.bing.com/th/id/OIP.cbVEYW64oNlc7QA8PK6ETAAAAA?rs=1&pid=ImgDetMain" alt="Imagen" style="max-width: 100%;max-height: 100%;display: block;"></a>
-            </div>
-            <Card><h3>Carlos</h3></Card>
-        </div>
-        </div>   
+<Card theme="auto">
+    <CardHeader>
+        <CardTitle>
+            <h2>Crea las integraciones
+                <Button on:click="{createAllIntegrations}">Crear</Button>
+            </h2>             
+        </CardTitle>
+    </CardHeader>
+    <CardBody>
+
+        <h3>Integracion 1</h3>
+                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                        <h3>Integracion 2</h3>
+                        <div id="myChart" style="height: 400px; width: 100%;"></div>
+                        <h3>Integracion 3</h3>
+                        <div id="chartContainerAreas" style="height: 300px; width: 100%;"></div>
+                        <h3>Integracion 4</h3>
+                        <div id="containerVotes" style="height: 400px; width: 100%;"></div> 
+    </CardBody>
+</Card>
 
 </Container>
+
+
+
+
+
+
+

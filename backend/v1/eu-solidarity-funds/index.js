@@ -1,3 +1,6 @@
+import request from 'request';
+import cors from "cors";
+
 let datosIniciales = [
   {
     "year_of_occurance": "2002",
@@ -422,7 +425,23 @@ app.delete(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
   });
 });
 
+app.use(cors({
+  "origin":"http://localhost:5173/",
+  "preflightContinue":false,
+  "optionsSuccessStatus":204
+}));
 
+app.use('/proxy',function(req,res) {
+  var url="https://sos2324-18.appspot.com/api/v1/eu-solidarity-funds";
+  console.log('piped'+req.url);
+  req.pipe(request(url)).pipe(res);
+  
+  request(url,(error,response,body)=>{
+      if(error)console.log(error)
+      console.log(response)
+      res.send(body);
+  })
+});
 
 //const PORT = (process.env.PORT || 10000);
   

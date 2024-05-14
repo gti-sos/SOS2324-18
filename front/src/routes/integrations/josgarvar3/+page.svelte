@@ -1,3 +1,19 @@
+<!--script>
+	import { onMount } from 'svelte';
+
+	let pokes = [];
+
+	onMount(async () => {
+		const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=50&offset=50', {
+			method: "GET"
+		});
+		const data = await response.json();
+		// Procesa los datos según el formato que necesite Highcharts
+		pokes = data.results;
+        console.log(pokes);
+	});
+</script-->
+
 <svelte:head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
 </svelte:head>
@@ -17,10 +33,21 @@
     let ser=[];
     let cat=new Set();
     let Allfoods=[];
+	let covid = [];
     let API = "/api/v2/foods-prices-inflation";
     
     if(dev)
         API = "http://localhost:10000"+API;
+
+	async function graficas(){
+		await getAllFoods();
+		await getCovid();
+
+		creaLineas(); 
+        graficaColumn(); 
+        graficaArea();
+        graficaECharts();
+	}
 
     async function getAllFoods(){
         let response = await fetch(API+"?pageSize=10000", {
@@ -29,34 +56,47 @@
 
         let data = await response.json();
         Allfoods = data;
-        creaLineas(); 
-        graficaColumn(); 
-        graficaArea();
-        graficaECharts();
+        
         console.log(data);
     }
 
+	async function getCovid(){
+		const response = await fetch('https://api.covidtracking.com/v1/us/daily.json', {
+			method: "GET"
+		});
+		const data = await response.json();
+		// Procesa los datos según el formato que necesite Highcharts
+		covid = data.slice(0, 30);
+        console.log(covid);
+	}
+
     async function creaLineas(){
-        let open= {
+        let inflation= {
             name: '',
             data: []
         }
 
-        let close= {
+        let cov= {
             name: '',
             data: []
         }
 
         for(let i=0; i<Allfoods.length; i++){
-            cat.add(Allfoods[i].id);
-            open.name="Open";
-            open.data.push(Allfoods[i].open);
-            close.name="Close";
-            close.data.push(Allfoods[i].close);
+            cat.add(Allfoods[i].date.slice(0, 4));
+            inflation.name="Inflacion";
+            inflation.data.push(Allfoods[i].inflation*100);
+        }
+
+		for(let i=0; i<covid.length; i++){
+            cat.add((covid[i].date+"").slice(0, 4));
+            cov.name="Covid";
+            cov.data.push(covid[i].hospitalizedIncrease);
         }
         
-        ser.push(open);
-        ser.push(close);
+        ser.push(inflation);
+        ser.push(cov);
+		
+		console.log(cov)
         cat=[...cat];
         console.log(cat);
     }
@@ -67,7 +107,7 @@
                 type: 'area'
             },
             title: {
-                text: 'Open - Close de la inflacion'
+                text: 'Inflacion - Hospitalizados por covid'
             },
             subtitle: {
                 text: 'Source: ' +
@@ -79,7 +119,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Open / Close'
+                    text: 'Inflacion / Hospitalizados por covid'
                 }
             },
             plotOptions: {
@@ -154,7 +194,7 @@
     }
 
     onMount(() =>{
-        getAllFoods();
+		graficas();
     });
 </script>
 
