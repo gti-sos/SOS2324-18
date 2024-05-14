@@ -9,7 +9,7 @@
 
 <script>
 	import { onMount } from 'svelte';
-	import { key_BaseBallAPI } from '../keys/keys'
+	//import { key_BaseBallAPI } from '../keys/keys'
 
 	let data = [];
 
