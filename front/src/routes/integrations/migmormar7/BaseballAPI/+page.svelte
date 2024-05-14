@@ -15,7 +15,7 @@
 
 	onMount(async () => {
 		const headers = {
-			'X-RapidAPI-Key': key_BaseBallAPI,
+			//'X-RapidAPI-Key': key_BaseBallAPI,
 			'X-RapidAPI-Host': 'baseballapi.p.rapidapi.com'
 		};
 
