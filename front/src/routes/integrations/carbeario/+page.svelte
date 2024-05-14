@@ -14,7 +14,6 @@
 import {onMount} from "svelte";
 import {dev} from "$app/environment";
 import { Button,Container,Accordion, AccordionItem,Alert} from '@sveltestrap/sveltestrap';
-import {apiCountriesCarbeario,apiCovidCarbeario} from '../../../../../keys'
 import {Card,CardBody,CardFooter,CardHeader,CardSubtitle,CardText,CardTitle} from '@sveltestrap/sveltestrap';
 
 
@@ -61,7 +60,7 @@ async function createCovid19Integration(){
     const options = {
 	    method: 'GET',
 	    headers: {
-		    'X-RapidAPI-Key': apiCovidCarbeario,
+		    'X-RapidAPI-Key': 'd7c50d853emshae9b3b948a72bdbp15aa05jsn633aae4ea75b',
 		    'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'
 	    }
     };
@@ -162,7 +161,7 @@ try{
     let response=await fetch('https://restfulcountries.com/api/v1/countries', {
     method: 'GET',
     headers: {
-        'Authorization': `Bearer ${apiCountriesCarbeario}` // Reemplaza {TOKEN} con tu token real
+        'Authorization': 'Bearer 711|3jjfDbXLucipO5UKPZ6Uxfq18QmVShgUEVx3efCh' // Reemplaza {TOKEN} con tu token real
     }})
 
     let data=await response.json()
