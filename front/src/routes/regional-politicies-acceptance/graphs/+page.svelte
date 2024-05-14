@@ -14,6 +14,7 @@
 import {onMount} from "svelte";
 import {dev} from "$app/environment";
 import { Button,Container,Accordion, AccordionItem,Alert} from '@sveltestrap/sveltestrap';
+	
 
 let ordenPaises = []; 
 let resultado = [];
@@ -26,53 +27,7 @@ let field;
 let API="/api/v2/regional-politicies-acceptance";
 
 
-let myConfig = {
-  type: 'bar',
-  title: {
-    text: 'Data Basics',
-    fontSize: 24,
-  },
-  legend: {
-    draggable: true,
-  },
-  scaleX: {
-    // Set scale label
-    label: { text: 'Days' },
-    // Convert text on scale indices
-    labels: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
-  },
-  scaleY: {
-    // Scale label with unicode character
-    label: { text: 'Temperature (°F)' }
-  },
-  plot: {
-    // Animation docs here:
-    // https://www.zingchart.com/docs/tutorials/styling/animation#effect
-    animation: {
-      effect: 'ANIMATION_EXPAND_BOTTOM',
-      method: 'ANIMATION_STRONG_EASE_OUT',
-      sequence: 'ANIMATION_BY_NODE',
-      speed: 275,
-    }
-  },
-  series: [
-    {
-      // plot 1 values, linear data
-      values: [23,20,27,29,25,17,15],
-      text: 'Week 1',
-    },
-    {
-      // plot 2 values, linear data
-      values: [35,42,33,49,35,47,35],
-      text: 'Week 2'
-    },
-    {
-      // plot 2 values, linear data
-      values: [15,22,13,33,44,27,31],
-      text: 'Week 3'
-    }
-  ]
-};
+
     
 if(dev){
         API="http://localhost:10000"+API;
@@ -82,15 +37,6 @@ if(dev){
 onMount(async ()=>{
 
     await getCountries();
-
-   
-
-
-
-// Render Method[3]
-zingchart.render({  id: 'myChart',  data: myConfig,
-});
-
 });
 
 async function getCountries(){
@@ -293,6 +239,88 @@ function representGraphBar(){
 
 
 
+async function barZinChart(){
+
+    
+    let data=new Map();
+    countries.forEach((country)=>{ 
+        if(!data.has(country.year)){
+            data.set(country.year,[parseInt(country.answer_yes),parseInt(country.answer_no),parseInt(country.answer_n_a)]);
+        }else{
+            
+            let newList=data.get(country.year);
+            newList=[newList[0]+parseInt(country.answer_yes),newList[1]+parseInt(country.answer_no),newList[2]+parseInt(country.answer_n_a)];
+            data.set(country.year,newList);
+        }
+        }
+    );
+    console.log(data)
+    let orderData=Array.from(data).sort()
+    let labels=[]
+    let yes=[]
+    let nos=[]
+    let n_as=[]
+    orderData.forEach(elem=>{
+        if(!labels.includes(elem[0])){
+            labels.push(elem[0])
+        }
+        yes.push(elem[1][0])
+        nos.push(elem[1][1])
+        n_as.push(elem[1][2])
+    })
+
+ 
+    let finalData=[
+        {
+            values:yes,
+            text:'Si'
+        },
+        {
+            values:nos,
+            text:'No'
+        },
+        {
+            values:n_as,
+            text:'No sabe'
+        }
+    ]
+    console.log(finalData)
+
+    let myConfig = {
+  type: 'bar',
+  title: {
+    text: 'Votación de la aceptación de políticas europeas',
+    fontSize: 24,
+  },
+  legend: {
+    draggable: true,
+  },
+  scaleX: {
+    // Set scale label
+    label: { text: 'votos' },
+    // Convert text on scale indices
+    labels: labels
+  },
+  scaleY: {
+    // Scale label with unicode character
+    label: { text: 'votos' }
+  },
+  plot: {
+    // Animation docs here:
+    // https://www.zingchart.com/docs/tutorials/styling/animation#effect
+    animation: {
+      effect: 'ANIMATION_EXPAND_BOTTOM',
+      method: 'ANIMATION_STRONG_EASE_OUT',
+      sequence: 'ANIMATION_BY_NODE',
+      speed: 275,
+    }
+  },
+  series: finalData
+};
+
+zingchart.render({  id: 'myChart',  data: myConfig,
+});
+}
 
 </script>
 
@@ -305,15 +333,14 @@ function representGraphBar(){
 
 
 
-<Container xxl>
-    <div id="myChart"></div>
+<Container>
     <Accordion theme="auto">
         <Accordion theme="auto">
             <AccordionItem>
                 <h4 class="m-0" slot="header">Elige el tipo de grafica</h4>
                 <Accordion theme="auto">
                     <AccordionItem>
-                        <h4 class="m-0" slot="header">Grafica semicirculo</h4>
+                        <h4 class="m-0" slot="header">Grafica semicirculo(Highcharts)</h4>
                         <h1>Elige el pais que representar</h1>
                             <select id="nameValue" class="form-select form-select-lg" style="width: 30%;">
                                 {#each countries as country}    
@@ -324,7 +351,7 @@ function representGraphBar(){
                         <div id="container" style="width:90%; height:600px;"></div>
                     </AccordionItem>
                     <AccordionItem>
-                        <h4 class="m-0" slot="header">Grafica de barras</h4>
+                        <h4 class="m-0" slot="header">Grafica de barras(Highcharts)</h4>
                         <h2>Selecciona el campo que representar</h2>
                         <select id="fieldToRepresent" class="form-select form-select-lg" style="width: 30%;">
                             <option value="answer_yes">si</option>
@@ -333,6 +360,11 @@ function representGraphBar(){
                         </select>
                         <Button on:click={asignValueBar}>Generar</Button>
                         <div id="containerBar" style="width:90%; height:600px;"></div>
+                    </AccordionItem>
+                    <AccordionItem>
+                        <h4 class="m-0" slot="header">Grafica barras (Zingchart)</h4>
+                        <Button on:click={barZinChart}>Generar</Button>
+                        <div id="myChart" style="width:90%; height:600px;"></div>
                     </AccordionItem>
                 </Accordion>
             </AccordionItem>
@@ -349,3 +381,12 @@ function representGraphBar(){
     </Alert>
 </Container>
 {/if}
+
+
+
+
+
+
+
+
+

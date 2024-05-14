@@ -8,6 +8,7 @@
     import { Table } from '@sveltestrap/sveltestrap';
     import { Pagination,PaginationItem,PaginationLink } from '@sveltestrap/sveltestrap';
     import {Card,CardBody,CardFooter,CardHeader,CardSubtitle,CardText,CardTitle} from '@sveltestrap/sveltestrap';
+
 	
     
     
@@ -40,8 +41,8 @@
     onMount(async ()=>{
         
         
-        //await getCountries();
-        //await showedCountr(offset);
+        await getCountries();
+        await showedCountr(offset);
         await buscaPaisesGCLOUD();
         
     });
@@ -347,9 +348,12 @@
 
 
     async function buscaPaisesGCLOUD(){
-        await fetch("https://sos2324-18.appspot.com/proxy",(req,res)=>{
-            console.log(res.body);
-        })
+        let response=await fetch("https://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance",{
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json"
+        }});
+        console.log(await response.json());
     }
     
     </script>
@@ -366,7 +370,7 @@
     
     
     
-    <Container xxl>
+    <Container >
     
     
     

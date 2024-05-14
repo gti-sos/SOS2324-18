@@ -8,14 +8,24 @@ import cors from "cors";
 let initialCountries=[
     {
             "eu_country": "eu",
-            "answer_yes": "10788",
-            "yes": "0.4",
-            "answer_no": "15890",
-            "no": "0.58",
-            "answer_n_a": "466",
-            "n_a": "0.02",
-            "total": "27144",
+            "answer_yes": "300",
+            "yes": "0.333",
+            "answer_no": "300",
+            "no": "0.333",
+            "answer_n_a": "300",
+            "n_a": "0.333",
+            "total": "900",
             "year": "2019"
+        },
+        {"eu_country": "eu",
+        "answer_yes": "1000",
+        "yes": "0.333",
+        "answer_no": "1000",
+        "no": "0.333",
+        "answer_n_a": "1000",
+        "n_a": "0.333",
+        "total": "3000",
+        "year": "2018"
         },
         {
             "eu_country": "bhutan",
@@ -162,7 +172,7 @@ let initialCountries=[
             "n_a": "0.2"
           },
           {
-            "eu_country": 'francia',
+            "eu_country": 'france',
             "answer_yes": '400',
             "answer_no": '400',
             "answer_n_a": '200',
@@ -248,12 +258,79 @@ let initialCountries=[
             "yes": "0.6",
             "no": "0.2",
             "n_a": "0.2"
+          },
+          {
+            "eu_country": 'albania',
+            "answer_yes": '600',
+            "answer_no": '200',
+            "answer_n_a": '200',
+            "year": '2019',
+            "total": "1000",
+            "yes": "0.6",
+            "no": "0.2",
+            "n_a": "0.2"
+          },
+          {
+            "eu_country": 'lithuania',
+            "answer_yes": '700',
+            "answer_no": '100',
+            "answer_n_a": '200',
+            "year": '2024',
+            "total": "1000",
+            "yes": "0.6",
+            "no": "0.2",
+            "n_a": "0.2"
+          },
+          {
+            "eu_country": 'andorra',
+            "answer_yes": '200',
+            "answer_no": '100',
+            "answer_n_a": '100',
+            "year": '2019',
+            "total": "1000",
+            "yes": "0.6",
+            "no": "0.2",
+            "n_a": "0.2"
+          },
+          {
+            "eu_country": 'austria',
+            "answer_yes": '600',
+            "answer_no": '200',
+            "answer_n_a": '200',
+            "year": '2019',
+            "total": "1000",
+            "yes": "0.6",
+            "no": "0.2",
+            "n_a": "0.2"
           }
 
     ];
 
 function carlosBackend(app,db){
 
+
+
+
+    app.use(cors({
+        "origin":"http://localhost:5173",
+        "preflightContinue":false,
+        "optionsSuccessStatus":204
+    }));
+    
+    app.get(API_BASE+'/regional-politicies-acceptance/proxy',function(req,res) {
+        var url="http://api.worldbank.org/v2/country/ES;DE;FR/indicator/NY.GDP.MKTP.CD?format=json&per_page=500&date=2000:2020";
+        console.log('piped'+req.url);
+        req.pipe(request(url)).pipe(res);
+        
+        request(url,(error,response,body)=>{
+            if(error)console.log(error)
+    
+    
+            console.log(response)
+            
+        })
+        
+    });
 
 
 //Initial data load
@@ -499,26 +576,7 @@ app.get(API_BASE+"/regional-politicies-acceptance/docs",(req,res)=>{
 });
 
 
-app.use(cors({
-    "origin":"http://localhost:5173/",
-    "preflightContinue":false,
-    "optionsSuccessStatus":204
-}));
 
-app.use('/proxy',function(req,res) {
-    var url="https://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance";
-    console.log('piped'+req.url);
-    req.pipe(request(url)).pipe(res);
-    
-    request(url,(error,response,body)=>{
-        if(error)console.log(error)
-
-
-        console.log(response)
-        res.send(body);
-    })
-    
-});
 
 }
 export {carlosBackend}
