@@ -9,13 +9,13 @@
 
 <script>
 	import { onMount } from 'svelte';
-	//import { key_BaseballAPI } from '../keys/keys'
+	//import { key } from '../keys/keys'
 
 	let data = [];
 
 	onMount(async () => {
 		const headers = {
-			//'X-RapidAPI-Key': key_BaseballAPI,
+			//'X-RapidAPI-Key': 'key',
 			'X-RapidAPI-Host': 'baseballapi.p.rapidapi.com'
 		};
 
