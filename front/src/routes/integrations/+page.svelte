@@ -502,6 +502,12 @@ async function createIntegration() {
             </div>
             <Card><h3>Carlos</h3></Card>
         </div>
-        </div>   
+        <div class="card">
+            <div class="photo">
+                <a href="http://localhost:5173/integrations/josgarvar3"><img src = "https://media.discordapp.net/attachments/928959264356188190/1240223620396220416/Tartaria.png?ex=6645c7c1&is=66447641&hm=70aeee3e42200e586cb6f78276698dc78323d2c5a4e4441bf1ed8a81b6acd8f3&=&format=webp&quality=lossless&width=533&height=605" alt="Imagen" style="max-width: 100%;max-height: 100%;display: block;"></a>
+            </div>
+            <Card><h3>Jose Joaquin</h3></Card>
+        </div>
+    </div>   
 
 </Container>

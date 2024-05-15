@@ -30,8 +30,14 @@
     import * as echarts from 'echarts';
     import { dev } from "$app/environment";
 
-    let ser=[];
-    let cat=new Set();
+    let serCovid=[];
+    let catCovid=new Set();
+    let ser2=[];
+    let cat2=new Set();
+    let ser3=[];
+    let cat3=new Set();
+    let ser4=[];
+    let cat4=new Set();
     let Allfoods=[];
 	let covid = [];
     let API = "/api/v2/foods-prices-inflation";
@@ -43,10 +49,9 @@
 		await getAllFoods();
 		await getCovid();
 
-		creaLineas(); 
+		creaLineasCovid(); 
         graficaColumn(); 
         graficaArea();
-        graficaECharts();
 	}
 
     async function getAllFoods(){
@@ -70,7 +75,7 @@
         console.log(covid);
 	}
 
-    async function creaLineas(){
+    async function creaLineasCovid(){
         let inflation= {
             name: '',
             data: []
@@ -82,23 +87,23 @@
         }
 
         for(let i=0; i<Allfoods.length; i++){
-            cat.add(Allfoods[i].date.slice(0, 4));
+            catCovid.add(Allfoods[i].date.slice(0, 4));
             inflation.name="Inflacion";
             inflation.data.push(Allfoods[i].inflation*100);
         }
 
 		for(let i=0; i<covid.length; i++){
-            cat.add((covid[i].date+"").slice(0, 4));
+            catCovid.add((covid[i].date+"").slice(0, 4));
             cov.name="Covid";
             cov.data.push(covid[i].hospitalizedIncrease);
         }
         
-        ser.push(inflation);
-        ser.push(cov);
+        serCovid.push(inflation);
+        serCovid.push(cov);
 		
 		console.log(cov)
-        cat=[...cat];
-        console.log(cat);
+        catCovid=[...catCovid];
+        console.log(catCovid);
     }
 
     async function graficaArea(){
@@ -111,11 +116,11 @@
             },
             subtitle: {
                 text: 'Source: ' +
-                    '<a href= "'+ API +'"' +
+                    '<a href= "'+ "https://api.covidtracking.com" +'"' +
                     'target="_blank">foods-prices-inflation.com</a>'
             },
             xAxis: {
-                categories: cat
+                categories: catCovid
             },
             yAxis: {
                 title: {
@@ -133,7 +138,7 @@
                     }
                 }
             },
-            series: ser
+            series: serCovid
         });
     }
 
@@ -151,7 +156,7 @@
                     'target="_blank">foods-prices-inflation.com</a>'
             },
             xAxis: {
-                categories: cat
+                categories: catCovid
             },
             yAxis: {
                 title: {
@@ -164,34 +169,10 @@
                     borderWidth: 0
                 }
             },
-            series: ser
+            series: serCovid
         });
     }
 
-    var chartDom;
-    var myChart;
-    async function graficaECharts(){
-        chartDom = document.getElementById('grafica');
-        myChart = echarts.init(chartDom, "dark");
-        const option = {
-            title: {
-                text: 'ECharts - Ejemplo Simple'
-            },
-            tooltip: {},
-            xAxis: {
-                data: cat
-            },
-            yAxis: {},
-            series: [
-                {
-                name: 'Open',
-                type: 'line', // Tipo de gráfico (barras)
-                data: ser[0].data
-                }
-            ]
-        };
-        myChart.setOption(option);
-    }
 
     onMount(() =>{
 		graficas();
@@ -201,4 +182,3 @@
 <Container id="containerArea" style="width:100%; height:400px;"></Container>
 <br>
 <Container id="containerC" style="width:100%; height:400px;"></Container>
-<Container id="grafica" style="width:100%; height:400px;"></Container>
