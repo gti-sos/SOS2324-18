@@ -353,6 +353,7 @@
 	<Button href="../integrations/migmormar7/BaseballAPI" color="primary" style="background-color: purple;">Uso de BaseballAPI</Button>
 	<Button href="../integrations/migmormar7/Top100MoviesAPI" color="primary" style="background-color: purple;">Uso de Top100MoviesAPI</Button>
 	<Button href="../integrations/migmormar7/ExerciseDBAPI" color="primary" style="background-color: purple;">Uso de ExerciseDB</Button>
+	<Button href="../integrations/migmormar7/MyAnimeListAPI" color="primary" style="background-color: purple;">Uso de MyAnimeListAPI</Button>
 </p>
 
 <!-- Formulario de búsqueda con todos los campos disponibles -->

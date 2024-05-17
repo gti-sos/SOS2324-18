@@ -431,13 +431,14 @@ app.use(cors({
   "optionsSuccessStatus":204
 }));
 
-app.use('/proxy',function(req,res) {
-  var url="https://sos2324-18.appspot.com/api/v1/eu-solidarity-funds";
+app.use(API_BASE + "/eu-solidarity-funds/proxy",function(req,res) {
+  var url="https://myanimelist.p.rapidapi.com/anime";
   console.log('piped'+req.url);
   req.pipe(request(url)).pipe(res);
   
   request(url,(error,response,body)=>{
-      if(error)console.log(error)
+      if(error)
+        console.log(error)
       console.log(response)
       res.send(body);
   })

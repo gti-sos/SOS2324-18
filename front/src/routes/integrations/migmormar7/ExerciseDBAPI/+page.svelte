@@ -11,7 +11,7 @@
 
 	onMount(async () => {
 		const headers = {
-			//'X-RapidAPI-Key': 'key',
+			'X-RapidAPI-Key': '08d9a62d80msh7da0bb85bf5e2ecp1d71c2jsn93c6e60de419',
 			'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
 		};
 
