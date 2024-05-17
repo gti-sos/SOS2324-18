@@ -52936,15 +52936,15 @@ function JGVBackend(app, db){
       "optionsSuccessStatus":204
     }));
 
-    app.use('/proxy',function(req,res) {
-        var url="https://sos2324-18.appspot.com/api/v2/foods-prices-inflation";
+    app.use(API_BASE+'/foods-prices-inflation/proxy',function(req,res) {
+        var url="https://datausa.io/api/data?drilldowns=Nation&measures=Population";
         console.log('piped'+req.url);
         req.pipe(request(url)).pipe(res);
         
         request(url,(error,response,body)=>{
             if(error)
-              console.log(error)
-            console.log(response)
+              console.log(error);
+            console.log(response);
             res.send(body);
         })
     });

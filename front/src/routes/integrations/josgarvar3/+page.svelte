@@ -133,8 +133,8 @@
 	}
 
     async function getUSA(){
-        try{
-            const response = await fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population', {
+        try{//
+            const response = await fetch('https://sos2324-18.appspot.com/api/v2/foods-prices-inflation/proxy', {
                 method: "GET"
             });
             const data = await response.json();
