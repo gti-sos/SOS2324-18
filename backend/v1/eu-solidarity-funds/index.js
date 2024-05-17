@@ -426,7 +426,7 @@ app.delete(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
 });
 
 app.use(cors({
-  "origin":"http://localhost:5173/",
+  "origin":"http://localhost:5173",
   "preflightContinue":false,
   "optionsSuccessStatus":204
 }));
