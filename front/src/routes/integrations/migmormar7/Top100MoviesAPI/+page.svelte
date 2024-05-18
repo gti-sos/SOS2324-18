@@ -9,7 +9,6 @@
 
 <script>
 	import { onMount } from 'svelte';
-	//import { key } from '../keys/keys'
 
 	let data = [];
 

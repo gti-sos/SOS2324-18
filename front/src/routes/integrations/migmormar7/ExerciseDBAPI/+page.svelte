@@ -4,7 +4,6 @@
 
 <script>
 	import { onMount } from 'svelte';
-    //import { key } from '../keys/keys'
 
 	let data = [];
 	let chart;
@@ -57,20 +56,23 @@
 		}
 
 		chart = new Chart(ctx, {
-			type: 'bar',
+			type: 'scatter', 
 			data: {
-				labels: muscles,
-				datasets: [{
-					label: 'Número de Ejercicios',
-					data: counts,
-					backgroundColor: muscles.map(() => getRandomColor())
-				}]
+				datasets: muscles.map((muscle, index) => ({
+					label: muscle,
+					data: [{
+						x: index, 
+						y: counts[index], 
+					}],
+					backgroundColor: getRandomColor(),
+					pointRadius: 10, 
+				}))
 			},
 			options: {
 				responsive: true,
 				plugins: {
 					legend: {
-						display: false,
+						display: true,
 					},
 					title: {
 						display: true,
@@ -79,7 +81,12 @@
 				},
 				scales: {
 					x: {
-						beginAtZero: true,
+						type: 'linear', 
+						position: 'bottom', 
+						ticks: {
+							stepSize: 1, 
+							callback: (value, index) => muscles[index] 
+						}
 					},
 					y: {
 						beginAtZero: true
@@ -88,6 +95,7 @@
 			}
 		});
 	}
+
 </script>
 
 <div>

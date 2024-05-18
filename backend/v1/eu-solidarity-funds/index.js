@@ -204,43 +204,37 @@ let datosIniciales = [
   }
 ]
 
-//let datos = []
-
-//let express = require('express');
-//let bodyParser = require('body-parser');
-//let app = express();
-
-// Configurar body parser para JSON
-//app.use(bodyParser.json());
-
-
 const API_BASE = "/api/v1";
 
 function MMMBackend(app, db) {
+
+app.use(cors({
+  "origin":"http://localhost:5173",
+  "preflightContinue":false,
+  "optionsSuccessStatus":204
+}));
+
+app.use(API_BASE + "/eu-solidarity-funds/proxy",function(req,res) {
+  var url="https://chinese-food-db.p.rapidapi.com";
+  console.log('piped'+req.url);
+  req.pipe(request(url)).pipe(res);
+  
+  request(url,(error,response,body)=>{
+      if(error)
+        console.log(error)
+      console.log(response)
+      res.send(body);
+  })
+});
 
 app.get(API_BASE + "/eu-solidarity-funds/docs", (req, res) => {
   res.redirect("https://documenter.getpostman.com/view/33040772/2sA2xh2ssG");
 });
 
-//El recurso debe contener una ruta /api/v1/FFFFF/loadInitialData que al hacer un GET cree 10 o más datos en el array de NodeJS si 
-//está vacío. (http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/loadInitialData)
-
 app.get(API_BASE + "/eu-solidarity-funds/loadInitialData", (req, res)=>{
-  //if (datos.length === 0) {
-    //for (let i = 0; i < 10; i++) {
-      //datos.push(datosIniciales[i]);
-    //}
-    //res.sendStatus(200, "OK");
-  //} else {
-    //res.send(JSON.stringify(datos));
-  //}
   db.insert(datosIniciales);
   res.sendStatus(200, "OK");
 });
-
-//Debe tener desplegado en Google Cloud una API REST funcional ofreciendo su fuente de datos. La API debe estar desplegada 
-//(e integrada con los compañeros de grupo) en la dirección: http://sos2324-XX.appspot.com/api/v1/FFFFF  (Siendo XX el numero de grupo 
-//relleno con ceros y FFFFF el nombre del recurso) (http://sos2324-18.appspot.com/api/v1/eu-solidarity-funds).
 
 app.get(API_BASE + "/eu-solidarity-funds", (req, res) => {
   const queryParams = req.query;
@@ -424,31 +418,6 @@ app.delete(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
     res.sendStatus(200); // OK
   });
 });
-
-app.use(cors({
-  "origin":"http://localhost:5173",
-  "preflightContinue":false,
-  "optionsSuccessStatus":204
-}));
-
-app.use(API_BASE + "/eu-solidarity-funds/proxy",function(req,res) {
-  var url="https://myanimelist.p.rapidapi.com/anime";
-  console.log('piped'+req.url);
-  req.pipe(request(url)).pipe(res);
-  
-  request(url,(error,response,body)=>{
-      if(error)
-        console.log(error)
-      console.log(response)
-      res.send(body);
-  })
-});
-
-//const PORT = (process.env.PORT || 10000);
-  
-//app.listen(PORT,()=>{
-    //console.log(`Server listening on port ${PORT}.`);
-//});
 }
 
 export {MMMBackend}

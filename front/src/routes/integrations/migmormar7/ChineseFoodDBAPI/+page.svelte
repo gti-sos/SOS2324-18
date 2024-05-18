@@ -4,15 +4,14 @@
 
 <script>
 	import { onMount } from 'svelte';
-    //import { key } from '../keys/keys'
 
-	let data = [];
 	let chart;
+	let meals = [];
 
 	onMount(async () => {
 		const headers = {
 			'X-RapidAPI-Key': '08d9a62d80msh7da0bb85bf5e2ecp1d71c2jsn93c6e60de419',
-			'X-RapidAPI-Host': 'myanimelist.p.rapidapi.com'
+			'X-RapidAPI-Host': 'chinese-food-db.p.rapidapi.com'
 		};
 
 		try {
@@ -20,7 +19,7 @@
 				headers
 			});
 			const responseData = await response.json();
-			data = responseData
+			meals = responseData
 			createChart();
 		} catch (error) {
 			console.error(error);
@@ -30,34 +29,46 @@
 	function createChart() {
 		const ctx = document.getElementById('container').getContext('2d');
 
-		const titles = data.map(anime => anime.title_en || anime.title_ov);
-		const scores = data.map(anime => anime.statistics?.score);
+		const difficultyCounts = {};
+
+		meals.forEach(meal => {
+			const difficulty = meal.difficulty;
+			difficultyCounts[difficulty] = (difficultyCounts[difficulty] || 0) + 1;
+		});
+
+		const labels = Object.keys(difficultyCounts);
+		const counts = Object.values(difficultyCounts);
+
+		if (chart) {
+			chart.destroy();
+		}
 
 		chart = new Chart(ctx, {
-			type: 'scatter',
+			type: 'bar',
 			data: {
-				labels: titles,
+				labels,
 				datasets: [{
-					label: 'Puntuación',
-					data: scores,
+					label: 'Número de Comidas',
+					data: counts,
 					backgroundColor: 'rgba(75, 192, 192, 0.2)',
 					borderColor: 'rgba(75, 192, 192, 1)',
 					borderWidth: 1
 				}]
 			},
 			options: {
+				indexAxis: 'y',
 				scales: {
-					y: {
+					x: {
 						beginAtZero: true,
 						title: {
 							display: true,
-							text: 'Puntuación'
+							text: 'Número de Comidas'
 						}
 					},
-					x: {
+					y: {
 						title: {
 							display: true,
-							text: 'Anime'
+							text: 'Dificultad'
 						}
 					}
 				}

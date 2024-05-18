@@ -9,7 +9,6 @@
 
 <script>
 	import { onMount } from 'svelte';
-	//import { key } from '../keys/keys'
 
 	let data = [];
 
@@ -27,8 +26,8 @@
 
 			data = responseData.results.map((result) => ({
 				name: result.entity.name,
-				low: 0, // Valor mínimo para el rango (puedes ajustar según tus datos)
-				high: result.score // Valor máximo para el rango (usamos la puntuación como máximo)
+				low: 0, 
+				high: result.score 
 			}));
 
 			Highcharts.chart('container', {
@@ -51,7 +50,7 @@
 						dataLabels: {
 							enabled: true,
 							formatter: function () {
-								return this.y.toFixed(2); // Formato de etiqueta de datos
+								return this.y.toFixed(2);
 							}
 						}
 					}
