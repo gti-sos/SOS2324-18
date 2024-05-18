@@ -1,16 +1,15 @@
 <script>
-	// Importar las funciones necesarias desde Svelte y otras librerías
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { Button, Table } from '@sveltestrap/sveltestrap';
 	import { dev } from '$app/environment';
 
 	// Declarar variables para el estado del formulario y mensajes
-	let exists = false; // Indica si el fondo existe o no
-	let cci_number = $page.params.cci_number; // Obtiene el número CCI de los parámetros de la página
-	let oldFund = {}; // Almacenará los datos del fondo existente
-	let newFund = { cci_number: cci_number }; // Almacenará los datos del fondo editado
-	let message = ''; // Mensaje para informar al usuario sobre el resultado de la operación
+	let exists = false; 
+	let cci_number = $page.params.cci_number; 
+	let oldFund = {}; 
+	let newFund = { cci_number: cci_number }; 
+	let message = '';
 
 	// Definir la URL de la API, usando la URL de producción o local dependiendo del entorno
 	let API = '/api/v1/eu-solidarity-funds';
@@ -97,51 +96,6 @@
 		window.location.href = '/eu-solidarity-funds/'; // Redirige a la página de fondos de solidaridad de la UE
 	}
 </script>
-
-<!--
-  <style>
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-  
-    .form-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-  
-    .form-container input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-  
-    .btn-container {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-  
-    .btn-container button {
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  
-    .primary-btn {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-    }
-  
-    .warning-btn {
-      background-color: #ffc107;
-      color: #212529;
-      border: none;
-    }
-  </style>-->
 
 <h2>Edita el fondo</h2>
 

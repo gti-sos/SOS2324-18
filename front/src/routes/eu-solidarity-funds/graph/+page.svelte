@@ -10,6 +10,7 @@
 <script>
     import { onMount } from "svelte";
     import { dev } from '$app/environment';
+    import { Button, Container, Table } from '@sveltestrap/sveltestrap';
 
     let datosIniciales = [];
     let scatterData = [];
@@ -82,8 +83,8 @@
                 datasets: [{
                     label: 'Cantidad de desastres',
                     data: values,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Color de las barras
-                    borderColor: 'rgba(54, 162, 235, 1)', // Borde de las barras
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', 
+                    borderColor: 'rgba(54, 162, 235, 1)', 
                     borderWidth: 1
                 }]
             },
@@ -92,7 +93,7 @@
                 responsive: false,
                 scales: {
                     y: {
-                        beginAtZero: true // Comenzar el eje y en cero
+                        beginAtZero: true 
                     }
                 }
             }
@@ -156,6 +157,8 @@
     });
 
 </script>
+
+<Button href="./graph/Grafica_de_todos_los_datos" color="primary" style="background-color: purple;">Gráfica con todos mis datos</Button>
 
 <h1>GRÁFICAS CHART.JS</h1>
 

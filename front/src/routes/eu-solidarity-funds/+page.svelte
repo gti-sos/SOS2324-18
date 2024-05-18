@@ -1,24 +1,18 @@
 <script>
-	// Importar los módulos necesarios
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
 	import { dev } from '$app/environment';
 	import { Button, Container, Table } from '@sveltestrap/sveltestrap';
 
-	// URL de la API
 	let API = '/api/v1/eu-solidarity-funds';
 	if (dev) {
 		API = 'http://localhost:10000' + API;
 	}
 
-	// Arreglo para almacenar los datos de la API
 	let funds = [];
-	// Mensaje de error o éxito
 	let message = '';
-
 	let newFund = {};
-
-	let currentPage = 1; // Variable para controlar la página actual
+	let currentPage = 1; 
 
 	onMount(() => {
 		getFunds();
@@ -83,7 +77,7 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(newFund) // Se asume que newFund contiene los datos del nuevo fondo
+				body: JSON.stringify(newFund) 
 			});
 			// Parsear la respuesta a JSON
 			let code = response.status;
@@ -259,85 +253,6 @@
 
 </script>
 
-<!--<style>
-	h1 {
-	  text-align: center;
-	  margin-bottom: 20px;
-	}
-  
-	.alert {
-	  margin-bottom: 20px;
-	  padding: 10px;
-	  border-radius: 5px;
-	}
-  
-	.btn-container {
-	  display: flex;
-	  justify-content: space-between;
-	  margin-bottom: 20px;
-	}
-  
-	.table-container {
-	  overflow-x: auto;
-	}
-  
-	.table-container table {
-	  width: 100%;
-	  border-collapse: collapse;
-	}
-  
-	.table-container th,
-	.table-container td {
-	  border: 1px solid #ccc;
-	  padding: 8px;
-	}
-  
-	.action-buttons {
-	  display: flex;
-	  justify-content: space-between;
-	}
-  
-	.action-buttons button {
-	  margin-right: 10px;
-	}
-  
-	.success-btn {
-	  background-color: #28a745;
-	  color: #fff;
-	  border: none;
-	  padding: 8px 12px;
-	  border-radius: 5px;
-	  cursor: pointer;
-	}
-  
-	.danger-btn {
-	  background-color: #dc3545;
-	  color: #fff;
-	  border: none;
-	  padding: 8px 12px;
-	  border-radius: 5px;
-	  cursor: pointer;
-	}
-  
-	.primary-btn {
-	  background-color: #007bff;
-	  color: #fff;
-	  border: none;
-	  padding: 8px 12px;
-	  border-radius: 5px;
-	  cursor: pointer;
-	}
-  
-	.info-btn {
-	  background-color: #17a2b8;
-	  color: #fff;
-	  border: none;
-	  padding: 8px 12px;
-	  border-radius: 5px;
-	  cursor: pointer;
-	}
-  </style>-->
-
 <h1>Administración de Fondos de Solidaridad de la UE</h1>
 
 <!-- Mostrar mensaje de éxito o error -->
@@ -348,13 +263,6 @@
 <Button on:click={loadFunds} color="primary" class="load">Crear Fondos de prueba</Button>
 <Button on:click={deleteAllFunds} color="danger">Eliminar Todos los Fondos</Button>
 <Button href="eu-solidarity-funds/graph" color="success">Gráficos</Button>
-<p>
-	<!--<Button href="../integrations/migmormar7/NASA_API" color="primary">Uso de API NASA</Button>-->
-	<Button href="../integrations/migmormar7/BaseballAPI" color="primary" style="background-color: purple;">Uso de BaseballAPI</Button>
-	<Button href="../integrations/migmormar7/Top100MoviesAPI" color="primary" style="background-color: purple;">Uso de Top100MoviesAPI</Button>
-	<Button href="../integrations/migmormar7/ExerciseDBAPI" color="primary" style="background-color: purple;">Uso de ExerciseDB</Button>
-	<Button href="../integrations/migmormar7/MyAnimeListAPI" color="primary" style="background-color: purple;">Uso de MyAnimeListAPI</Button>
-</p>
 
 <!-- Formulario de búsqueda con todos los campos disponibles -->
 <form on:submit|preventDefault={searchResources}>
