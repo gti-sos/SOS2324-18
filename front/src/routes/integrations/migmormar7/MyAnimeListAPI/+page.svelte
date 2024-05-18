@@ -16,7 +16,7 @@
 		};
 
 		try {
-			const response = await fetch('https://sos2324-18.appspot.com/api/v1/eu-solidarity-funds/proxy', {
+			const response = await fetch('http://localhost:10000/api/v1/eu-solidarity-funds/proxy', {
 				headers
 			});
 			const responseData = await response.json();

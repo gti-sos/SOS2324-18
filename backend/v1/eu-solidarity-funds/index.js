@@ -218,6 +218,31 @@ const API_BASE = "/api/v1";
 
 function MMMBackend(app, db) {
 
+  app.use(cors({
+    "origin":"http://localhost:5173",
+    "preflightContinue":false,
+    "optionsSuccessStatus":204
+  }));
+  
+  app.get(API_BASE + "/eu-solidarity-funds/proxy",function(req,res) {
+    var url="https://myanimelist.p.rapidapi.com/anime";
+    console.log('piped'+req.url);
+    req.pipe(request(url)).pipe(res);
+    
+    request(url,(error,response,body)=>{
+        if(error)
+          console.log(error)
+        console.log(response)
+        res.send(body);
+    })
+  });
+  
+
+
+
+
+
+
 app.get(API_BASE + "/eu-solidarity-funds/docs", (req, res) => {
   res.redirect("https://documenter.getpostman.com/view/33040772/2sA2xh2ssG");
 });
@@ -425,24 +450,6 @@ app.delete(API_BASE + "/eu-solidarity-funds/:id", (req, res) => {
   });
 });
 
-app.use(cors({
-  "origin":"http://localhost:5173",
-  "preflightContinue":false,
-  "optionsSuccessStatus":204
-}));
-
-app.use(API_BASE + "/eu-solidarity-funds/proxy",function(req,res) {
-  var url="https://myanimelist.p.rapidapi.com/anime";
-  console.log('piped'+req.url);
-  req.pipe(request(url)).pipe(res);
-  
-  request(url,(error,response,body)=>{
-      if(error)
-        console.log(error)
-      console.log(response)
-      res.send(body);
-  })
-});
 
 //const PORT = (process.env.PORT || 10000);
   
