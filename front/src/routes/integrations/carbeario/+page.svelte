@@ -326,7 +326,7 @@ async function createCountriesIntegration(){
     areaData=areaData.map(e=>{
         return {
             y:e[1],
-            indexLabel:e[0]
+            label:e[0]
         }
     })
 
@@ -343,7 +343,7 @@ async function createCountriesIntegration(){
     countryData=countryData.map(e=>{
         return {
             y:parseInt(e[1]),
-            indexLabel:e[0]
+            label:e[0]
         }
     })
 
@@ -353,13 +353,13 @@ async function createCountriesIntegration(){
 
     var chart = new CanvasJS.Chart("chartContainerAreas", {
                 title: {
-                    text: "Aceptación de politicas europeas y muertes por Covid-19"
+                    text: "Aceptación de politicas europeas y area en kilómetros cuadrados"
                 },
                 axisY: {
                     title: "Votos"
                 },
                 axisY2: {
-                    title: "Muertes por Covid-19"
+                    title: "km2"
                 },
                 data: [{
                     type: "area",
