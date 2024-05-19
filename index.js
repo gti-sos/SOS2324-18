@@ -14,7 +14,7 @@ import cors from "cors";
 let dbVotes= new dataStore();
 //let JGVAPI = require("./foods-prices-inflation");
 let dbFood = new dataStore();
-let dbFunds = new dataStore();
+let dbFunds = new dataStore(); 
 
 //let MMMAPI = require("./eu-solidarity-funds");
 

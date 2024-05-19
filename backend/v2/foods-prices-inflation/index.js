@@ -53033,6 +53033,7 @@ function JGVBackend(app, db){
 
     app.post(API_BASE+"/foods-prices-inflation", (req,res)=>{
         let obj = req.body;
+        //console.log("A");
         const expectedFields=["id",
         "open",
         "high",
@@ -53042,25 +53043,31 @@ function JGVBackend(app, db){
         "country",
         "iso3",
         "date"]
-        console.log(obj)
+        //console.log(obj);
+        //console.log("B");
         //Comprueba si los campos coinciden con los de nuestra db
         const requestFields=Object.keys(req.body);
         const missedFields=expectedFields.filter(field=>!requestFields.includes(field));
+        //console.log("C");
         if(missedFields.length>0)
           return res.status(400).send("Missing fields: " + missedFields.join(", "));
-        
+        console.log("D");
         db.find({}, (err, docs) => {
           if (err) {
             return res.sendStatus(500, "Internal Error");
           }
-          
+          //console.log("E");
           if (docs.length>0) {
             var i = docs.findIndex(u => u.id === req.body.id);
+            console.log("F");
             if (i!==-1) return res.sendStatus(409, "Conflict");
           }
+          //console.log("G");
           db.insert(obj);
+          //console.log("H");
           res.sendStatus(201, "Created");
         });
+        //console.log("I");
     });
 
     app.post(API_BASE+"/foods-prices-inflation/:id", (req,res)=>{
