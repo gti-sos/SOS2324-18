@@ -19,4 +19,5 @@
    - **V2**:
       - [http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs](http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs) (developed by Carlos Beato Rioja)
       - [http://sos2324-18.appspot.com/api/v2/foods-prices-inflation/docs](https://documenter.getpostman.com/view/33015048/2sA35HX1Xu) (developed by José Joaquín Garrido Vargas)
+      
 
