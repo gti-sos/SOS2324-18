@@ -56,7 +56,7 @@ import { Button,Container,Accordion, AccordionItem,Alert, Card} from '@sveltestr
 </div>
 <div class="video-container">     
     <h3>Video MIGUEL MORENO MARTÍN-PALOMO</h3>
-    <iframe  width="300" height="300" src="https://www.youtube.com/watch?v=T3TjNhEtPZo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>              
+    <iframe width="300" height="300" src="https://www.youtube.com/embed/T3TjNhEtPZo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>           
 </div>
 
         
