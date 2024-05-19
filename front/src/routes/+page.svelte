@@ -18,7 +18,8 @@
     <Card theme="auto">
         <CardHeader>
           <CardTitle><h3>SOS2324-18 <Button href="analytics" color="success">GRAFICOS</Button>
-            <Button href="integrations" color="success">INTEGRACIONES</Button></h3></CardTitle>
+            <Button href="integrations" color="success">INTEGRACIONES</Button>
+            <Button href="about" color="success">ABOUT</Button></h3></CardTitle>
         </CardHeader>
         <CardBody>
           <Row>
