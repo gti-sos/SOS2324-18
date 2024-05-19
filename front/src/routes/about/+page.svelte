@@ -55,8 +55,8 @@ import { Button,Container,Accordion, AccordionItem,Alert, Card} from '@sveltestr
     <h3>Video JOSÉ JOAQUÍN GARRIDO VARGAS</h3>
 </div>
 <div class="video-container">     
-    <h3>Video CARLOS BEATO RIOJA</h3>
-    <iframe  width="300" height="300" src="https://www.youtube.com/embed/xF5XLFOemq0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>              
+    <h3>Video MIGUEL MORENO MARTÍN-PALOMO</h3>
+    <iframe  width="300" height="300" src="https://youtu.be/T3TjNhEtPZo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>              
 </div>
 
         
