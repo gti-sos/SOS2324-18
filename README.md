@@ -23,3 +23,5 @@
    Para lanzar la imagen en un contenedor del proyecto usar el siguiente comando manteniendo el puerto 8080: docker run -p 12345:8080 -d -e PORT=8080 "carbeario/sos2324-18:0.0.1"
 
 
+
+
