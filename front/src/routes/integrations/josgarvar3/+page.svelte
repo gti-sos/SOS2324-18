@@ -351,7 +351,7 @@
                 type: 'area'
             },
             title: {
-                text: 'Inflacion - Hospitalizados por covid'
+                text: 'Inflacion - Estreno capitulos Rick y Morty'
             },
             subtitle: {
                 text: 'Source: ' +
@@ -364,7 +364,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Inflacion / Hospitalizados por covid'
+                    text: 'Inflacion / Estreno capitulos Rick y Morty '
                 }
             },
             plotOptions: {
@@ -388,7 +388,7 @@
                 type: 'column'
             },
             title: {
-                text: 'Open - Close de la inflacion'
+                text: 'Inflacion - Hospitalizados por covid'
             },
             subtitle: {
                 text: 'Source: ' +
@@ -400,7 +400,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Open / Close'
+                    text: 'Inflacion / Hospitalizados por covid'
                 }
             },
             plotOptions: {
