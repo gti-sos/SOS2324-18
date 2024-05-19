@@ -19,4 +19,5 @@
    - **V2**:
       - [http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs](http://sos2324-18.appspot.com/api/v2/regional-politicies-acceptance/docs) (developed by Carlos Beato Rioja)
       - [http://sos2324-18.appspot.com/api/v2/foods-prices-inflation/docs](https://documenter.getpostman.com/view/33015048/2sA35HX1Xu) (developed by José Joaquín Garrido Vargas)
-
+- **DOCKER**: 
+   Para lanzar la imagen del proyecto usar el siguiente comando manteniendo el puerto 8080: docker run -p 12345:8080 -d -e PORT=8080 "carbeario/sos2324-18:0.0.1".
