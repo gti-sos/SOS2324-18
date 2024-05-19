@@ -506,7 +506,7 @@ async function createIntegration() {
         </div>
         <div class="card">
             <div class="photo">
-                <a href="http://localhost:5173/integrations/josgarvar3"><img src = "https://magicinternacional.com/wp-content/uploads/2024/03/Karles-Torah-e1711897452974.jpeg" alt="Imagen" style="max-width: 100%;max-height: 100%;display: block;"></a>
+                <a href="http://sos2324-18.appspot.com/integrations/josgarvar3"><img src = "https://magicinternacional.com/wp-content/uploads/2024/03/Karles-Torah-e1711897452974.jpeg" alt="Imagen" style="max-width: 100%;max-height: 100%;display: block;"></a>
             </div>
             <Card><h3>Jose Joaquin</h3></Card>
         </div>
